@@ -9,8 +9,34 @@
 import CoreLocation
 import UIKit
 import Alamofire
+import JWT
 
 class INatApi {
+    
+    func postParamsForCoordinate(_ coordinate: CLLocationCoordinate2D?, date: Date?) -> [String: String] {
+        var params = [String: String]()
+        if let coordinate = coordinate {
+            let fuzzedCoordinate = coordinate.truncate(places: 2)
+            params["lat"] = "\(fuzzedCoordinate.latitude)"
+            params["lng"] = "\(fuzzedCoordinate.longitude)"
+        }
+        if let date = date {
+            params["observed_on"] = "\(date.timeIntervalSince1970)"
+        }
+        return params
+    }
+    
+    func scoreImage(_ image: UIImage, coordinate: CLLocationCoordinate2D?, date: Date?, completion: @escaping (ScoreResponse?, Error?) -> Void) {
+        if let resized = image.resizedTo(CGSize(width: 299, height: 299)), let imageData = UIImageJPEGRepresentation(resized, 1) {
+            let jwtStr = JWT.encode(claims: ["application": "ios"], algorithm: .hs512(AppConfig.visionSekret.data(using: .utf8)!))
+            
+            let params = postParamsForCoordinate(coordinate, date: date)
+            
+            self.multiPartPostToUrl("https://api.inaturalist.org/v1/computervision/score_image", data: imageData, params: params, jwtStr: jwtStr, decodable: ScoreResponse.self, completion: completion)
+        } else {
+            completion(nil, nil)
+        }
+    }
     
     func fullTaxonForSpeciesId(_ speciesId: Int, completion: @escaping (TaxaResponse?, Error?) -> Void) {
         let url = "https://api.inaturalist.org/v1/taxa/\(speciesId)"
@@ -86,5 +112,42 @@ class INatApi {
                 }
             }
         }
+    }
+    
+    func multiPartPostToUrl<T>(_ url: URLConvertible, data: Data, params: [String: String]?, jwtStr: String?, decodable: T.Type, completion: @escaping (T?, Error?) -> Void) where T : Decodable {
+        
+        Alamofire.upload(multipartFormData:{ multipartFormData in
+            multipartFormData.append(data, withName: "image", fileName: "file.jpg", mimeType: "image/jpeg")
+            if let params = params {
+                for (key, value) in params {
+                    multipartFormData.append(value.data(using: .utf8)!, withName: key)
+                }
+            }
+        },
+                         usingThreshold: UInt64.init(),
+                         to: url,
+                         method: .post,
+                         headers: jwtStr != nil ? ["Authorization": jwtStr!] : nil,
+                         encodingCompletion: { encodingResult in
+                            switch encodingResult {
+                            case .success(let upload, _, _):
+                                upload.responseData { responseData in
+                                    switch responseData.result {
+                                    case .success(let data):
+                                        do {
+                                            let serverResponse = try JSONDecoder().decode(decodable, from: data)
+                                            completion(serverResponse, nil)
+                                        } catch let error {
+                                            completion(nil, error)
+                                        }
+                                    case .failure(let error):
+                                        completion(nil, error)
+                                    }
+                                }
+                            case .failure(let encodingError):
+                                completion(nil, encodingError)
+                            }
+        })
+
     }
 }

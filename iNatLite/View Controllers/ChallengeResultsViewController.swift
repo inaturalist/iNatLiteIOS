@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import JWT
-import Alamofire
 import FontAwesomeKit
 import RealmSwift
 import CoreLocation
@@ -48,83 +46,40 @@ class ChallengeResultsViewController: UIViewController {
     
     func loadResults() {
         if let imageFromUser = self.imageFromUser {
-            let jwtStr = JWT.encode(claims: ["application": "ios"], algorithm: .hs512(AppConfig.visionSekret.data(using: .utf8)!))
-            // resize the image to 299x299
-            let rect = CGRect(x: 0, y: 0, width: 299, height: 299)
-            let newSize = CGSize(width: 299, height: 299)
-            UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-            imageFromUser.draw(in: rect)
-            let newImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            let data = UIImageJPEGRepresentation(newImage!, 1)
-            
-            var params = [String: String]()
-            
-            if let loc = self.takenLocation {
-                let fuzzedCoordinate = loc.coordinate.truncate(places: 2)
-                params["lat"] = "\(fuzzedCoordinate.latitude)"
-                params["lng"] = "\(fuzzedCoordinate.longitude)"
-            }
-            if let date = self.takenDate {
-                params["observed_on"] = "\(date.timeIntervalSince1970)"
-            }
             
             self.activitySpinner?.isHidden = false
             self.activitySpinner?.startAnimating()
-            
-            
-            
-            Alamofire.upload(multipartFormData:{ multipartFormData in
-                multipartFormData.append(data!, withName: "image", fileName: "file.jpg", mimeType: "image/jpeg")
-                for (key, value) in params {
-                    multipartFormData.append(value.data(using: .utf8)!, withName: key)
+
+            INatApi().scoreImage(imageFromUser, coordinate: self.takenLocation?.coordinate, date: self.takenDate) { (response, error) in
+                self.activitySpinner?.isHidden = true
+                self.activitySpinner?.stopAnimating()
+
+                if let error = error {
+                    self.noticeLabel?.text = "Can't load computer vision suggestions: \(error.localizedDescription) Try again later."
+                    self.noticeLabel?.isHidden = false
+                } else if let response = response {
+                    for result in response.results {
+                        if let target = self.targetTaxon,
+                            target.id == result.taxon.id,
+                            let score = result.combined_score,
+                            score > 85
+                        {
+                            self.resultScore = result
+                            break
+                        } else if let score = result.combined_score,
+                            score > 97
+                        {
+                            self.resultScore = result
+                            break
+                        }
+                    }
+                    self.commonAncestor = response.common_ancestor
+                    self.resultsLoaded = true
+                    self.activitySpinner?.isHidden = true
+                    self.activitySpinner?.stopAnimating()
+                    self.tableView?.reloadData()
                 }
-            },
-                             usingThreshold:UInt64.init(),
-                             to:"https://api.inaturalist.org/v1/computervision/score_image",
-                             method:.post,
-                             headers:["Authorization": jwtStr],
-                             encodingCompletion: { encodingResult in
-                                switch encodingResult {
-                                case .success(let upload, _, _):
-                                    upload.responseData { responseData in
-                                        do {
-                                            // TODO: check for responseData.data
-                                            let serverResponse = try JSONDecoder().decode(ScoreResponse.self, from: responseData.data!)
-                                            for result in serverResponse.results {
-                                                if let target = self.targetTaxon,
-                                                    target.id == result.taxon.id,
-                                                    let score = result.combined_score,
-                                                    score > 85
-                                                {
-                                                    self.resultScore = result
-                                                    break
-                                                } else if let score = result.combined_score,
-                                                    score > 97
-                                                {
-                                                    self.resultScore = result
-                                                    break
-                                                }
-                                            }
-                                            self.commonAncestor = serverResponse.common_ancestor
-                                            self.resultsLoaded = true
-                                            self.activitySpinner?.isHidden = true
-                                            self.activitySpinner?.stopAnimating()
-                                            self.tableView?.reloadData()
-                                        } catch {
-                                            self.noticeLabel?.text = "Can't load computer vision suggestions. Try again later."
-                                            self.noticeLabel?.isHidden = false
-                                            self.activitySpinner?.isHidden = true
-                                            self.activitySpinner?.stopAnimating()
-                                        }
-                                    }
-                                case .failure(let encodingError):
-                                    self.noticeLabel?.text = encodingError.localizedDescription
-                                    self.noticeLabel?.isHidden = false
-                                    self.activitySpinner?.isHidden = true
-                                    self.activitySpinner?.stopAnimating()
-                                }
-            })
+            }
         }
     }
 

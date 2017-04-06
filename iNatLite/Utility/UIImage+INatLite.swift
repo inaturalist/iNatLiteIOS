@@ -9,6 +9,16 @@
 import UIKit
 
 extension UIImage {
+    
+    func resizedTo(_ size: CGSize) -> UIImage? {
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.width)
+        UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
+        self.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+    
     static func profileIconForObservationCount(_ count: Int) -> UIImage? {
         if let imageName = UIImage.profileIconNameForObservationCount(count) {
             return UIImage(named: imageName)
