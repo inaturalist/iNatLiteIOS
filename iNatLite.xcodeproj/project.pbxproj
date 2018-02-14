@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF0E994E9A0187DF670162F4 /* Pods_iNatLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1007378444A1EA1076E2E3AC /* Pods_iNatLite.framework */; };
 		FA1DE1582034C77A00ACBD17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1572034C77A00ACBD17 /* AppDelegate.swift */; };
 		FA1DE15A2034C77A00ACBD17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1592034C77A00ACBD17 /* ViewController.swift */; };
 		FA1DE15D2034C77A00ACBD17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1DE15B2034C77A00ACBD17 /* Main.storyboard */; };
@@ -34,6 +35,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1007378444A1EA1076E2E3AC /* Pods_iNatLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iNatLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		879C91F67D5FBD7BCDA49BDD /* Pods-iNatLite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iNatLite.release.xcconfig"; path = "Pods/Target Support Files/Pods-iNatLite/Pods-iNatLite.release.xcconfig"; sourceTree = "<group>"; };
+		CBC22DC9357BCAC8DA7FB1D7 /* Pods-iNatLite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iNatLite.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iNatLite/Pods-iNatLite.debug.xcconfig"; sourceTree = "<group>"; };
 		FA1DE1542034C77A00ACBD17 /* iNatLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iNatLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1DE1572034C77A00ACBD17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA1DE1592034C77A00ACBD17 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF0E994E9A0187DF670162F4 /* Pods_iNatLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +79,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		636B9036CE1FB96BCF14694F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1007378444A1EA1076E2E3AC /* Pods_iNatLite.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E394BCE5ACD82514553B5184 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CBC22DC9357BCAC8DA7FB1D7 /* Pods-iNatLite.debug.xcconfig */,
+				879C91F67D5FBD7BCDA49BDD /* Pods-iNatLite.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FA1DE14B2034C77A00ACBD17 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +103,8 @@
 				FA1DE16B2034C77A00ACBD17 /* iNatLiteTests */,
 				FA1DE1762034C77A00ACBD17 /* iNatLiteUITests */,
 				FA1DE1552034C77A00ACBD17 /* Products */,
+				E394BCE5ACD82514553B5184 /* Pods */,
+				636B9036CE1FB96BCF14694F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,9 +156,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA1DE17C2034C77A00ACBD17 /* Build configuration list for PBXNativeTarget "iNatLite" */;
 			buildPhases = (
+				8D65B1170A7720B6D1007865 /* [CP] Check Pods Manifest.lock */,
 				FA1DE1502034C77A00ACBD17 /* Sources */,
 				FA1DE1512034C77A00ACBD17 /* Frameworks */,
 				FA1DE1522034C77A00ACBD17 /* Resources */,
+				A84E9BE90D6F68829AF4A3FF /* [CP] Embed Pods Frameworks */,
+				67CE0A8092F41DD1534F55A8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,6 +280,82 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		67CE0A8092F41DD1534F55A8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iNatLite/Pods-iNatLite-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D65B1170A7720B6D1007865 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iNatLite-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A84E9BE90D6F68829AF4A3FF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iNatLite/Pods-iNatLite-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ALCameraViewController/ALCameraViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CRToast/CRToast.framework",
+				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
+				"${BUILT_PRODUCTS_DIR}/FontAwesomeKit/FontAwesomeKit.framework",
+				"${BUILT_PRODUCTS_DIR}/ImagePicker/ImagePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
+				"${BUILT_PRODUCTS_DIR}/JSONWebToken/JWT.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftCharts/SwiftCharts.framework",
+				"${BUILT_PRODUCTS_DIR}/UIImageViewAlignedSwift/UIImageViewAlignedSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ALCameraViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CRToast.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesomeKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImagePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWT.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCharts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageViewAlignedSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iNatLite/Pods-iNatLite-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FA1DE1502034C77A00ACBD17 /* Sources */ = {
@@ -424,6 +527,7 @@
 		};
 		FA1DE17D2034C77A00ACBD17 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBC22DC9357BCAC8DA7FB1D7 /* Pods-iNatLite.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -439,6 +543,7 @@
 		};
 		FA1DE17E2034C77A00ACBD17 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 879C91F67D5FBD7BCDA49BDD /* Pods-iNatLite.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

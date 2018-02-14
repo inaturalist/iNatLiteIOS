@@ -1,0 +1,67 @@
+PODS:
+  - Alamofire (4.6.0)
+  - ALCameraViewController (3.0.2)
+  - Cache (4.1.2)
+  - CRToast (0.0.9)
+  - FontAwesomeKit (2.2.1):
+    - FontAwesomeKit/Core (= 2.2.1)
+    - FontAwesomeKit/FontAwesome (= 2.2.1)
+    - FontAwesomeKit/FoundationIcons (= 2.2.1)
+    - FontAwesomeKit/IonIcons (= 2.2.1)
+    - FontAwesomeKit/Material (= 2.2.1)
+    - FontAwesomeKit/Octicons (= 2.2.1)
+    - FontAwesomeKit/Zocial (= 2.2.1)
+  - FontAwesomeKit/Core (2.2.1)
+  - FontAwesomeKit/FontAwesome (2.2.1):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/FoundationIcons (2.2.1):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/IonIcons (2.2.1):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/Material (2.2.1):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/Octicons (2.2.1):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/Zocial (2.2.1):
+    - FontAwesomeKit/Core
+  - ImagePicker (3.0.0)
+  - Imaginary (3.0.2):
+    - Cache (~> 4.0)
+  - JSONWebToken (2.2.0)
+  - Realm (3.0.2):
+    - Realm/Headers (= 3.0.2)
+  - Realm/Headers (3.0.2)
+  - RealmSwift (3.0.2):
+    - Realm (= 3.0.2)
+  - SwiftCharts (0.6.1)
+  - UIImageViewAlignedSwift (0.5.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - ALCameraViewController
+  - CRToast
+  - FontAwesomeKit
+  - ImagePicker
+  - Imaginary
+  - JSONWebToken
+  - RealmSwift
+  - SwiftCharts
+  - UIImageViewAlignedSwift
+
+SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  ALCameraViewController: 1edce3497633f0df138523645ed1228961ee2eab
+  Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
+  CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
+  FontAwesomeKit: 3614979b3dbb0ec3f7fac1bd760b91f66c31db67
+  ImagePicker: 973953c25960fe04729a7082a56194321c6762d2
+  Imaginary: d675200546110e305d6a26db6267c0622ffe5e6b
+  JSONWebToken: 6fae32489632658d563dd6952a5c34020ea813e4
+  Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
+  RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
+  SwiftCharts: 77378d6cf667e95f9c79a745b6778e66eed5339c
+  UIImageViewAlignedSwift: 2e09096e6081ad26b848e19b4bc35a7d69165740
+
+PODFILE CHECKSUM: 88ddd9a0049463ba3e7ca5d7dfa68bc7c76c7e2b
+
+COCOAPODS: 1.4.0.rc.1
