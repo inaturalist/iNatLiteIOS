@@ -9,7 +9,6 @@ target 'iNatLite' do
   pod 'FontAwesomeKit'
   pod 'SwiftCharts'
   pod 'RealmSwift'
-  pod 'ImagePicker'
   pod 'ALCameraViewController'
   pod 'CRToast'
 end
