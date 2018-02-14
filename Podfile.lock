@@ -24,7 +24,6 @@ PODS:
     - FontAwesomeKit/Core
   - FontAwesomeKit/Zocial (2.2.1):
     - FontAwesomeKit/Core
-  - ImagePicker (3.0.0)
   - Imaginary (3.0.2):
     - Cache (~> 4.0)
   - JSONWebToken (2.2.0)
@@ -41,7 +40,6 @@ DEPENDENCIES:
   - ALCameraViewController
   - CRToast
   - FontAwesomeKit
-  - ImagePicker
   - Imaginary
   - JSONWebToken
   - RealmSwift
@@ -54,7 +52,6 @@ SPEC CHECKSUMS:
   Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   FontAwesomeKit: 3614979b3dbb0ec3f7fac1bd760b91f66c31db67
-  ImagePicker: 973953c25960fe04729a7082a56194321c6762d2
   Imaginary: d675200546110e305d6a26db6267c0622ffe5e6b
   JSONWebToken: 6fae32489632658d563dd6952a5c34020ea813e4
   Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
@@ -62,6 +59,6 @@ SPEC CHECKSUMS:
   SwiftCharts: 77378d6cf667e95f9c79a745b6778e66eed5339c
   UIImageViewAlignedSwift: 2e09096e6081ad26b848e19b4bc35a7d69165740
 
-PODFILE CHECKSUM: 88ddd9a0049463ba3e7ca5d7dfa68bc7c76c7e2b
+PODFILE CHECKSUM: a2e6a8225dd0f85b5e60894a309ca883959315c5
 
 COCOAPODS: 1.4.0.rc.1
