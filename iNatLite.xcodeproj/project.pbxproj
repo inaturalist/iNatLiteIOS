@@ -51,6 +51,7 @@
 		FA1DE1732034C77A00ACBD17 /* iNatLiteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iNatLiteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1DE1772034C77A00ACBD17 /* iNatLiteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iNatLiteUITests.swift; sourceTree = "<group>"; };
 		FA1DE1792034C77A00ACBD17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA1DE1852034C92E00ACBD17 /* iNatLite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iNatLite.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +122,7 @@
 		FA1DE1562034C77A00ACBD17 /* iNatLite */ = {
 			isa = PBXGroup;
 			children = (
+				FA1DE1852034C92E00ACBD17 /* iNatLite.entitlements */,
 				FA1DE1572034C77A00ACBD17 /* AppDelegate.swift */,
 				FA1DE1592034C77A00ACBD17 /* ViewController.swift */,
 				FA1DE15B2034C77A00ACBD17 /* Main.storyboard */,
@@ -221,6 +223,11 @@
 					FA1DE1532034C77A00ACBD17 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					FA1DE1672034C77A00ACBD17 = {
 						CreatedOnToolsVersion = 9.2;
@@ -327,7 +334,6 @@
 				"${BUILT_PRODUCTS_DIR}/CRToast/CRToast.framework",
 				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/FontAwesomeKit/FontAwesomeKit.framework",
-				"${BUILT_PRODUCTS_DIR}/ImagePicker/ImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
 				"${BUILT_PRODUCTS_DIR}/JSONWebToken/JWT.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
@@ -342,7 +348,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CRToast.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesomeKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
@@ -530,6 +535,7 @@
 			baseConfigurationReference = CBC22DC9357BCAC8DA7FB1D7 /* Pods-iNatLite.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iNatLite/iNatLite.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N5J7L4P93Z;
 				INFOPLIST_FILE = iNatLite/Info.plist;
@@ -546,6 +552,7 @@
 			baseConfigurationReference = 879C91F67D5FBD7BCDA49BDD /* Pods-iNatLite.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iNatLite/iNatLite.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N5J7L4P93Z;
 				INFOPLIST_FILE = iNatLite/Info.plist;
