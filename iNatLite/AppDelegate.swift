@@ -7,15 +7,28 @@
 //
 
 import UIKit
+import Realm
+import RealmSwift
+
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    static let appGroupId = "group.org.inaturalist.CardsSharing"
 
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // put the realm database in a shared container so it can eventually be read by other iNaturalist apps
+        if let directory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppDelegate.appGroupId) {
+            let config = RLMRealmConfiguration.default()
+            config.fileURL = directory.appendingPathComponent("db.realm")
+            RLMRealmConfiguration.setDefault(config)
+        }
+        
         return true
     }
 
