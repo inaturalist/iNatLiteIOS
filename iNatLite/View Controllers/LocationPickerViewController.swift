@@ -13,7 +13,7 @@ import Alamofire
 private let locationTagCellId = "LocationTagCell"
 
 protocol LocationChooserDelegate: NSObjectProtocol {
-    func chosePlace(place: Place)
+    func chosePlace(_ place: Place)
 }
 
 class LocationPickerViewController: UIViewController {
@@ -31,13 +31,14 @@ class LocationPickerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.collectionView?.contentInset = UIEdgeInsetsMake(5, 5, 5, 5)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.black
-        
+        self.collectionView?.contentInset = UIEdgeInsetsMake(5, 5, 5, 5)
+
         // need to set estimated size to let the collection view flow layout automatically
         // size the cells
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -117,7 +118,7 @@ extension LocationPickerViewController: MKMapViewDelegate {
 extension LocationPickerViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let place = self.nearbyPlaces[indexPath.item]
-        self.delegate?.chosePlace(place: place)
+        self.delegate?.chosePlace(place)
     }
 }
 
