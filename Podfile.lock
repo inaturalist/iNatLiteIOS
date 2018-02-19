@@ -2,6 +2,8 @@ PODS:
   - Alamofire (4.6.0)
   - ALCameraViewController (3.0.2)
   - Cache (4.1.2)
+  - CropViewController (2.3.5):
+    - TOCropViewController
   - CRToast (0.0.9)
   - FontAwesomeKit (2.2.1):
     - FontAwesomeKit/Core (= 2.2.1)
@@ -24,6 +26,7 @@ PODS:
     - FontAwesomeKit/Core
   - FontAwesomeKit/Zocial (2.2.1):
     - FontAwesomeKit/Core
+  - Gallery (2.0.5)
   - Imaginary (3.0.2):
     - Cache (~> 4.0)
   - JSONWebToken (2.2.0)
@@ -33,13 +36,16 @@ PODS:
   - RealmSwift (3.0.2):
     - Realm (= 3.0.2)
   - SwiftCharts (0.6.1)
+  - TOCropViewController (2.3.5)
   - UIImageViewAlignedSwift (0.5.0)
 
 DEPENDENCIES:
   - Alamofire
   - ALCameraViewController
+  - CropViewController
   - CRToast
   - FontAwesomeKit
+  - Gallery
   - Imaginary
   - JSONWebToken
   - RealmSwift
@@ -50,15 +56,18 @@ SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   ALCameraViewController: 1edce3497633f0df138523645ed1228961ee2eab
   Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
+  CropViewController: 73a095de5605b017afdf34c6f2604569e147bcbd
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   FontAwesomeKit: 3614979b3dbb0ec3f7fac1bd760b91f66c31db67
+  Gallery: cff13f3b14b8923b02d7105e0f9ec26f15eebd0e
   Imaginary: d675200546110e305d6a26db6267c0622ffe5e6b
   JSONWebToken: 6fae32489632658d563dd6952a5c34020ea813e4
   Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
   RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
   SwiftCharts: 77378d6cf667e95f9c79a745b6778e66eed5339c
+  TOCropViewController: a21b39c910d161600a26b6e3f89a58707afaa4f8
   UIImageViewAlignedSwift: 2e09096e6081ad26b848e19b4bc35a7d69165740
 
-PODFILE CHECKSUM: a2e6a8225dd0f85b5e60894a309ca883959315c5
+PODFILE CHECKSUM: d4b69af576ff97e4b9aa971d9c3cf2e3582ea310
 
 COCOAPODS: 1.4.0.rc.1

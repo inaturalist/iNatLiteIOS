@@ -24,6 +24,12 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We Take Pictures</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We Use Pictures</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We Use Your Location</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

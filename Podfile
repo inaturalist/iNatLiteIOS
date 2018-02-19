@@ -11,4 +11,6 @@ target 'iNatLite' do
   pod 'RealmSwift'
   pod 'ALCameraViewController'
   pod 'CRToast'
+  pod 'Gallery'
+  pod 'CropViewController'
 end
