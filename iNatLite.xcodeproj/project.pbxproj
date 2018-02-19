@@ -9,12 +9,33 @@
 /* Begin PBXBuildFile section */
 		BF0E994E9A0187DF670162F4 /* Pods_iNatLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1007378444A1EA1076E2E3AC /* Pods_iNatLite.framework */; };
 		FA1DE1582034C77A00ACBD17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1572034C77A00ACBD17 /* AppDelegate.swift */; };
-		FA1DE15A2034C77A00ACBD17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1592034C77A00ACBD17 /* ViewController.swift */; };
 		FA1DE15D2034C77A00ACBD17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1DE15B2034C77A00ACBD17 /* Main.storyboard */; };
 		FA1DE15F2034C77A00ACBD17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA1DE15E2034C77A00ACBD17 /* Assets.xcassets */; };
 		FA1DE1622034C77A00ACBD17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1DE1602034C77A00ACBD17 /* LaunchScreen.storyboard */; };
 		FA1DE16D2034C77A00ACBD17 /* iNatLiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE16C2034C77A00ACBD17 /* iNatLiteTests.swift */; };
 		FA1DE1782034C77A00ACBD17 /* iNatLiteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1772034C77A00ACBD17 /* iNatLiteUITests.swift */; };
+		FA1DE1892034CF1600ACBD17 /* ChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1882034CF1600ACBD17 /* ChallengesViewController.swift */; };
+		FA1DE18B2034CF2E00ACBD17 /* YourCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE18A2034CF2E00ACBD17 /* YourCollectionViewController.swift */; };
+		FA1DE18D2034CF4400ACBD17 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE18C2034CF4400ACBD17 /* BadgesViewController.swift */; };
+		FA1DE18F2034CF6300ACBD17 /* SpeciesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE18E2034CF6300ACBD17 /* SpeciesDetailViewController.swift */; };
+		FA1DE1932034D78200ACBD17 /* SpeciesCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1DE1922034D78200ACBD17 /* SpeciesCollectionView.xib */; };
+		FA1DE1952034DA5700ACBD17 /* SpeciesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1942034DA5700ACBD17 /* SpeciesCollectionViewCell.swift */; };
+		FA1DE1982034DE0A00ACBD17 /* UIColor+INatLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1972034DE0A00ACBD17 /* UIColor+INatLite.swift */; };
+		FA1DE19B2034F53F00ACBD17 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE19A2034F53F00ACBD17 /* Place.swift */; };
+		FA1DE19E2034F5A400ACBD17 /* NearbyPlaceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE19D2034F5A400ACBD17 /* NearbyPlaceResponse.swift */; };
+		FA1DE1A02034F6CB00ACBD17 /* ChallengesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE19F2034F6CB00ACBD17 /* ChallengesHeaderView.swift */; };
+		FA1DE1A22034F95100ACBD17 /* Taxon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1A12034F95100ACBD17 /* Taxon.swift */; };
+		FA1DE1A62034FA1400ACBD17 /* SpeciesCountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1A52034FA1400ACBD17 /* SpeciesCountResponse.swift */; };
+		FA1DE1AA203765D800ACBD17 /* ChallengeResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1A9203765D800ACBD17 /* ChallengeResultsViewController.swift */; };
+		FA1DE1AC203775DD00ACBD17 /* ScoreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1AB203775DD00ACBD17 /* ScoreResponse.swift */; };
+		FA1DE1AE2037761D00ACBD17 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1AD2037761D00ACBD17 /* Config.swift */; };
+		FA1DE1B120377A8800ACBD17 /* ResultsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1B020377A8800ACBD17 /* ResultsTitleCell.swift */; };
+		FA1DE1B3203780E000ACBD17 /* ResultsDividerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1B2203780E000ACBD17 /* ResultsDividerCell.swift */; };
+		FA1DE1B52037A06A00ACBD17 /* ResultsImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1B42037A06A00ACBD17 /* ResultsImageCell.swift */; };
+		FA1DE1B72037A07B00ACBD17 /* ResultsImageTaxonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1B62037A07B00ACBD17 /* ResultsImageTaxonCell.swift */; };
+		FA1DE1BB2038A25400ACBD17 /* ResultsActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1BA2038A25400ACBD17 /* ResultsActionCell.swift */; };
+		FA1DE1BD203A21FF00ACBD17 /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1BC203A21FF00ACBD17 /* LocationPickerViewController.swift */; };
+		FA1DE1BF203A3B8900ACBD17 /* LocationTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1BE203A3B8900ACBD17 /* LocationTagCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +61,6 @@
 		CBC22DC9357BCAC8DA7FB1D7 /* Pods-iNatLite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iNatLite.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iNatLite/Pods-iNatLite.debug.xcconfig"; sourceTree = "<group>"; };
 		FA1DE1542034C77A00ACBD17 /* iNatLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iNatLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1DE1572034C77A00ACBD17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FA1DE1592034C77A00ACBD17 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FA1DE15C2034C77A00ACBD17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA1DE15E2034C77A00ACBD17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA1DE1612034C77A00ACBD17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -52,6 +72,28 @@
 		FA1DE1772034C77A00ACBD17 /* iNatLiteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iNatLiteUITests.swift; sourceTree = "<group>"; };
 		FA1DE1792034C77A00ACBD17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA1DE1852034C92E00ACBD17 /* iNatLite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iNatLite.entitlements; sourceTree = "<group>"; };
+		FA1DE1882034CF1600ACBD17 /* ChallengesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesViewController.swift; sourceTree = "<group>"; };
+		FA1DE18A2034CF2E00ACBD17 /* YourCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourCollectionViewController.swift; sourceTree = "<group>"; };
+		FA1DE18C2034CF4400ACBD17 /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
+		FA1DE18E2034CF6300ACBD17 /* SpeciesDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesDetailViewController.swift; sourceTree = "<group>"; };
+		FA1DE1922034D78200ACBD17 /* SpeciesCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpeciesCollectionView.xib; sourceTree = "<group>"; };
+		FA1DE1942034DA5700ACBD17 /* SpeciesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA1DE1972034DE0A00ACBD17 /* UIColor+INatLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+INatLite.swift"; sourceTree = "<group>"; };
+		FA1DE19A2034F53F00ACBD17 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		FA1DE19D2034F5A400ACBD17 /* NearbyPlaceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPlaceResponse.swift; sourceTree = "<group>"; };
+		FA1DE19F2034F6CB00ACBD17 /* ChallengesHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesHeaderView.swift; sourceTree = "<group>"; };
+		FA1DE1A12034F95100ACBD17 /* Taxon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Taxon.swift; sourceTree = "<group>"; };
+		FA1DE1A52034FA1400ACBD17 /* SpeciesCountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesCountResponse.swift; sourceTree = "<group>"; };
+		FA1DE1A9203765D800ACBD17 /* ChallengeResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeResultsViewController.swift; sourceTree = "<group>"; };
+		FA1DE1AB203775DD00ACBD17 /* ScoreResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreResponse.swift; sourceTree = "<group>"; };
+		FA1DE1AD2037761D00ACBD17 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		FA1DE1B020377A8800ACBD17 /* ResultsTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTitleCell.swift; sourceTree = "<group>"; };
+		FA1DE1B2203780E000ACBD17 /* ResultsDividerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsDividerCell.swift; sourceTree = "<group>"; };
+		FA1DE1B42037A06A00ACBD17 /* ResultsImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsImageCell.swift; sourceTree = "<group>"; };
+		FA1DE1B62037A07B00ACBD17 /* ResultsImageTaxonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsImageTaxonCell.swift; sourceTree = "<group>"; };
+		FA1DE1BA2038A25400ACBD17 /* ResultsActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsActionCell.swift; sourceTree = "<group>"; };
+		FA1DE1BC203A21FF00ACBD17 /* LocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerViewController.swift; sourceTree = "<group>"; };
+		FA1DE1BE203A3B8900ACBD17 /* LocationTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTagCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,12 +164,14 @@
 		FA1DE1562034C77A00ACBD17 /* iNatLite */ = {
 			isa = PBXGroup;
 			children = (
+				FA1DE1992034F52600ACBD17 /* Model */,
+				FA1DE1962034DDE800ACBD17 /* Utility */,
+				FA1DE1912034D74900ACBD17 /* UI */,
+				FA1DE1902034D74000ACBD17 /* Views */,
+				FA1DE1862034CEE200ACBD17 /* View Controllers */,
 				FA1DE1852034C92E00ACBD17 /* iNatLite.entitlements */,
 				FA1DE1572034C77A00ACBD17 /* AppDelegate.swift */,
-				FA1DE1592034C77A00ACBD17 /* ViewController.swift */,
-				FA1DE15B2034C77A00ACBD17 /* Main.storyboard */,
-				FA1DE15E2034C77A00ACBD17 /* Assets.xcassets */,
-				FA1DE1602034C77A00ACBD17 /* LaunchScreen.storyboard */,
+				FA1DE1AD2037761D00ACBD17 /* Config.swift */,
 				FA1DE1632034C77A00ACBD17 /* Info.plist */,
 			);
 			path = iNatLite;
@@ -149,6 +193,73 @@
 				FA1DE1792034C77A00ACBD17 /* Info.plist */,
 			);
 			path = iNatLiteUITests;
+			sourceTree = "<group>";
+		};
+		FA1DE1862034CEE200ACBD17 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA1DE1882034CF1600ACBD17 /* ChallengesViewController.swift */,
+				FA1DE18A2034CF2E00ACBD17 /* YourCollectionViewController.swift */,
+				FA1DE18C2034CF4400ACBD17 /* BadgesViewController.swift */,
+				FA1DE18E2034CF6300ACBD17 /* SpeciesDetailViewController.swift */,
+				FA1DE1A9203765D800ACBD17 /* ChallengeResultsViewController.swift */,
+				FA1DE1BC203A21FF00ACBD17 /* LocationPickerViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FA1DE1902034D74000ACBD17 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA1DE1AF20377A6900ACBD17 /* Results Cells */,
+				FA1DE1942034DA5700ACBD17 /* SpeciesCollectionViewCell.swift */,
+				FA1DE19F2034F6CB00ACBD17 /* ChallengesHeaderView.swift */,
+				FA1DE1BE203A3B8900ACBD17 /* LocationTagCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FA1DE1912034D74900ACBD17 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				FA1DE15B2034C77A00ACBD17 /* Main.storyboard */,
+				FA1DE15E2034C77A00ACBD17 /* Assets.xcassets */,
+				FA1DE1602034C77A00ACBD17 /* LaunchScreen.storyboard */,
+				FA1DE1922034D78200ACBD17 /* SpeciesCollectionView.xib */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		FA1DE1962034DDE800ACBD17 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				FA1DE1972034DE0A00ACBD17 /* UIColor+INatLite.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		FA1DE1992034F52600ACBD17 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FA1DE19A2034F53F00ACBD17 /* Place.swift */,
+				FA1DE19D2034F5A400ACBD17 /* NearbyPlaceResponse.swift */,
+				FA1DE1A12034F95100ACBD17 /* Taxon.swift */,
+				FA1DE1A52034FA1400ACBD17 /* SpeciesCountResponse.swift */,
+				FA1DE1AB203775DD00ACBD17 /* ScoreResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FA1DE1AF20377A6900ACBD17 /* Results Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FA1DE1B020377A8800ACBD17 /* ResultsTitleCell.swift */,
+				FA1DE1B2203780E000ACBD17 /* ResultsDividerCell.swift */,
+				FA1DE1B42037A06A00ACBD17 /* ResultsImageCell.swift */,
+				FA1DE1B62037A07B00ACBD17 /* ResultsImageTaxonCell.swift */,
+				FA1DE1BA2038A25400ACBD17 /* ResultsActionCell.swift */,
+			);
+			path = "Results Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,6 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA1DE1622034C77A00ACBD17 /* LaunchScreen.storyboard in Resources */,
+				FA1DE1932034D78200ACBD17 /* SpeciesCollectionView.xib in Resources */,
 				FA1DE15F2034C77A00ACBD17 /* Assets.xcassets in Resources */,
 				FA1DE15D2034C77A00ACBD17 /* Main.storyboard in Resources */,
 			);
@@ -333,12 +445,15 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CRToast/CRToast.framework",
 				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
+				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/FontAwesomeKit/FontAwesomeKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Gallery/Gallery.framework",
 				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
 				"${BUILT_PRODUCTS_DIR}/JSONWebToken/JWT.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftCharts/SwiftCharts.framework",
+				"${BUILT_PRODUCTS_DIR}/TOCropViewController/TOCropViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/UIImageViewAlignedSwift/UIImageViewAlignedSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -347,12 +462,15 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CRToast.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesomeKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gallery.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCharts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOCropViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageViewAlignedSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,8 +485,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA1DE15A2034C77A00ACBD17 /* ViewController.swift in Sources */,
+				FA1DE1892034CF1600ACBD17 /* ChallengesViewController.swift in Sources */,
+				FA1DE1BD203A21FF00ACBD17 /* LocationPickerViewController.swift in Sources */,
+				FA1DE1B72037A07B00ACBD17 /* ResultsImageTaxonCell.swift in Sources */,
+				FA1DE18F2034CF6300ACBD17 /* SpeciesDetailViewController.swift in Sources */,
+				FA1DE1AE2037761D00ACBD17 /* Config.swift in Sources */,
+				FA1DE18B2034CF2E00ACBD17 /* YourCollectionViewController.swift in Sources */,
+				FA1DE1AC203775DD00ACBD17 /* ScoreResponse.swift in Sources */,
+				FA1DE1BF203A3B8900ACBD17 /* LocationTagCell.swift in Sources */,
+				FA1DE1BB2038A25400ACBD17 /* ResultsActionCell.swift in Sources */,
+				FA1DE1B120377A8800ACBD17 /* ResultsTitleCell.swift in Sources */,
+				FA1DE1B52037A06A00ACBD17 /* ResultsImageCell.swift in Sources */,
+				FA1DE1AA203765D800ACBD17 /* ChallengeResultsViewController.swift in Sources */,
+				FA1DE19B2034F53F00ACBD17 /* Place.swift in Sources */,
+				FA1DE1B3203780E000ACBD17 /* ResultsDividerCell.swift in Sources */,
+				FA1DE1A02034F6CB00ACBD17 /* ChallengesHeaderView.swift in Sources */,
+				FA1DE1A62034FA1400ACBD17 /* SpeciesCountResponse.swift in Sources */,
+				FA1DE19E2034F5A400ACBD17 /* NearbyPlaceResponse.swift in Sources */,
+				FA1DE1982034DE0A00ACBD17 /* UIColor+INatLite.swift in Sources */,
+				FA1DE1A22034F95100ACBD17 /* Taxon.swift in Sources */,
+				FA1DE18D2034CF4400ACBD17 /* BadgesViewController.swift in Sources */,
 				FA1DE1582034C77A00ACBD17 /* AppDelegate.swift in Sources */,
+				FA1DE1952034DA5700ACBD17 /* SpeciesCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
