@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oEv-tD-Hgx" customClass="UIImageViewAligned" customModule="UIImageViewAlignedSwift">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oEv-tD-Hgx" customClass="UIImageViewAligned" customModule="UIImageViewAlignedSwift">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcN-Gr-eLy">

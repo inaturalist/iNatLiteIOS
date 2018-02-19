@@ -85,6 +85,9 @@
                                                             <state key="normal" title="All Species ^">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
+                                                            <connections>
+                                                                <segue destination="o90-ea-haH" kind="show" identifier="segueToTaxonPicker" id="905-en-dxg"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -511,6 +514,66 @@
             </objects>
             <point key="canvasLocation" x="2322" y="2774"/>
         </scene>
+        <!--Taxon Picker View Controller-->
+        <scene sceneID="Wrl-EK-IbH">
+            <objects>
+                <collectionViewController id="o90-ea-haH" customClass="TaxonPickerViewController" customModule="iNatLite" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="af7-nM-egu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kBq-wE-5cK">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IconicTaxonCell" id="7WC-KM-hCv" customClass="IconicTaxonCell" customModule="iNatLite" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1Iw-bt-0Xn">
+                                            <rect key="frame" x="-90" y="-14" width="280" height="168"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nA4-fj-Gac">
+                                                    <rect key="frame" x="0.0" y="0.0" width="34" height="24"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhJ-Lf-Mhb">
+                                                    <rect key="frame" x="0.0" y="24" width="34" height="10"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="1Iw-bt-0Xn" secondAttribute="trailing" id="CAz-wW-OVV"/>
+                                    <constraint firstItem="1Iw-bt-0Xn" firstAttribute="leading" secondItem="7WC-KM-hCv" secondAttribute="leadingMargin" id="Tb3-v4-KTF"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="1Iw-bt-0Xn" secondAttribute="bottom" id="hpv-os-7Eo"/>
+                                    <constraint firstItem="1Iw-bt-0Xn" firstAttribute="top" secondItem="7WC-KM-hCv" secondAttribute="topMargin" id="kiS-C0-IN8"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="nA4-fj-Gac" id="Yhk-fv-6aA"/>
+                                    <outlet property="label" destination="NhJ-Lf-Mhb" id="f1c-zn-gC9"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="o90-ea-haH" id="3mo-ZJ-aqc"/>
+                            <outlet property="delegate" destination="o90-ea-haH" id="zjy-P7-jo0"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NF0-w8-sSa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1604" y="137"/>
+        </scene>
         <!--Location Picker View Controller-->
         <scene sceneID="ozw-iA-3mx">
             <objects>
@@ -595,7 +658,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3qj-5a-kud" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1438" y="192"/>
+            <point key="canvasLocation" x="1649" y="1080"/>
         </scene>
     </scenes>
 </document>

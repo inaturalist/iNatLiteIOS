@@ -29,6 +29,7 @@ class ChallengesViewController: UIViewController {
     var locationManager: CLLocationManager?
     var nearbyPlace: Place?
     var chosenPlace: Place?
+    var chosenIconicTaxon: Taxon?
 
     var speciesCounts = [SpeciesCount]()
     
@@ -54,16 +55,20 @@ class ChallengesViewController: UIViewController {
         self.speciesCounts.removeAll()
         self.collectionView?.reloadData()
         
-        var url: URL?
+        var urlString: String?
         
         if let place = self.chosenPlace {
-            url = URL(string: "https://api.inaturalist.org/v1/observations/species_counts?place_id=\(place.id)&threatened=false&verifiable=true&oauth_application_id=2,3&month=1,2,3&hrank=species")
+            urlString = "https://api.inaturalist.org/v1/observations/species_counts?place_id=\(place.id)&threatened=false&verifiable=true&oauth_application_id=2,3&month=1,2,3&hrank=species"
         } else if let nearby = self.nearbyPlace {
-            url = URL(string: "https://api.inaturalist.org/v1/observations/species_counts?place_id=\(nearby.id)&threatened=false&verifiable=true&oauth_application_id=2,3&month=1,2,3&hrank=species")
+            urlString = "https://api.inaturalist.org/v1/observations/species_counts?place_id=\(nearby.id)&threatened=false&verifiable=true&oauth_application_id=2,3&month=1,2,3&hrank=species"
+        }
+        
+        if let iconicTaxon = self.chosenIconicTaxon {
+            urlString?.append("&taxon_id=\(iconicTaxon.id)")
         }
         
         // fetch and repopulate the collection view
-        if let url = url {
+        if let urlString = urlString, let url = URL(string: urlString) {
             // Do any additional setup after loading the view.
             Alamofire.request(url).responseData { response in
                 if let data = response.result.value {
@@ -136,6 +141,10 @@ class ChallengesViewController: UIViewController {
             let dest = segue.destination as? LocationPickerViewController
         {
             dest.delegate = self
+        } else if segue.identifier == "segueToTaxonPicker",
+            let dest = segue.destination as? TaxonPickerViewController
+        {
+            dest.delegate = self
         }
     }
 }
@@ -174,6 +183,11 @@ extension ChallengesViewController: UICollectionViewDataSource {
         } else if let place = self.nearbyPlace {
             view.placeButton?.setTitle("\(place.name) ^", for: .normal)
         }
+        if let iconicTaxon = self.chosenIconicTaxon {
+            view.taxaButton?.setTitle("\(iconicTaxon.anyName) ^", for: .normal)
+        } else {
+            view.taxaButton?.setTitle("All Species ^", for: .normal)
+        }
         view.backgroundColor = UIColor.clear
         return view
     }
@@ -187,8 +201,7 @@ extension ChallengesViewController: UICollectionViewDelegate {
 extension ChallengesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        var tilesPerRow = 3
-                
+        let tilesPerRow = 3
         let side = collectionView.frame.size.width / CGFloat(tilesPerRow)
         return CGSize(width: side - 7.5, height: side)
     }
@@ -296,8 +309,16 @@ extension ChallengesViewController: UINavigationControllerDelegate {
 }
 
 extension ChallengesViewController: LocationChooserDelegate {
-    func chosePlace(place: Place) {
+    func chosePlace(_ place: Place) {
         self.chosenPlace = place
+        self.loadSpecies()
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+}
+
+extension ChallengesViewController: IconicTaxonPickerDelegate {
+    func choseIconicTaxon(_ taxon: Taxon?) {
+        self.chosenIconicTaxon = taxon
         self.loadSpecies()
         self.navigationController?.popToRootViewController(animated: true)
     }
