@@ -10,6 +10,7 @@ import UIKit
 import JWT
 import Alamofire
 import FontAwesomeKit
+import RealmSwift
 
 private let titleCellId = "ResultsTitleCell"
 private let dividerCellId = "ResultsDividerCell"
@@ -225,7 +226,36 @@ class ChallengeResultsViewController: UITableViewController {
             cell.actionButton?.tintColor = UIColor.white
             cell.actionButton?.layer.cornerRadius = 22
             cell.actionButton?.clipsToBounds = true
+            cell.actionButton?.addTarget(self, action: #selector(ChallengeResultsViewController.addToCollection), for: .touchUpInside)
         }
+    }
+    
+    @objc
+    func addToCollection() {
+        // add to realm collection
+        if let score = self.resultScore {
+            let obs = ObservationRealm()
+            obs.uuidString = UUID().uuidString
+            obs.taxonId = score.taxon.id
+            // TODO: should we try to use photo creation date?
+            obs.date = Date()
+            
+            let realm = try! Realm()
+            try! realm.write {
+                realm.add(obs, update: true)
+            }
+ 
+            // save photo to documents directory
+            if let image = self.image, let data = UIImageJPEGRepresentation(image, 0.9)  {
+                if let photoPath = obs.pathForImage() {
+                    try? data.write(to: photoPath)
+                }
+            }
+        }
+
+        // notify challenges VC via delegate to dismiss & animate
+        print("addToCollection")
+        dismiss(animated: true, completion: nil)
     }
     
     /*
