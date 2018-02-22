@@ -245,24 +245,25 @@
                                                 <constraint firstAttribute="height" constant="40" id="ldK-dA-JNo"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5X-SI-DuQ">
-                                            <rect key="frame" x="166" y="29" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9EL-pc-rV3">
+                                            <rect key="frame" x="163" y="16" width="48" height="48"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="pra-BG-Y1f"/>
+                                                <constraint firstAttribute="width" constant="48" id="vBr-Ss-zgt"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="J5X-SI-DuQ" firstAttribute="centerX" secondItem="j5k-P5-Q8y" secondAttribute="centerX" id="9v5-e2-BrG"/>
                                         <constraint firstItem="12m-ku-7qb" firstAttribute="height" secondItem="j5k-P5-Q8y" secondAttribute="height" multiplier="0.5" id="B7g-zg-CF4"/>
+                                        <constraint firstItem="9EL-pc-rV3" firstAttribute="centerX" secondItem="j5k-P5-Q8y" secondAttribute="centerX" id="FgM-rF-DHy"/>
                                         <constraint firstItem="12m-ku-7qb" firstAttribute="top" secondItem="j5k-P5-Q8y" secondAttribute="top" id="HZ7-WJ-VbS"/>
-                                        <constraint firstItem="J5X-SI-DuQ" firstAttribute="centerY" secondItem="j5k-P5-Q8y" secondAttribute="centerY" id="UVl-To-cN6"/>
+                                        <constraint firstItem="9EL-pc-rV3" firstAttribute="centerY" secondItem="j5k-P5-Q8y" secondAttribute="centerY" id="V7U-f3-cD9"/>
                                         <constraint firstItem="12m-ku-7qb" firstAttribute="leading" secondItem="j5k-P5-Q8y" secondAttribute="leading" id="iGB-95-KZy"/>
                                         <constraint firstAttribute="trailing" secondItem="12m-ku-7qb" secondAttribute="trailing" id="sbB-Ay-cuO"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="dividerIcon" destination="J5X-SI-DuQ" id="iEH-6T-oY0"/>
+                                    <outlet property="dividerImageView" destination="9EL-pc-rV3" id="3Vx-8f-sYs"/>
                                     <outlet property="scrim" destination="12m-ku-7qb" id="r0c-sL-S89"/>
                                 </connections>
                             </tableViewCell>

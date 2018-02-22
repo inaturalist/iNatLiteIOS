@@ -155,15 +155,9 @@ class ChallengeResultsViewController: UITableViewController {
         cell.scrim?.backgroundColor = UIColor.INat.DarkBlue
         
         if let score = self.resultScore {
-            if let check = FAKIonIcons.checkmarkCircledIcon(withSize: 50) {
-                check.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.INat.Green)
-                cell.dividerIcon?.attributedText = check.attributedString()
-            }
+            cell.dividerImageView?.image = UIImage(named: "icn-results-match")
         } else {
-            if let question = FAKIonIcons.helpCircledIcon(withSize: 50) {
-                question.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.white)
-                cell.dividerIcon?.attributedText = question.attributedString()
-            }
+            cell.dividerImageView?.image = UIImage(named: "icn-results-unknown")
         }
     }
 
