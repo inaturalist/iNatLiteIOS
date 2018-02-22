@@ -38,6 +38,7 @@
 		FA1DE1BF203A3B8900ACBD17 /* LocationTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1BE203A3B8900ACBD17 /* LocationTagCell.swift */; };
 		FA6D75AC203B6EAE00C3535F /* TaxonPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D75AB203B6EAE00C3535F /* TaxonPickerViewController.swift */; };
 		FA6D75AE203B6FA300C3535F /* IconicTaxonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D75AD203B6FA300C3535F /* IconicTaxonCell.swift */; };
+		FA6D75B3203BC07000C3535F /* ObservationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D75B2203BC07000C3535F /* ObservationRealm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		FA1DE1BE203A3B8900ACBD17 /* LocationTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTagCell.swift; sourceTree = "<group>"; };
 		FA6D75AB203B6EAE00C3535F /* TaxonPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxonPickerViewController.swift; sourceTree = "<group>"; };
 		FA6D75AD203B6FA300C3535F /* IconicTaxonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconicTaxonCell.swift; sourceTree = "<group>"; };
+		FA6D75B2203BC07000C3535F /* ObservationRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationRealm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +249,7 @@
 		FA1DE1992034F52600ACBD17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FA6D75AF203BC04900C3535F /* Realm */,
 				FA1DE19A2034F53F00ACBD17 /* Place.swift */,
 				FA1DE19D2034F5A400ACBD17 /* NearbyPlaceResponse.swift */,
 				FA1DE1A12034F95100ACBD17 /* Taxon.swift */,
@@ -266,6 +269,14 @@
 				FA1DE1BA2038A25400ACBD17 /* ResultsActionCell.swift */,
 			);
 			path = "Results Cells";
+			sourceTree = "<group>";
+		};
+		FA6D75AF203BC04900C3535F /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				FA6D75B2203BC07000C3535F /* ObservationRealm.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -501,6 +512,7 @@
 				FA6D75AE203B6FA300C3535F /* IconicTaxonCell.swift in Sources */,
 				FA1DE1BF203A3B8900ACBD17 /* LocationTagCell.swift in Sources */,
 				FA1DE1BB2038A25400ACBD17 /* ResultsActionCell.swift in Sources */,
+				FA6D75B3203BC07000C3535F /* ObservationRealm.swift in Sources */,
 				FA1DE1B120377A8800ACBD17 /* ResultsTitleCell.swift in Sources */,
 				FA1DE1B52037A06A00ACBD17 /* ResultsImageCell.swift in Sources */,
 				FA1DE1AA203765D800ACBD17 /* ChallengeResultsViewController.swift in Sources */,
