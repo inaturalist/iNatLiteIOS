@@ -20,10 +20,10 @@ class TaxonRealm: Object {
     @objc dynamic var defaultPhoto: PhotoRealm?
     @objc dynamic var iconicTaxonId: Int = 0
         
-    var anyName: String {
+    var anyNameCapitalized: String {
         get {
             if let name = preferredCommonName {
-                return name
+                return name.localizedCapitalized
             } else {
                 return self.name
             }

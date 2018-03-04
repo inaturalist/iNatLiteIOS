@@ -88,7 +88,7 @@ class TaxonPickerViewController: UICollectionViewController, UICollectionViewDel
             if let iconicTaxonImageName = iconicTaxon.iconicImageName() {
                 cell.imageView?.image = UIImage(named: iconicTaxonImageName)?.withRenderingMode(.alwaysTemplate)
             }
-            cell.label?.text = iconicTaxon.anyName
+            cell.label?.text = iconicTaxon.anyNameCapitalized
 
             if self.selectedTaxon == iconicTaxon {
                 cell.contentView.backgroundColor = UIColor.white

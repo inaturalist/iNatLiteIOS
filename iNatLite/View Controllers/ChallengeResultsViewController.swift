@@ -190,19 +190,19 @@ class ChallengeResultsViewController: UIViewController {
                 if target == score.taxon {
                     // you found your target
                     cell.title?.text = "It's a Match!"
-                    cell.subtitle?.text = "You saw a \(score.taxon.anyName)."
+                    cell.subtitle?.text = "You saw a \(score.taxon.anyNameCapitalized)."
                 } else {
                     // you found something else
                     cell.title?.text = "Good Try!"
-                    cell.subtitle?.text = "However, this isn't a \(target.anyName), it's a \(score.taxon.anyName)."
+                    cell.subtitle?.text = "However, this isn't a \(target.anyNameCapitalized), it's a \(score.taxon.anyNameCapitalized)."
                 }
             } else {
                 if self.seenTaxaIds.contains(score.taxon.id) {
                     cell.title?.text = "Deja Vu!"
-                    cell.subtitle?.text = "Looks like you already collected a \(score.taxon.anyName)."
+                    cell.subtitle?.text = "Looks like you already collected a \(score.taxon.anyNameCapitalized)."
                 } else {
                     cell.title?.text = "Sweet!"
-                    cell.subtitle?.text = "You saw a \(score.taxon.anyName)."
+                    cell.subtitle?.text = "You saw a \(score.taxon.anyNameCapitalized)."
                 }
             }
         } else {
@@ -223,7 +223,7 @@ class ChallengeResultsViewController: UIViewController {
 
         // left label
         if let score = self.resultScore {
-            cell.userLabel?.text = "Your Photo:\n\(score.taxon.anyName)"
+            cell.userLabel?.text = "Your Photo:\n\(score.taxon.anyNameCapitalized)"
         } else {
             cell.userLabel?.text = "Your Photo"
         }
@@ -233,10 +233,10 @@ class ChallengeResultsViewController: UIViewController {
         
         // right label
         if let target = self.targetTaxon {
-            cell.taxonLabel?.text = "Target Species:\n\(target.anyName)"
+            cell.taxonLabel?.text = "Target Species:\n\(target.anyNameCapitalized)"
         } else if let score = self.resultScore {
             // identified name
-            cell.taxonLabel?.text = "Identified Species:\n\(score.taxon.anyName)"
+            cell.taxonLabel?.text = "Identified Species:\n\(score.taxon.anyNameCapitalized)"
         }
         
         // right photo
@@ -269,7 +269,7 @@ class ChallengeResultsViewController: UIViewController {
                     for observation in observations {
                         if let obsTaxon = observation.taxon, let obsDate = observation.dateString {
                             if obsTaxon.id == result.taxon.id {
-                                cell.infoLabel?.text = "You collected a \(obsTaxon.anyName) on \(obsDate)."
+                                cell.infoLabel?.text = "You collected a \(obsTaxon.anyNameCapitalized) on \(obsDate)."
                                 cell.infoLabel?.textColor = UIColor.INat.SpeciesAddButton
                                 cell.actionButton?.isHidden = true
                             }
@@ -289,7 +289,7 @@ class ChallengeResultsViewController: UIViewController {
                         cell.actionButton?.addTarget(self, action: #selector(ChallengeResultsViewController.addToCollection), for: .touchUpInside)
                     } else {
                         // show notice that they still need to collect it
-                        cell.infoLabel?.text = "You still need to collect a \(result.taxon.anyName). Would you like to collect it now?"
+                        cell.infoLabel?.text = "You still need to collect a \(result.taxon.anyNameCapitalized). Would you like to collect it now?"
                         cell.actionButton?.setTitle("Add to Collection", for: .normal)
                         cell.actionButton?.backgroundColor = UIColor.clear
                         cell.actionButton?.tintColor = UIColor.white

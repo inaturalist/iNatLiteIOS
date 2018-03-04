@@ -20,7 +20,7 @@ class SpeciesMapViewController: UIViewController {
         super.viewDidLoad()
         
         if let species = self.species {
-            title = "iNaturalist Observations of \(species.anyName)"
+            title = "iNaturalist Observations of \(species.anyNameCapitalized)"
         }
         
         if let mapView = self.mapView {
