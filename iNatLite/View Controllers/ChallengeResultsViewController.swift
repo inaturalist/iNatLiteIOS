@@ -282,6 +282,9 @@ class ChallengeResultsViewController: UIViewController {
                         // show add to collection button
                         cell.infoLabel?.text = nil
                         cell.actionButton?.setTitle("Add to Collection", for: .normal)
+                        if let font = UIFont(name: "Riffic-Bold", size: 18) {
+                            cell.actionButton?.titleLabel?.font = font
+                        }
                         cell.actionButton?.backgroundColor = UIColor.INat.Green
                         cell.actionButton?.tintColor = UIColor.white
                         cell.actionButton?.layer.cornerRadius = 22
@@ -303,6 +306,9 @@ class ChallengeResultsViewController: UIViewController {
                     // show add to collection button
                     cell.infoLabel?.text = nil
                     cell.actionButton?.setTitle("Add to Collection", for: .normal)
+                    if let font = UIFont(name: "Riffic-Bold", size: 18) {
+                        cell.actionButton?.titleLabel?.font = font
+                    }
                     cell.actionButton?.backgroundColor = UIColor.INat.Green
                     cell.actionButton?.tintColor = UIColor.white
                     cell.actionButton?.layer.cornerRadius = 22
