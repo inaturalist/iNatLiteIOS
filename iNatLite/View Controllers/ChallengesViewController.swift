@@ -259,7 +259,7 @@ extension ChallengesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if self.speciesCounts.count == 0, let spinner = self.activitySpinner, spinner.isHidden {
             // if the spinner is hidden but we have no results, tell the user we have no data
-            self.failureTitle?.text = "Poopers"
+            self.failureTitle?.text = "Bummer"
             self.failureMessage?.text = "Looks like we're not turning up any species in this area. Please try another location."
             self.failureTitle?.isHidden = false
             self.failureMessage?.isHidden = false
