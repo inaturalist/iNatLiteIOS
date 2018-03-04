@@ -39,6 +39,8 @@ class ChallengeResultsViewController: UIViewController {
     var resultScore: TaxonScore?
     var resultsLoaded = false
     
+    var commonAncestor: TaxonScore?
+    
     var observations: Results<ObservationRealm>?
     var seenTaxaIds = [Int]()
     
@@ -90,14 +92,21 @@ class ChallengeResultsViewController: UIViewController {
                                             // TODO: check for responseData.data
                                             let serverResponse = try JSONDecoder().decode(ScoreResponse.self, from: responseData.data!)
                                             for result in serverResponse.results {
-                                                if let target = self.targetTaxon, target.id == result.taxon.id, result.combined_score > 85 {
+                                                if let target = self.targetTaxon,
+                                                    target.id == result.taxon.id,
+                                                    let score = result.combined_score,
+                                                    score > 85
+                                                {
                                                     self.resultScore = result
                                                     break
-                                                } else if result.combined_score > 97 {
+                                                } else if let score = result.combined_score,
+                                                    score > 97
+                                                {
                                                     self.resultScore = result
                                                     break
                                                 }
                                             }
+                                            self.commonAncestor = serverResponse.common_ancestor
                                             self.resultsLoaded = true
                                             self.activitySpinner?.isHidden = true
                                             self.activitySpinner?.stopAnimating()
@@ -207,7 +216,11 @@ class ChallengeResultsViewController: UIViewController {
             }
         } else {
             cell.title?.text = "Hrmmmmmm"
-            cell.subtitle?.text = "We can't figure this one out. Please try some adjustments."
+            if let ancestor = self.commonAncestor {
+                cell.subtitle?.text = "We think this is a photo of \(ancestor.taxon.anyNameCapitalized), but we can't say for sure what species it is."
+            } else {
+                cell.subtitle?.text = "We can't figure this one out. Please try some adjustments."
+            }
         }
     }
     
