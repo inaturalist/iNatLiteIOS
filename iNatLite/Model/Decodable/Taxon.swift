@@ -22,10 +22,10 @@ struct Taxon: Decodable {
     
     let taxon_photos: [TaxonPhoto]?
     
-    var anyName: String {
+    var anyNameCapitalized: String {
         get {
             if let name = preferred_common_name {
-                return name
+                return name.localizedCapitalized
             } else {
                 return self.name
             }
@@ -85,7 +85,7 @@ extension Taxon {
     
     func iconicImageName() -> String? {
         if let iconic = self.iconicTaxon() {
-            return "icn-iconic-taxa-\(iconic.anyName.lowercased())"
+            return "icn-iconic-taxa-\(iconic.anyNameCapitalized.lowercased())"
         } else {
             return nil
         }

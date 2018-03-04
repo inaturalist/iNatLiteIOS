@@ -289,7 +289,7 @@ extension ChallengesViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! SpeciesCollectionViewCell
         
         let count = self.speciesCounts[indexPath.item]
-        cell.nameLabel?.text = count.taxon.anyName
+        cell.nameLabel?.text = count.taxon.anyNameCapitalized
         
         if let photo = count.taxon.default_photo,
             let urlString = photo.medium_url,
@@ -326,7 +326,7 @@ extension ChallengesViewController: UICollectionViewDataSource {
             if let downArrow = FAKIonIcons.arrowDownBIcon(withSize: 14) {
                 var taxonFilterName: String
                 if let iconicTaxon = self.chosenIconicTaxon {
-                    taxonFilterName = "\(iconicTaxon.anyName)"
+                    taxonFilterName = "\(iconicTaxon.anyNameCapitalized)"
                 } else {
                     taxonFilterName = "All Species"
                 }
@@ -530,7 +530,7 @@ extension ChallengesViewController: ChallengeResultsDelegate {
                     toast.imageView?.image = image
                 }
                 toast.imageView?.tintColor = UIColor.lightGray
-                toast.titleLabel?.text = "\(taxon.anyName) collected!"
+                toast.titleLabel?.text = "\(taxon.anyNameCapitalized) collected!"
                 toast.messageLabel?.text = nil
                 toast.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 70)
                 toast.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]

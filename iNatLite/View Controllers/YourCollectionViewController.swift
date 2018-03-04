@@ -152,7 +152,7 @@ extension YourCollectionViewController: UICollectionViewDataSource {
                 let observation = observations[indexPath.item]
                 // configure for observation
                 if let taxon = observation.taxon {
-                    cell.nameLabel?.text = taxon.anyName
+                    cell.nameLabel?.text = taxon.anyNameCapitalized
                     if let photo = taxon.defaultPhoto,
                         let urlString = photo.mediumUrl,
                         let url = URL(string: urlString)

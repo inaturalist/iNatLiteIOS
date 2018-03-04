@@ -297,9 +297,7 @@ extension SpeciesDetailViewController: UITableViewDataSource {
             cell.selectionStyle = .none
             
             if let species = self.species {
-                if let common = species.preferred_common_name {
-                    cell.commonName?.text = common
-                }
+                cell.commonName?.text = species.anyNameCapitalized
                 cell.scientificNameLabel?.text = "Scientific Name:"
                 cell.scientificName?.text = species.name
             }
@@ -311,7 +309,7 @@ extension SpeciesDetailViewController: UITableViewDataSource {
             
             if let species = self.species {
                 if let iconic = species.iconicTaxon() {
-                    cell.categoryLabel?.text = "Category: \(iconic.anyName)"
+                    cell.categoryLabel?.text = "Category: \(iconic.anyNameCapitalized)"
                 } else {
                     cell.categoryLabel?.text = "Category: Other"
                 }
