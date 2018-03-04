@@ -122,6 +122,12 @@ class SpeciesDetailViewController: UIViewController {
             addButton?.setTitle("Add to Collection", for: .normal)
         }
         
+        if self.observation == nil {
+            self.title = "Collect This!"
+        } else {
+            self.title = "Collected"
+        }
+        
         self.tableView?.backgroundColor = UIColor.INat.DarkBlue
         self.view.backgroundColor = UIColor.INat.DarkBlue
         
