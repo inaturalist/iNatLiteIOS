@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Seek</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,28 +19,60 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>4</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>7baaee0ca8a376b3d129b908c1e03be6ecbe5786</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>We Take Pictures</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We Use Your Location</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We Use Pictures</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>riffic-bold.ttf</string>
+		<string>Whitney-Black-Pro.otf</string>
+		<string>Whitney-BlackItalic-Pro.otf</string>
+		<string>Whitney-Bold-Pro.otf</string>
+		<string>Whitney-BoldItalic-Pro.otf</string>
+		<string>Whitney-Book-Pro.otf</string>
+		<string>Whitney-BookItalic-Pro.otof</string>
+		<string>Whitney-Light-Pro.otf</string>
+		<string>Whitney-LightItalic-Pro.otf</string>
+		<string>Whitney-Medium-Pro.otf</string>
+		<string>Whitney-MediumItalic-Pro.otf</string>
+		<string>Whitney-Semibold-Pro.otf</string>
+		<string>Whitney-SemiboldItalic-Pro.otf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>NSCameraUsageDescription</key>
-	<string>We Take Pictures</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We Use Pictures</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We Use Your Location</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<false/>
+	<key>UIStatusBarHidden</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

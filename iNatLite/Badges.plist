@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>tadpole</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your third species.</string>
+		<key>Name</key>
+		<string>Tadpole</string>
+		<key>Count</key>
+		<integer>3</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_naturalist-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_naturalist-03-tadpole</string>
+		<key>Index</key>
+		<integer>0</integer>
+	</dict>
+	<key>cub</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your 15th species.</string>
+		<key>Name</key>
+		<string>Cub</string>
+		<key>Count</key>
+		<integer>15</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_naturalist-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_naturalist-15-cub</string>
+		<key>Index</key>
+		<integer>1</integer>
+	</dict>
+	<key>surveyor</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your 35th species.</string>
+		<key>Name</key>
+		<string>Surveyor</string>
+		<key>Count</key>
+		<integer>35</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_naturalist-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_naturalist-35-surveyor</string>
+		<key>Index</key>
+		<integer>2</integer>
+	</dict>
+	<key>naturalist</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your 65th species.</string>
+		<key>Name</key>
+		<string>Naturalist</string>
+		<key>Count</key>
+		<integer>65</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_naturalist-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_naturalist_65_naturalist</string>
+		<key>Index</key>
+		<integer>3</integer>
+	</dict>
+	<key>explorer</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your 100th species.</string>
+		<key>Name</key>
+		<string>Explorer</string>
+		<key>Count</key>
+		<integer>100</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_naturalist-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_naturalist_100_explorer</string>
+		<key>Index</key>
+		<integer>4</integer>
+	</dict>
+	<key>amphibian1</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your first amphibian photo.</string>
+		<key>Name</key>
+		<string>1st Amphibian</string>
+		<key>IconicTaxon</key>
+		<string>Amphibians</string>
+		<key>IconicTaxonId</key>
+		<integer>20978</integer>
+		<key>Count</key>
+		<integer>1</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-01-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-01-amphibians</string>
+		<key>Index</key>
+		<integer>100</integer>
+	</dict>
+	<key>arachnid1</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your first arachnid photo.</string>
+		<key>Name</key>
+		<string>1st Arachnid</string>
+		<key>IconicTaxon</key>
+		<string>Arachnids</string>
+		<key>IconicTaxonId</key>
+		<integer>47119</integer>
+		<key>Count</key>
+		<integer>1</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-01-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-01-arachnids</string>
+		<key>Index</key>
+		<integer>101</integer>
+	</dict>
+	<key>bird1</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your first bird photo.</string>
+		<key>Name</key>
+		<string>1st Bird</string>
+		<key>IconicTaxon</key>
+		<string>Birds</string>
+		<key>IconicTaxonId</key>
+		<integer>3</integer>
+		<key>Count</key>
+		<integer>1</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-01-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-01-birds</string>
+		<key>Index</key>
+		<integer>102</integer>
+	</dict>
+	<key>fish1</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your first fish photo.</string>
+		<key>Name</key>
+		<string>1st Fish</string>
+		<key>IconicTaxon</key>
+		<string>Fish</string>
+		<key>IconicTaxonId</key>
+		<integer>47178</integer>
+		<key>Count</key>
+		<integer>1</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-01-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-01-fish</string>
+		<key>Index</key>
+		<integer>103</integer>
+	</dict>
+	<key>fungi1</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your first fungus photo.</string>
+		<key>Name</key>
+		<string>1st Fungus</string>
+		<key>IconicTaxon</key>
+		<string>Fungi</string>
+		<key>IconicTaxonId</key>
+		<integer>47170</integer>
+		<key>Count</key>
+		<integer>1</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-01-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-01-fungi</string>
+		<key>Index</key>
+		<integer>104</integer>
+	</dict>
+	<key>insect1</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your first insect photo.</string>
+		<key>Name</key>
+		<string>1st Insect</string>
+		<key>IconicTaxon</key>
+		<string>Insects</string>
+		<key>IconicTaxonId</key>
+		<integer>47158</integer>
+		<key>Count</key>
+		<integer>1</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-01-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-01-insects</string>
+		<key>Index</key>
+		<integer>105</integer>
+	</dict>
+	<key>mammal1</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your first mammal photo.</string>
+		<key>Name</key>
+		<string>1st Mammal</string>
+		<key>IconicTaxon</key>
+		<string>Mammals</string>
+		<key>IconicTaxonId</key>
+		<integer>40151</integer>
+		<key>Count</key>
+		<integer>1</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-01-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-01-mammals</string>
+		<key>Index</key>
+		<integer>106</integer>
+	</dict>
+	<key>mollusk1</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your first mollusk photo.</string>
+		<key>Name</key>
+		<string>1st Mollusk</string>
+		<key>IconicTaxon</key>
+		<string>Mollusks</string>
+		<key>IconicTaxonId</key>
+		<integer>47115</integer>
+		<key>Count</key>
+		<integer>1</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-01-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-01-mollusks</string>
+		<key>Index</key>
+		<integer>107</integer>
+	</dict>
+	<key>plant1</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your first plant photo.</string>
+		<key>Name</key>
+		<string>1st Plant</string>
+		<key>IconicTaxon</key>
+		<string>Plants</string>
+		<key>IconicTaxonId</key>
+		<integer>47126</integer>
+		<key>Count</key>
+		<integer>1</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-01-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-01-plants</string>
+		<key>Index</key>
+		<integer>108</integer>
+	</dict>
+	<key>reptile1</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your first reptile photo.</string>
+		<key>Name</key>
+		<string>1st Reptile</string>
+		<key>IconicTaxon</key>
+		<string>Reptiles</string>
+		<key>IconicTaxonId</key>
+		<integer>26036</integer>
+		<key>Count</key>
+		<integer>1</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-01-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-01-reptiles</string>
+		<key>Index</key>
+		<integer>109</integer>
+	</dict>
+	<key>amphibian5</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your fifth amphibian photo.</string>
+		<key>Name</key>
+		<string>5th Amphibian</string>
+		<key>IconicTaxon</key>
+		<string>Amphibians</string>
+		<key>IconicTaxonId</key>
+		<integer>20978</integer>
+		<key>Count</key>
+		<integer>5</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-05-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-05-amphibians</string>
+		<key>Index</key>
+		<integer>200</integer>
+	</dict>
+	<key>arachnid5</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your fifth arachnid photo.</string>
+		<key>Name</key>
+		<string>5th Arachnid</string>
+		<key>IconicTaxon</key>
+		<string>Arachnids</string>
+		<key>IconicTaxonId</key>
+		<integer>47119</integer>
+		<key>Count</key>
+		<integer>5</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-05-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-05-arachnids</string>
+		<key>Index</key>
+		<integer>201</integer>
+	</dict>
+	<key>bird5</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your fifth bird photo.</string>
+		<key>Name</key>
+		<string>5th Bird</string>
+		<key>IconicTaxon</key>
+		<string>Birds</string>
+		<key>IconicTaxonId</key>
+		<integer>3</integer>
+		<key>Count</key>
+		<integer>5</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-05-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-05-birds</string>
+		<key>Index</key>
+		<integer>202</integer>
+	</dict>
+	<key>fish5</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your fifth fish photo.</string>
+		<key>Name</key>
+		<string>5th Fish</string>
+		<key>IconicTaxon</key>
+		<string>Fish</string>
+		<key>IconicTaxonId</key>
+		<integer>47178</integer>
+		<key>Count</key>
+		<integer>5</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-05-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-05-fish</string>
+		<key>Index</key>
+		<integer>203</integer>
+	</dict>
+	<key>fungi5</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your fifth fungus photo.</string>
+		<key>Name</key>
+		<string>5th Fungus</string>
+		<key>IconicTaxon</key>
+		<string>Fungi</string>
+		<key>IconicTaxonId</key>
+		<integer>47170</integer>
+		<key>Count</key>
+		<integer>5</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-05-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-05-fungi</string>
+		<key>Index</key>
+		<integer>204</integer>
+	</dict>
+	<key>insect5</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your fifth insect photo.</string>
+		<key>Name</key>
+		<string>5th Insect</string>
+		<key>IconicTaxon</key>
+		<string>Insects</string>
+		<key>IconicTaxonId</key>
+		<integer>47158</integer>
+		<key>Count</key>
+		<integer>5</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-05-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-05-insects</string>
+		<key>Index</key>
+		<integer>205</integer>
+	</dict>
+	<key>mammal5</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your fifth mammal photo.</string>
+		<key>Name</key>
+		<string>5th Mammal</string>
+		<key>IconicTaxon</key>
+		<string>Mammals</string>
+		<key>IconicTaxonId</key>
+		<integer>40151</integer>
+		<key>Count</key>
+		<integer>5</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-05-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-05-mammals</string>
+		<key>Index</key>
+		<integer>206</integer>
+	</dict>
+	<key>mollusk5</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your fifth mollusk photo.</string>
+		<key>Name</key>
+		<string>5th Mollusk</string>
+		<key>IconicTaxon</key>
+		<string>Mollusks</string>
+		<key>IconicTaxonId</key>
+		<integer>47115</integer>
+		<key>Count</key>
+		<integer>5</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-05-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-05-mollusks</string>
+		<key>Index</key>
+		<integer>207</integer>
+	</dict>
+	<key>plant5</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your fifth plant photo.</string>
+		<key>Name</key>
+		<string>5th Plant</string>
+		<key>IconicTaxon</key>
+		<string>Plants</string>
+		<key>IconicTaxonId</key>
+		<integer>47126</integer>
+		<key>Count</key>
+		<integer>5</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-05-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-05-plants</string>
+		<key>Index</key>
+		<integer>208</integer>
+	</dict>
+	<key>reptile5</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your fifth reptile photo.</string>
+		<key>Name</key>
+		<string>5th Reptile</string>
+		<key>IconicTaxon</key>
+		<string>Reptiles</string>
+		<key>IconicTaxonId</key>
+		<integer>26036</integer>
+		<key>Count</key>
+		<integer>5</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-05-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-05-reptiles</string>
+		<key>Index</key>
+		<integer>209</integer>
+	</dict>
+	<key>amphibian25</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your 25th amphibian photo.</string>
+		<key>Name</key>
+		<string>25th Amphibian</string>
+		<key>IconicTaxon</key>
+		<string>Amphibians</string>
+		<key>IconicTaxonId</key>
+		<integer>20978</integer>
+		<key>Count</key>
+		<integer>25</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-25-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-25-amphibians</string>
+		<key>Index</key>
+		<integer>300</integer>
+	</dict>
+	<key>arachnid25</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your 25th arachnid photo.</string>
+		<key>Name</key>
+		<string>25th Arachnid</string>
+		<key>IconicTaxon</key>
+		<string>Arachnids</string>
+		<key>IconicTaxonId</key>
+		<integer>47119</integer>
+		<key>Count</key>
+		<integer>25</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-25-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-25-arachnids</string>
+		<key>Index</key>
+		<integer>301</integer>
+	</dict>
+	<key>bird25</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your 25th bird photo.</string>
+		<key>Name</key>
+		<string>25th Bird</string>
+		<key>IconicTaxon</key>
+		<string>Birds</string>
+		<key>IconicTaxonId</key>
+		<integer>3</integer>
+		<key>Count</key>
+		<integer>25</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-25-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-25-birds</string>
+		<key>Index</key>
+		<integer>302</integer>
+	</dict>
+	<key>fish25</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your 25th fish photo.</string>
+		<key>Name</key>
+		<string>25th Fish</string>
+		<key>IconicTaxon</key>
+		<string>Fish</string>
+		<key>IconicTaxonId</key>
+		<integer>47178</integer>
+		<key>Count</key>
+		<integer>25</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-25-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-25-fish</string>
+		<key>Index</key>
+		<integer>303</integer>
+	</dict>
+	<key>fungi25</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your 25th fungus photo.</string>
+		<key>Name</key>
+		<string>25th Fungus</string>
+		<key>IconicTaxon</key>
+		<string>Fungi</string>
+		<key>IconicTaxonId</key>
+		<integer>47170</integer>
+		<key>Count</key>
+		<integer>25</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-25-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-25-fungi</string>
+		<key>Index</key>
+		<integer>304</integer>
+	</dict>
+	<key>insect25</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your 25th insect photo.</string>
+		<key>Name</key>
+		<string>25th Insect</string>
+		<key>IconicTaxon</key>
+		<string>Insects</string>
+		<key>IconicTaxonId</key>
+		<integer>47158</integer>
+		<key>Count</key>
+		<integer>25</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-25-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-25-insects</string>
+		<key>Index</key>
+		<integer>305</integer>
+	</dict>
+	<key>mammal25</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your 25th mammal photo.</string>
+		<key>Name</key>
+		<string>25th Mammal</string>
+		<key>IconicTaxon</key>
+		<string>Mammals</string>
+		<key>IconicTaxonId</key>
+		<integer>40151</integer>
+		<key>Count</key>
+		<integer>25</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-25-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-25-mammals</string>
+		<key>Index</key>
+		<integer>306</integer>
+	</dict>
+	<key>mollusk25</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your 25th Mollusk photo.</string>
+		<key>Name</key>
+		<string>25th Mollusk</string>
+		<key>IconicTaxon</key>
+		<string>Mollusks</string>
+		<key>IconicTaxonId</key>
+		<integer>47115</integer>
+		<key>Count</key>
+		<integer>25</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-25-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-25-mollusks</string>
+		<key>Index</key>
+		<integer>307</integer>
+	</dict>
+	<key>plant25</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your 25th Plant photo.</string>
+		<key>Name</key>
+		<string>25th Plant</string>
+		<key>IconicTaxon</key>
+		<string>Plants</string>
+		<key>IconicTaxonId</key>
+		<integer>47126</integer>
+		<key>Count</key>
+		<integer>25</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-25-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-25-plants</string>
+		<key>Index</key>
+		<integer>308</integer>
+	</dict>
+	<key>reptile25</key>
+	<dict>
+		<key>InfoText</key>
+		<string>Earned after collecting your 25th Reptile photo.</string>
+		<key>Name</key>
+		<string>25th Reptile</string>
+		<key>IconicTaxon</key>
+		<string>Reptiles</string>
+		<key>IconicTaxonId</key>
+		<integer>26036</integer>
+		<key>Count</key>
+		<integer>25</integer>
+		<key>UnearnedIcon</key>
+		<string>badge_species-25-empty</string>
+		<key>EarnedIcon</key>
+		<string>badge_species-25-reptiles</string>
+		<key>Index</key>
+		<integer>309</integer>
+	</dict>
+</dict>
+</plist>

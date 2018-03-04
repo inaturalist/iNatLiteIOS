@@ -13,17 +13,30 @@ class SpeciesCollectionViewCell: UICollectionViewCell {
     @IBOutlet var photoView: UIImageViewAligned?
     @IBOutlet var nameLabel: UILabel?
     @IBOutlet var nameScrim: UIView?
+    @IBOutlet var container: UIView?
     
     override func prepareForReuse() {
         photoView?.image = nil
+        nameLabel?.text = nil
     }
     
     override func awakeFromNib() {
-        self.layer.cornerRadius = 5.0
-        self.layer.borderColor = UIColor.white.cgColor
-        self.layer.borderWidth = 1.0
-        self.clipsToBounds = true
+        container?.layer.cornerRadius = 5.0
+        container?.layer.masksToBounds = true
+
+        //container?.clipsToBounds = true
         
-        self.nameScrim?.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        layer.shadowColor = UIColor.black.withAlphaComponent(0.15).cgColor
+        layer.shadowOffset = CGSize(width: 2, height: 2)
+        layer.shadowRadius = 0
+        layer.shadowOpacity = 1.0
+        layer.masksToBounds = false
+        
+        self.nameScrim?.backgroundColor = UIColor.INat.SpeciesChicletLabelBackground
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        //self.nameLabel?.sizeToFit()
     }
 }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Whitney-Medium-Pro.otf">
+            <string>Whitney-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="yBH-wf-pXi" customClass="BadgeCell" customModule="iNatLite" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="187" height="173"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="187" height="173"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="E4e-Sd-am0">
+                        <rect key="frame" x="27" y="12" width="140" height="175"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bQg-fl-M0c">
+                                <rect key="frame" x="0.0" y="0.0" width="167" height="167"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bQg-fl-M0c" secondAttribute="height" multiplier="1:1" id="RGd-hQ-Y8z"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dET-Cv-4pf">
+                                <rect key="frame" x="0.0" y="167" width="167" height="6"/>
+                                <fontDescription key="fontDescription" name="Whitney-Medium" family="Whitney" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="E4e-Sd-am0" firstAttribute="top" secondItem="heY-bl-egP" secondAttribute="top" constant="10" id="1NV-Lw-ASm"/>
+                <constraint firstItem="heY-bl-egP" firstAttribute="trailing" secondItem="E4e-Sd-am0" secondAttribute="trailing" constant="10" id="5ay-Yg-b9K"/>
+                <constraint firstItem="E4e-Sd-am0" firstAttribute="bottom" secondItem="heY-bl-egP" secondAttribute="bottom" constant="10" id="HyD-kD-n9g"/>
+                <constraint firstItem="E4e-Sd-am0" firstAttribute="leading" secondItem="heY-bl-egP" secondAttribute="leading" constant="10" id="yBF-wp-PWW"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="heY-bl-egP"/>
+            <size key="customSize" width="187" height="173"/>
+            <connections>
+                <outlet property="imageView" destination="bQg-fl-M0c" id="r5c-fs-mAe"/>
+                <outlet property="label" destination="dET-Cv-4pf" id="yZH-dz-jW6"/>
+            </connections>
+            <point key="canvasLocation" x="23" y="42"/>
+        </collectionViewCell>
+    </objects>
+</document>

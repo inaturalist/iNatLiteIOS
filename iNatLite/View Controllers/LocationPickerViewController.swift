@@ -9,22 +9,47 @@
 import UIKit
 import MapKit
 import Alamofire
+import FontAwesomeKit
 
 private let locationTagCellId = "LocationTagCell"
 
 protocol LocationChooserDelegate: NSObjectProtocol {
-    func chosePlace(_ place: Place)
+    func choseLocation(_ name: String, coordinate: CLLocationCoordinate2D)
 }
 
 class LocationPickerViewController: UIViewController {
     
-    @IBOutlet var searchBar: UISearchBar?
-    @IBOutlet var collectionView: UICollectionView?
+    var shouldAutoZoomToUserLocation = true
+    var locationName: String?
+    var coordinate: CLLocationCoordinate2D?
+    
     @IBOutlet var mapView: MKMapView?
+    @IBOutlet var lookingLabel: UILabel?
+    @IBOutlet var locationLabel: UILabel?
+    @IBOutlet var locationView: UIView?
+    @IBOutlet var centerPin: UILabel?
+    @IBOutlet var doneView: UIView?
+    @IBOutlet var doneButton: UIButton?
+    @IBOutlet var gotoCurrentLocationButton: UIButton?
+    @IBOutlet var gradient: RadialGradientView?
     
     weak var delegate: LocationChooserDelegate?
-
-    var nearbyPlaces = [Place]()
+    
+    @IBAction func donePressed() {
+        if let name = self.locationName, let map = self.mapView {
+            self.delegate?.choseLocation(name, coordinate: map.centerCoordinate)
+        }
+    }
+    
+    @IBAction func gotoCurrentLocationPressed() {
+        if let map = self.mapView {
+            if let userLoc = mapView?.userLocation.coordinate {
+                let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+                let region = MKCoordinateRegion(center: userLoc, span: span)
+                map.setRegion(region, animated: true)
+            }
+        }
+    }
     
     // MARK: - UIViewController lifecycle
     
@@ -36,113 +61,86 @@ class LocationPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.black
-        self.collectionView?.contentInset = UIEdgeInsetsMake(5, 5, 5, 5)
-
-        // need to set estimated size to let the collection view flow layout automatically
-        // size the cells
-        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
+        if let gradient = self.gradient {
+            gradient.insideColor = UIColor.INat.LighterDarkBlue
+            gradient.outsideColor = UIColor.INat.DarkBlue
         }
-        // Do any additional setup after loading the view.
+        
+        locationLabel?.text = " "
+        locationView?.backgroundColor = UIColor.clear
+        doneView?.backgroundColor = UIColor.clear
+        doneButton?.backgroundColor = UIColor.INat.Green
+        doneButton?.layer.cornerRadius = 40 / 2
+        doneButton?.clipsToBounds = true
+        
+        if let coord = self.coordinate, CLLocationCoordinate2DIsValid(coord) {
+            shouldAutoZoomToUserLocation = false
+            if let map = self.mapView {
+                let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+                let region = MKCoordinateRegion(center: coord, span: span)
+                map.setRegion(region, animated: false)
+            }
+        } else {
+            lookingLabel?.text = "Looking for species in:"
+            locationLabel?.text = Place.Fixed.UnitedStates.name
+        }
+        
+        if let pin = FAKIonIcons.iosLocationIcon(withSize: 64) {
+            pin.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.INat.Green)
+            centerPin?.attributedText = pin.attributedString()
+        }
+        
+        if let navigate = FAKIonIcons.iosNavigateIcon(withSize: 64),
+            let navigateOutline = FAKIonIcons.iosNavigateOutlineIcon(withSize: 64)
+        {
+            navigate.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.gray)
+            navigateOutline.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.white)
+            let nav = UIImage(stackedIcons: [navigate, navigateOutline], imageSize: CGSize(width: 64, height: 64)).withRenderingMode(.alwaysOriginal)
+            gotoCurrentLocationButton?.setImage(nav, for: .normal)
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
 extension LocationPickerViewController: MKMapViewDelegate {
+
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        let center = mapView.userLocation.coordinate;
-        let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
-        let region = MKCoordinateRegion(center: center, span: span)
-        mapView.setRegion(region, animated: true)
+        if shouldAutoZoomToUserLocation {
+            let center = mapView.userLocation.coordinate;
+            let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+            let region = MKCoordinateRegion(center: center, span: span)
+            mapView.setRegion(region, animated: true)
+            shouldAutoZoomToUserLocation = false
+        }
     }
     
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        // the user is panning or moving the map, clear the list of loaded iNat places
-        self.nearbyPlaces.removeAll()
-        self.collectionView?.reloadData()
+        // the user is panning or moving the map, clear the shown name
+        // don't empty it so the UI stays fixed
+        locationLabel?.text = " "
+        lookingLabel?.text = "Looking for species in a 50 mile radius around this point:"
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        self.nearbyPlaces.removeAll()
-        self.collectionView?.reloadData()
+        // get center coordinate
+        let center = mapView.centerCoordinate
+        let location = CLLocation(latitude: center.latitude, longitude: center.longitude)
         
-        let mapRect = mapView.visibleMapRect;
-        let neMapPoint = MKMapPointMake(MKMapRectGetMaxX(mapRect), mapRect.origin.y)
-        let swMapPoint = MKMapPointMake(mapRect.origin.x, MKMapRectGetMaxY(mapRect))
-        let neCoord = MKCoordinateForMapPoint(neMapPoint)
-        let swCoord = MKCoordinateForMapPoint(swMapPoint)
-
-        let urlString = "https://api.inaturalist.org/v1/places/nearby?nelat=\(neCoord.latitude)&nelng=\(neCoord.longitude)&swlat=\(swCoord.latitude)&swlng=\(swCoord.longitude)"
-        
-        if let url = URL(string: urlString) {
-            Alamofire.request(url).responseData { response in
-                print(response)
-                if let data = response.result.value {
-                    let response = try! JSONDecoder().decode(PlaceNearbyResponse.self, from: data)
-                    if let results = response.results {
-                        if let standard = results.standard {
-                            self.nearbyPlaces.append(contentsOf: standard)
-                        }
-                        if let community = results.community {
-                            self.nearbyPlaces.append(contentsOf: community)
-                        }
-                        self.collectionView?.reloadData()
-                    }
-                    
-                    print(response)
+        CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
+            if let placemarks = placemarks, let first = placemarks.first {
+                // last aoi seems to give the most useful results in the bay
+                // area at least
+                if let aoi = first.areasOfInterest, let lastAoi = aoi.last {
+                    self.locationName = lastAoi
+                } else if let locality = first.locality {
+                    self.locationName = locality
+                } else if let name = first.name {
+                    self.locationName = name
                 }
+                self.locationLabel?.text = self.locationName
             }
         }
-
-        print("region changed")
-    }
-}
-
-extension LocationPickerViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let place = self.nearbyPlaces[indexPath.item]
-        self.delegate?.chosePlace(place)
-    }
-}
-
-extension LocationPickerViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.nearbyPlaces.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: locationTagCellId, for: indexPath) as! LocationTagCell
-        
-        cell.label?.text = "something"
-        let place = self.nearbyPlaces[indexPath.item]
-        if let name = place.display_name {
-            cell.label?.text = name
-        } else if place.name != "" {
-            cell.label?.text = place.name
-        }
-        
-        return cell
     }
 }
 

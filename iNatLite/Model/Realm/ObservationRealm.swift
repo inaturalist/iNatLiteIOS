@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import CoreLocation
 
 class ObservationRealm: Object {
     override static func primaryKey() -> String? {
@@ -15,9 +16,28 @@ class ObservationRealm: Object {
     }
     
     @objc dynamic var uuidString: String = UUID().uuidString
-    @objc dynamic var taxonId: Int = 0
     @objc dynamic var date: Date?
-
+    @objc dynamic var taxon: TaxonRealm?
+    
+    @objc dynamic var latitude: Float = 0.0
+    @objc dynamic var longitude: Float = 0.0
+    @objc dynamic var placeName: String?
+    
+    var coordinate: CLLocationCoordinate2D? {
+        get {
+            if latitude != 0.0, longitude != 0.0 {
+                let coord = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+                if CLLocationCoordinate2DIsValid(coord) {
+                    return coord
+                } else {
+                    return nil
+                }
+            } else {
+                return nil
+            }
+        }
+    }
+    
     var uuid: UUID? {
         get {
             if let uuid = UUID(uuidString: self.uuidString) {
@@ -39,6 +59,32 @@ class ObservationRealm: Object {
         } else {
             return nil
         }
-
+    }
+    
+    var dateString: String? {
+        get {
+            let fmt = DateFormatter()
+            fmt.dateStyle = .medium
+            fmt.timeStyle = .none
+            if let date = self.date {
+                return fmt.string(from: date)
+            } else {
+                return nil
+            }
+        }
+    }
+    
+    var relativeDateString: String? {
+        get {
+            let fmt = DateFormatter()
+            fmt.doesRelativeDateFormatting = true
+            fmt.dateStyle = .medium
+            fmt.timeStyle = .none
+            if let date = self.date {
+                return fmt.string(from: date)
+            } else {
+                return nil
+            }
+        }
     }
 }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Whitney-Book-Pro.otf">
+            <string>Whitney-Book</string>
+        </array>
+        <array key="Whitney-Medium-Pro.otf">
+            <string>Whitney-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ToastView" customModule="iNatLite" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qjq-DO-F0V">
+                    <rect key="frame" x="15" y="15" width="345" height="40"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5vj-pp-mTz">
+                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="0Wa-s4-C2G"/>
+                                <constraint firstAttribute="width" constant="40" id="YtF-fS-qPZ"/>
+                            </constraints>
+                        </imageView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fpo-TS-Wv3">
+                            <rect key="frame" x="52" y="5" width="293" height="30.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvl-T2-tn9">
+                                    <rect key="frame" x="0.0" y="0.0" width="293" height="16"/>
+                                    <fontDescription key="fontDescription" name="Whitney-Medium" family="Whitney" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yg7-BU-jwJ">
+                                    <rect key="frame" x="0.0" y="16" width="293" height="14.5"/>
+                                    <fontDescription key="fontDescription" name="Whitney-Book" family="Whitney" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qjq-DO-F0V" secondAttribute="trailing" constant="15" id="4Rs-LH-daz"/>
+                <constraint firstItem="qjq-DO-F0V" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="8kv-CM-tKi"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="qjq-DO-F0V" secondAttribute="bottom" constant="15" id="Boc-rv-psK"/>
+                <constraint firstItem="qjq-DO-F0V" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="Voh-Gb-GB8"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="imageView" destination="5vj-pp-mTz" id="KBv-kd-wAm"/>
+                <outlet property="messageLabel" destination="yg7-BU-jwJ" id="WjY-jF-zs9"/>
+                <outlet property="titleLabel" destination="dvl-T2-tn9" id="6gB-jI-RWj"/>
+            </connections>
+            <point key="canvasLocation" x="241.5" y="-450.5"/>
+        </view>
+    </objects>
+</document>
