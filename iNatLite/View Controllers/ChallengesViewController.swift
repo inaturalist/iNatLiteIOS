@@ -39,13 +39,27 @@ class ChallengesViewController: UIViewController {
     var locationManager: CLLocationManager?
     var chosenIconicTaxon: Taxon?
     
-    var coordinate: CLLocationCoordinate2D?
+    var userLocation: CLLocationCoordinate2D?
+    var chosenCoordinate: CLLocationCoordinate2D?
     var placeName: String?
 
     var speciesCounts = [SpeciesCount]()
     
     var activePhotoLocation: CLLocation?
     var activePhotoDate: Date?
+    
+    var coordinate: CLLocationCoordinate2D? {
+        get {
+            if let coord = self.chosenCoordinate {
+                return coord
+            } else if let coord = self.userLocation {
+                return coord
+            } else {
+                return nil
+            }
+        }
+    }
+
     
     // MARK: - ibaction targets
     @IBAction func tappedPlus() {
@@ -196,7 +210,8 @@ class ChallengesViewController: UIViewController {
         {
             dest.delegate = self
             dest.locationName = self.placeName
-            dest.coordinate = self.coordinate
+            dest.userLocation = self.userLocation
+            dest.chosenCoordinate = self.coordinate
         } else if segue.identifier == "segueToTaxonPicker",
             let dest = segue.destination as? TaxonPickerViewController
         {
@@ -371,18 +386,21 @@ extension ChallengesViewController: CLLocationManagerDelegate {
             manager.stopUpdatingLocation()
             self.locationManager = nil
             // fuzz the location
-            self.coordinate = location.coordinate.truncate(places: 2)
+            self.userLocation = location.coordinate.truncate(places: 2)
             self.loadSpecies()
-            CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
-                if let placemarks = placemarks, let first = placemarks.first {
-                    // last aoi seems to give the most useful results in the bay
-                    // area
-                    if let aoi = first.areasOfInterest, let lastAoi = aoi.last {
-                        self.placeName = lastAoi
-                    } else if let locality = first.locality {
-                        self.placeName = locality
-                    } else if let name = first.name {
-                        self.placeName = name
+            
+            if let userLoc = self.userLocation {
+                let loc = CLLocation(latitude: userLoc.latitude, longitude: userLoc.longitude)
+                CLGeocoder().reverseGeocodeLocation(loc) { (placemarks, error) in
+                    if let placemarks = placemarks, let first = placemarks.first {
+                        // last aoi seems to give the most useful results in the bay area
+                        if let aoi = first.areasOfInterest, let lastAoi = aoi.last {
+                            self.placeName = lastAoi
+                        } else if let locality = first.locality {
+                            self.placeName = locality
+                        } else if let name = first.name {
+                            self.placeName = name
+                        }
                     }
                 }
             }
@@ -479,7 +497,7 @@ extension ChallengesViewController: UINavigationControllerDelegate {
 extension ChallengesViewController: LocationChooserDelegate {
     func choseLocation(_ name: String, coordinate: CLLocationCoordinate2D) {
         self.placeName = name
-        self.coordinate = coordinate
+        self.chosenCoordinate = coordinate
         
         self.loadSpecies()
         dismiss(animated: true, completion: nil)
