@@ -19,9 +19,9 @@ protocol LocationChooserDelegate: NSObjectProtocol {
 
 class LocationPickerViewController: UIViewController {
     
-    var shouldAutoZoomToUserLocation = true
     var locationName: String?
-    var coordinate: CLLocationCoordinate2D?
+    var chosenCoordinate: CLLocationCoordinate2D?
+    var userLocation: CLLocationCoordinate2D?
     
     @IBOutlet var mapView: MKMapView?
     @IBOutlet var lookingLabel: UILabel?
@@ -42,12 +42,14 @@ class LocationPickerViewController: UIViewController {
     }
     
     @IBAction func gotoCurrentLocationPressed() {
-        if let map = self.mapView {
-            if let userLoc = mapView?.userLocation.coordinate {
-                let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
-                let region = MKCoordinateRegion(center: userLoc, span: span)
-                map.setRegion(region, animated: true)
-            }
+        if let userLoc = self.userLocation, let map = self.mapView {
+            let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+            let region = MKCoordinateRegion(center: userLoc, span: span)
+            map.setRegion(region, animated: true)
+        } else {
+            let alert = UIAlertController(title: "Sorry", message: "Unable to determine your location.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
     }
     
@@ -73,8 +75,13 @@ class LocationPickerViewController: UIViewController {
         doneButton?.layer.cornerRadius = 40 / 2
         doneButton?.clipsToBounds = true
         
-        if let coord = self.coordinate, CLLocationCoordinate2DIsValid(coord) {
-            shouldAutoZoomToUserLocation = false
+        if let coord = self.chosenCoordinate, CLLocationCoordinate2DIsValid(coord) {
+            if let map = self.mapView {
+                let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+                let region = MKCoordinateRegion(center: coord, span: span)
+                map.setRegion(region, animated: false)
+            }
+        } else if let coord = self.userLocation, CLLocationCoordinate2DIsValid(coord) {
             if let map = self.mapView {
                 let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
                 let region = MKCoordinateRegion(center: coord, span: span)
@@ -104,17 +111,6 @@ class LocationPickerViewController: UIViewController {
 }
 
 extension LocationPickerViewController: MKMapViewDelegate {
-
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        if shouldAutoZoomToUserLocation {
-            let center = mapView.userLocation.coordinate;
-            let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
-            let region = MKCoordinateRegion(center: center, span: span)
-            mapView.setRegion(region, animated: true)
-            shouldAutoZoomToUserLocation = false
-        }
-    }
-    
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         // the user is panning or moving the map, clear the shown name
         // don't empty it so the UI stays fixed
