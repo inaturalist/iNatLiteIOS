@@ -13,12 +13,13 @@ struct ScoreResponse: Decodable {
     let page: Int?
     let per_page: Int?
     
+    let common_ancestor: TaxonScore?
     let results: [TaxonScore]
 }
 
 struct TaxonScore: Decodable {
     let vision_score: Float?
     let frequency_score: Float?
-    let combined_score: Float
+    let combined_score: Float?
     let taxon: Taxon
 }
