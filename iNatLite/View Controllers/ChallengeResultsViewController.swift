@@ -11,6 +11,7 @@ import JWT
 import Alamofire
 import FontAwesomeKit
 import RealmSwift
+import CoreLocation
 
 private let titleCellId = "ResultsTitleCell"
 private let dividerCellId = "ResultsDividerCell"
@@ -18,13 +19,31 @@ private let imageCellId = "ResultsImageCell"
 private let imageTaxonCellId = "ResultsImageTaxonCell"
 private let actionCellId = "ResultsActionCell"
 
-class ChallengeResultsViewController: UITableViewController {
+
+protocol ChallengeResultsDelegate: NSObjectProtocol {
+    func addedToCollection(_ taxon: Taxon)
+}
+
+class ChallengeResultsViewController: UIViewController {
+    
+    @IBOutlet var tableView: UITableView?
+    @IBOutlet var gradientBackground: RadialGradientView?
+    @IBOutlet var activitySpinner: UIActivityIndicatorView?
+    @IBOutlet var noticeLabel: UILabel?
     
     var image: UIImage?
+    var takenDate: Date?
+    var takenLocation: CLLocation?
+    
     var targetTaxon: Taxon?
     var resultScore: TaxonScore?
     var resultsLoaded = false
-
+    
+    var observations: Results<ObservationRealm>?
+    var seenTaxaIds = [Int]()
+    
+    weak var delegate: ChallengeResultsDelegate?
+    
     func loadResults() {
         if let image = self.image {
             let jwtStr = JWT.encode(claims: ["application": "ios"], algorithm: .hs512(AppConfig.visionSekret.data(using: .utf8)!))
@@ -39,15 +58,19 @@ class ChallengeResultsViewController: UITableViewController {
             
             var params = [String: String]()
             
-            /*
-            if let loc = self.locationTaken {
-                params["lat"] = "\(loc.coordinate.latitude)"
-                params["lng"] = "\(loc.coordinate.longitude)"
+            if let loc = self.takenLocation {
+                let fuzzedCoordinate = loc.coordinate.truncate(places: 2)
+                params["lat"] = "\(fuzzedCoordinate.latitude)"
+                params["lng"] = "\(fuzzedCoordinate.longitude)"
             }
-            if let date = self.dateTaken {
+            if let date = self.takenDate {
                 params["observed_on"] = "\(date.timeIntervalSince1970)"
             }
-            */
+            
+            self.activitySpinner?.isHidden = false
+            self.activitySpinner?.startAnimating()
+            
+            
             
             Alamofire.upload(multipartFormData:{ multipartFormData in
                 multipartFormData.append(data!, withName: "image", fileName: "file.jpg", mimeType: "image/jpeg")
@@ -63,23 +86,34 @@ class ChallengeResultsViewController: UITableViewController {
                                 switch encodingResult {
                                 case .success(let upload, _, _):
                                     upload.responseData { responseData in
-                                        let serverResponse = try! JSONDecoder().decode(ScoreResponse.self, from: responseData.data!)
-                                        print(serverResponse)
-                                        var goodResults = [TaxonScore]()
-                                        for result in serverResponse.results {
-                                            if result.combined_score > 1 {
-                                                goodResults.append(result)
+                                        do {
+                                            // TODO: check for responseData.data
+                                            let serverResponse = try JSONDecoder().decode(ScoreResponse.self, from: responseData.data!)
+                                            for result in serverResponse.results {
+                                                if let target = self.targetTaxon, target.id == result.taxon.id, result.combined_score > 85 {
+                                                    self.resultScore = result
+                                                    break
+                                                } else if result.combined_score > 97 {
+                                                    self.resultScore = result
+                                                    break
+                                                }
                                             }
+                                            self.resultsLoaded = true
+                                            self.activitySpinner?.isHidden = true
+                                            self.activitySpinner?.stopAnimating()
+                                            self.tableView?.reloadData()
+                                        } catch {
+                                            self.noticeLabel?.text = "Can't load computer vision suggestions. Try again later."
+                                            self.noticeLabel?.isHidden = false
+                                            self.activitySpinner?.isHidden = true
+                                            self.activitySpinner?.stopAnimating()
                                         }
-                                        print(goodResults)
-                                        if goodResults.count == 1 {
-                                            self.resultScore = goodResults.first
-                                        }
-                                        self.resultsLoaded = true
-                                        self.tableView.reloadData()
                                     }
                                 case .failure(let encodingError):
-                                    print(encodingError)
+                                    self.noticeLabel?.text = encodingError.localizedDescription
+                                    self.noticeLabel?.isHidden = false
+                                    self.activitySpinner?.isHidden = true
+                                    self.activitySpinner?.stopAnimating()
                                 }
             })
         }
@@ -91,15 +125,30 @@ class ChallengeResultsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // trick to hide extra lines after the tableview cells run out
-        self.tableView.tableFooterView = UIView()
-        
-        view.backgroundColor = UIColor.INat.LighterDarkBlue
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        if let spinner = self.activitySpinner {
+            spinner.transform = CGAffineTransform.init(scaleX: 3, y: 3)
+        }
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        // trick to hide extra lines after the tableview cells run out
+        self.tableView?.tableFooterView = UIView()
+        
+        if let gradient = self.gradientBackground {
+            gradient.insideColor = UIColor.INat.LighterDarkBlue
+            gradient.outsideColor = UIColor.INat.DarkBlue
+        }
+
+        view.backgroundColor = UIColor.INat.LighterDarkBlue
+        
+        let realm = try! Realm()
+        self.observations = realm.objects(ObservationRealm.self)
+        if let observations = self.observations {
+            for observation in observations {
+                if let obsTaxon = observation.taxon {
+                    self.seenTaxaIds.append(obsTaxon.id)
+                }
+            }
+        }
+        
         self.loadResults()
     }
 
@@ -108,21 +157,229 @@ class ChallengeResultsViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    
+    // MARK: - UITableViewCell helpers
+    
+    func configureDividerCell(_ cell: ResultsDividerCell) {
+        cell.backgroundColor = UIColor.clear
+        cell.scrim?.backgroundColor = UIColor.white.withAlphaComponent(0.07)
+        
+        if let score = self.resultScore {
+            if let target = self.targetTaxon {
+                if target == score.taxon {
+                    // you found your target
+                    cell.dividerImageView?.image = UIImage(named: "icn-results-match")
+                } else {
+                    // you found something else
+                    cell.dividerImageView?.image = UIImage(named: "icn-results-mismatch")
+                }
+            } else {
+                cell.dividerImageView?.image = UIImage(named: "icn-results-match")
+            }
+        } else {
+            cell.dividerImageView?.image = UIImage(named: "icn-results-unknown")
+        }
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func configureTitleCell(_ cell: ResultsTitleCell) {
+        cell.backgroundColor = UIColor.clear
+
+        if let score = self.resultScore {
+            if let target = self.targetTaxon {
+                if target == score.taxon {
+                    // you found your target
+                    cell.title?.text = "It's a Match!"
+                    cell.subtitle?.text = "You saw a \(score.taxon.anyName)."
+                } else {
+                    // you found something else
+                    cell.title?.text = "Good Try!"
+                    cell.subtitle?.text = "However, this isn't a \(target.anyName), it's a \(score.taxon.anyName)."
+                }
+            } else {
+                if self.seenTaxaIds.contains(score.taxon.id) {
+                    cell.title?.text = "Deja Vu!"
+                    cell.subtitle?.text = "Looks like you already collected a \(score.taxon.anyName)."
+                } else {
+                    cell.title?.text = "Sweet!"
+                    cell.subtitle?.text = "You saw a \(score.taxon.anyName)."
+                }
+            }
+        } else {
+            cell.title?.text = "Hrmmmmmm"
+            cell.subtitle?.text = "We can't figure this one out. Please try some adjustments."
+        }
+    }
+    
+    func configureImageCell(_ cell: ResultsImageCell) {
+        cell.backgroundColor = UIColor.white.withAlphaComponent(0.07)
+        
+        cell.userImageView?.image = self.image
+        cell.userLabel?.text = nil
+    }
+    
+    func configureImageTaxonCell(_ cell: ResultsImageTaxonCell) {
+        cell.backgroundColor = UIColor.white.withAlphaComponent(0.07)
+
+        // left label
+        if let score = self.resultScore {
+            cell.userLabel?.text = "Your Photo:\n\(score.taxon.anyName)"
+        } else {
+            cell.userLabel?.text = "Your Photo"
+        }
+
+        // left photo is always user photo
+        cell.userImageView?.image = self.image
+        
+        // right label
+        if let target = self.targetTaxon {
+            cell.taxonLabel?.text = "Target Species:\n\(target.anyName)"
+        } else if let score = self.resultScore {
+            // identified name
+            cell.taxonLabel?.text = "Identified Species:\n\(score.taxon.anyName)"
+        }
+        
+        // right photo
+        if let target = self.targetTaxon {
+            // show the target taxon photo
+            if let photo = target.default_photo,
+                let urlString = photo.medium_url,
+                let url = URL(string: urlString)
+            {
+                cell.taxonImageView?.setImage(url: url)
+            }
+        } else if let score = self.resultScore {
+            // show the identified taxon photo
+            if let photo = score.taxon.default_photo,
+                let urlString = photo.medium_url,
+                let url = URL(string: urlString)
+            {
+                cell.taxonImageView?.setImage(url: url)
+            }
+        }
+    }
+    
+    func configureActionCell(_ cell: ResultsActionCell) {
+        cell.backgroundColor = UIColor.clear
+
+        if let result = self.resultScore {
+            if self.seenTaxaIds.contains(result.taxon.id) {
+                // already seen it
+                if let observations = self.observations {
+                    for observation in observations {
+                        if let obsTaxon = observation.taxon, let obsDate = observation.dateString {
+                            if obsTaxon.id == result.taxon.id {
+                                cell.infoLabel?.text = "You collected a \(obsTaxon.anyName) on \(obsDate)."
+                                cell.infoLabel?.textColor = UIColor.INat.SpeciesAddButton
+                                cell.actionButton?.isHidden = true
+                            }
+                        }
+                    }
+                }
+            } else {
+                if let target = self.targetTaxon {
+                    if target == result.taxon {
+                        // show add to collection button
+                        cell.infoLabel?.text = nil
+                        cell.actionButton?.setTitle("Add to Collection", for: .normal)
+                        cell.actionButton?.backgroundColor = UIColor.INat.Green
+                        cell.actionButton?.tintColor = UIColor.white
+                        cell.actionButton?.layer.cornerRadius = 22
+                        cell.actionButton?.clipsToBounds = true
+                        cell.actionButton?.addTarget(self, action: #selector(ChallengeResultsViewController.addToCollection), for: .touchUpInside)
+                    } else {
+                        // show notice that they still need to collect it
+                        cell.infoLabel?.text = "You still need to collect a \(result.taxon.anyName). Would you like to collect it now?"
+                        cell.actionButton?.setTitle("Add to Collection", for: .normal)
+                        cell.actionButton?.backgroundColor = UIColor.clear
+                        cell.actionButton?.tintColor = UIColor.white
+                        cell.actionButton?.layer.cornerRadius = 22
+                        cell.actionButton?.layer.borderColor = UIColor.INat.Green.cgColor
+                        cell.actionButton?.layer.borderWidth = 2.0
+                        cell.actionButton?.clipsToBounds = true
+                        cell.actionButton?.addTarget(self, action: #selector(ChallengeResultsViewController.addToCollection), for: .touchUpInside)
+                    }
+                } else {
+                    // show add to collection button
+                    cell.infoLabel?.text = nil
+                    cell.actionButton?.setTitle("Add to Collection", for: .normal)
+                    cell.actionButton?.backgroundColor = UIColor.INat.Green
+                    cell.actionButton?.tintColor = UIColor.white
+                    cell.actionButton?.layer.cornerRadius = 22
+                    cell.actionButton?.clipsToBounds = true
+                    cell.actionButton?.addTarget(self, action: #selector(ChallengeResultsViewController.addToCollection), for: .touchUpInside)
+                }
+            }
+        } else {
+            // show tips
+            cell.infoLabel?.text = "Here are some photo tips:\nGet as close as possible while being safe\nCrop out unimportant parts\nMake sure things are in focus"
+            cell.actionButton?.isHidden = true
+        }
+    }
+    
+    @objc
+    func addToCollection() {
+        // add to realm collection
+        if let score = self.resultScore {
+            
+            let photo = PhotoRealm()
+            photo.mediumUrl = score.taxon.default_photo?.medium_url
+            photo.squareUrl = score.taxon.default_photo?.square_url
+            
+            let taxon = TaxonRealm()
+            taxon.id = score.taxon.id
+            taxon.name = score.taxon.name
+            taxon.preferredCommonName = score.taxon.preferred_common_name
+            taxon.defaultPhoto = photo
+            taxon.iconicTaxonId = score.taxon.iconic_taxon_id
+
+            let obs = ObservationRealm()
+            obs.uuidString = UUID().uuidString
+            obs.taxon = taxon
+            
+            // always use today's collection date, not photo taken date
+            obs.date = Date()
+            
+            if let location = self.takenLocation {
+                obs.latitude = Float(location.coordinate.latitude)
+                obs.longitude = Float(location.coordinate.longitude)
+            }
+            
+            let realm = try! Realm()
+            try! realm.write {
+                realm.add(obs, update: true)
+            }
+ 
+            // save photo to documents directory
+            if let image = self.image, let data = UIImageJPEGRepresentation(image, 0.9)  {
+                if let photoPath = obs.pathForImage() {
+                    try? data.write(to: photoPath)
+                }
+            }
+            
+            // notify challenges VC via delegate to dismiss & animate
+            self.delegate?.addedToCollection(score.taxon)
+        }
+
+    }
+}
+
+
+// MARK: - UITableViewDataSource
+extension ChallengeResultsViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.resultsLoaded {
             return 4
         } else {
             return 0
         }
     }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.item == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: titleCellId, for: indexPath) as! ResultsTitleCell
             self.configureTitleCell(cell)
@@ -132,7 +389,13 @@ class ChallengeResultsViewController: UITableViewController {
             self.configureDividerCell(cell)
             return cell
         } else if indexPath.item == 2 {
-            if let score = self.resultScore {
+            if self.resultScore != nil {
+                // if a match, always show two photos (your photo and match or score)
+                let cell = tableView.dequeueReusableCell(withIdentifier: imageTaxonCellId, for: indexPath) as! ResultsImageTaxonCell
+                self.configureImageTaxonCell(cell)
+                return cell
+            } else if self.targetTaxon != nil {
+                // if a target, always show to photos (your photo and target)
                 let cell = tableView.dequeueReusableCell(withIdentifier: imageTaxonCellId, for: indexPath) as! ResultsImageTaxonCell
                 self.configureImageTaxonCell(cell)
                 return cell
@@ -147,119 +410,4 @@ class ChallengeResultsViewController: UITableViewController {
             return cell
         }
     }
-    
-    // MARK: - UITableViewCell helpers
-    
-    func configureDividerCell(_ cell: ResultsDividerCell) {
-        cell.backgroundColor = UIColor.clear
-        cell.scrim?.backgroundColor = UIColor.INat.DarkBlue
-        
-        if let score = self.resultScore {
-            cell.dividerImageView?.image = UIImage(named: "icn-results-match")
-        } else {
-            cell.dividerImageView?.image = UIImage(named: "icn-results-unknown")
-        }
-    }
-
-    func configureTitleCell(_ cell: ResultsTitleCell) {
-        cell.backgroundColor = UIColor.INat.DarkBlue
-
-        if let score = self.resultScore {
-            cell.title?.text = "Sweet!"
-            cell.subtitle?.text = "You saw a \(score.taxon.anyName)."
-        } else {
-            cell.title?.text = "Hrmmmmmm"
-            cell.subtitle?.text = "We can't figure this one out. Please try some adjustments."
-        }
-    }
-    
-    func configureImageCell(_ cell: ResultsImageCell) {
-        cell.backgroundColor = UIColor.clear
-
-        if self.resultScore == nil {
-            cell.userImageView?.image = self.image
-            cell.userLabel?.text = nil
-        }
-    }
-    
-    func configureImageTaxonCell(_ cell: ResultsImageTaxonCell) {
-        cell.backgroundColor = UIColor.clear
-        
-        if let score = self.resultScore {
-            cell.userImageView?.image = self.image
-            cell.userLabel?.text = "Your Photo"
-            if let photo = score.taxon.default_photo,
-                let urlString = photo.medium_url,
-                let url = URL(string: urlString)
-            {
-                cell.taxonImageView?.setImage(url: url)
-            }
-            cell.taxonLabel?.text = score.taxon.anyName
-        }
-    }
-    
-    func configureActionCell(_ cell: ResultsActionCell) {
-        cell.backgroundColor = UIColor.clear
-        
-        if self.resultScore == nil {
-            // show tips
-            cell.infoLabel?.text = "Here are some photo tips:\nGet as close as possible while being safe\nCrop out unimportant parts\nMake sure things are in focus"
-            cell.actionButton?.setTitle("Adjust Photo", for: .normal)
-            cell.actionButton?.backgroundColor = UIColor.clear
-            cell.actionButton?.tintColor = UIColor.white
-            cell.actionButton?.layer.borderWidth = 1.0
-            cell.actionButton?.layer.borderColor = UIColor.white.cgColor
-            cell.actionButton?.layer.cornerRadius = 22
-            cell.actionButton?.clipsToBounds = true
-
-        } else {
-            // show ok button
-            cell.infoLabel?.text = nil
-            cell.actionButton?.setTitle("Add to Collection", for: .normal)
-            cell.actionButton?.backgroundColor = UIColor.INat.Green
-            cell.actionButton?.tintColor = UIColor.white
-            cell.actionButton?.layer.cornerRadius = 22
-            cell.actionButton?.clipsToBounds = true
-            cell.actionButton?.addTarget(self, action: #selector(ChallengeResultsViewController.addToCollection), for: .touchUpInside)
-        }
-    }
-    
-    @objc
-    func addToCollection() {
-        // add to realm collection
-        if let score = self.resultScore {
-            let obs = ObservationRealm()
-            obs.uuidString = UUID().uuidString
-            obs.taxonId = score.taxon.id
-            // TODO: should we try to use photo creation date?
-            obs.date = Date()
-            
-            let realm = try! Realm()
-            try! realm.write {
-                realm.add(obs, update: true)
-            }
- 
-            // save photo to documents directory
-            if let image = self.image, let data = UIImageJPEGRepresentation(image, 0.9)  {
-                if let photoPath = obs.pathForImage() {
-                    try? data.write(to: photoPath)
-                }
-            }
-        }
-
-        // notify challenges VC via delegate to dismiss & animate
-        print("addToCollection")
-        dismiss(animated: true, completion: nil)
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

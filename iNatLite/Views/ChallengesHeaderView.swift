@@ -11,4 +11,9 @@ import UIKit
 class ChallengesHeaderView: UICollectionReusableView {
     @IBOutlet var placeButton: UIButton?
     @IBOutlet var taxaButton: UIButton?
+    
+    override func awakeFromNib() {
+        placeButton?.tintColor = UIColor.white
+        taxaButton?.tintColor = UIColor.white
+    }
 }

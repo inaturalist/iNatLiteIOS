@@ -16,13 +16,19 @@ protocol IconicTaxonPickerDelegate: NSObjectProtocol {
 
 class TaxonPickerViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    var selectedTaxon: Taxon?
+    
     weak var delegate: IconicTaxonPickerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.collectionView?.contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        self.collectionView?.backgroundColor = UIColor.INat.DarkBlue
+        //self.collectionView?.backgroundColor = UIColor.INat.DarkBlue
+        let gradient = RadialGradientView()
+        gradient.insideColor = UIColor.INat.LighterDarkBlue
+        gradient.outsideColor = UIColor.INat.DarkBlue
+        self.collectionView?.backgroundView = gradient
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,22 +65,49 @@ class TaxonPickerViewController: UICollectionViewController, UICollectionViewDel
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: iconicTaxonCellId, for: indexPath) as! IconicTaxonCell
         
-        cell.contentView.backgroundColor = UIColor.INat.LighterDarkBlue
-        cell.contentView.layer.cornerRadius = 5.0
+        cell.contentView.layer.cornerRadius = 4.0
         cell.clipsToBounds = true
         
         // Configure the cell
         if indexPath.item == 0 {
-            // all
-            cell.imageView?.image = UIImage(named: "icn-iconic-taxa-all")
+            cell.imageView?.image = UIImage(named: "icn-iconic-taxa-all")?.withRenderingMode(.alwaysTemplate)
             cell.label?.text = "All"
+            
+            if self.selectedTaxon == nil {
+                cell.contentView.backgroundColor = UIColor.white
+                cell.imageView?.tintColor = UIColor.INat.DarkBlue
+                cell.label?.textColor = UIColor.INat.DarkBlue
+            } else {
+                cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.07)
+                cell.imageView?.tintColor = UIColor.white
+                cell.label?.textColor = UIColor.white
+            }
         } else {
             let iconicTaxon = Taxon.Iconics[indexPath.item - 1]
-            cell.imageView?.image = UIImage(named: iconicTaxon.iconicImageName())
+            
+            if let iconicTaxonImageName = iconicTaxon.iconicImageName() {
+                cell.imageView?.image = UIImage(named: iconicTaxonImageName)?.withRenderingMode(.alwaysTemplate)
+            }
             cell.label?.text = iconicTaxon.anyName
+
+            if self.selectedTaxon == iconicTaxon {
+                cell.contentView.backgroundColor = UIColor.white
+                cell.imageView?.tintColor = UIColor.INat.DarkBlue
+                cell.label?.textColor = UIColor.INat.DarkBlue
+            } else {
+                cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.07)
+                cell.imageView?.tintColor = UIColor.white
+                cell.label?.textColor = UIColor.white
+            }
+
+            
         }
     
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath)
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
@@ -99,10 +132,12 @@ class TaxonPickerViewController: UICollectionViewController, UICollectionViewDel
     // MARK: - UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item == 0 {
-            self.delegate?.choseIconicTaxon(nil)
+            self.selectedTaxon = nil
         } else {
-            self.delegate?.choseIconicTaxon(Taxon.Iconics[indexPath.item-1])
+            self.selectedTaxon = Taxon.Iconics[indexPath.item-1]
         }
+        collectionView.reloadData()
+        self.delegate?.choseIconicTaxon(self.selectedTaxon)
     }
 
 }

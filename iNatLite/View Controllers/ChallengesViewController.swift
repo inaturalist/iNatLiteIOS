@@ -14,24 +14,38 @@ import Imaginary
 import ALCameraViewController
 import Gallery
 import CropViewController
+import RealmSwift
+import Toast_Swift
+import PKHUD
 
 private let reuseIdentifier = "species"
 
 class ChallengesViewController: UIViewController {
     
+    @IBOutlet var gradientBackground: RadialGradientView?
     @IBOutlet var collectionView: UICollectionView?
-    @IBOutlet var footer: UIView?
     
-    @IBOutlet var footerHead: UILabel?
-    @IBOutlet var footerLabel: UILabel?
+    @IBOutlet var footer: UIView?
+    @IBOutlet var footerScrim: UIView?
+    @IBOutlet var footerProfileIcon: UIButton?
+    @IBOutlet var footerCollectionButton: UIButton?
     @IBOutlet var footerPlus: UIButton?
+    
+    @IBOutlet var failureTitle: UILabel?
+    @IBOutlet var failureMessage: UILabel?
+    
+    @IBOutlet var activitySpinner: UIActivityIndicatorView?
 
     var locationManager: CLLocationManager?
-    var nearbyPlace: Place?
-    var chosenPlace: Place?
     var chosenIconicTaxon: Taxon?
+    
+    var coordinate: CLLocationCoordinate2D?
+    var placeName: String?
 
     var speciesCounts = [SpeciesCount]()
+    
+    var activePhotoLocation: CLLocation?
+    var activePhotoDate: Date?
     
     // MARK: - ibaction targets
     @IBAction func tappedPlus() {
@@ -42,7 +56,9 @@ class ChallengesViewController: UIViewController {
         let gallery = GalleryController()
         gallery.delegate = self
 
-        let nav = UINavigationController(rootViewController: gallery)        
+        let nav = UINavigationController(rootViewController: gallery)
+        nav.navigationBar.barStyle = .blackTranslucent
+        nav.navigationBar.tintColor = .white
         // we'll use the delegate to hide the navbar when the camera is up
         // but show it when confirm/crop/results have been pushed onto the
         // navigation stack
@@ -50,19 +66,39 @@ class ChallengesViewController: UIViewController {
         present(nav, animated: true, completion: nil)
     }
     
+    @IBAction func tappedProfile() {
+        self.performSegue(withIdentifier: "segueToMyCollection", sender: nil)
+    }
+    
     // MARK: - loaders of data from iNat
     func loadSpecies() {
         self.speciesCounts.removeAll()
         self.collectionView?.reloadData()
+        self.activitySpinner?.isHidden = false
+        self.activitySpinner?.startAnimating()
         
         var urlString: String?
         
-        if let place = self.chosenPlace {
-            urlString = "https://api.inaturalist.org/v1/observations/species_counts?place_id=\(place.id)&threatened=false&verifiable=true&oauth_application_id=2,3&month=1,2,3&hrank=species"
-        } else if let nearby = self.nearbyPlace {
-            urlString = "https://api.inaturalist.org/v1/observations/species_counts?place_id=\(nearby.id)&threatened=false&verifiable=true&oauth_application_id=2,3&month=1,2,3&hrank=species"
+        if let coordinate = self.coordinate {
+            urlString = "https://api.inaturalist.org/v1/observations/species_counts?lat=\(coordinate.latitude)&lng=\(coordinate.longitude)&radius=50&threatened=false&verifiable=true&oauth_application_id=2,3&hrank=species&include_only_vision_taxa=true&not_in_list_id=945029"
+        } else {
+            let usa = Place.Fixed.UnitedStates
+            urlString = "https://api.inaturalist.org/v1/observations/species_counts?place_id=\(usa.id)&threatened=false&verifiable=true&oauth_application_id=2,3&hrank=species&include_only_vision_taxa=true&not_in_list_id=945029"
         }
         
+        // get the a month on either side of the current month
+        var months = [Int]()
+        let calendar = NSCalendar.current
+        if let month = calendar.dateComponents([.month], from: Date()).month {
+            if month == 1 {
+                months = [12,1,2]
+            } else {
+                months = [month-1,month,month+1]
+            }
+        }
+        let monthsStr = months.map({ "\($0)"}).joined(separator: ",")
+        urlString?.append("&month=\(monthsStr)")
+
         if let iconicTaxon = self.chosenIconicTaxon {
             urlString?.append("&taxon_id=\(iconicTaxon.id)")
         }
@@ -74,7 +110,18 @@ class ChallengesViewController: UIViewController {
                 if let data = response.result.value {
                     let response = try! JSONDecoder().decode(SpeciesCountResponse.self, from: data)
                     if let speciesCounts = response.results {
-                        self.speciesCounts = speciesCounts
+                        let realm = try! Realm()
+                        let collectedTaxa = realm.objects(TaxonRealm.self)
+                        let collectedTaxaIds = collectedTaxa.map({ (taxon) -> Int in
+                            return taxon.id
+                        })
+                        self.speciesCounts = speciesCounts.filter({ (speciesCount) -> Bool in
+                            return !collectedTaxaIds.contains(speciesCount.taxon.id)
+                        })
+
+                        self.activitySpinner?.isHidden = true
+                        self.activitySpinner?.stopAnimating()
+
                         self.collectionView?.reloadData()
                     }
                 }
@@ -104,33 +151,40 @@ class ChallengesViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.recalculateBadges()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let spinner = self.activitySpinner {
+            spinner.transform = CGAffineTransform.init(scaleX: 3, y: 3)
+        }
 
-        self.view.backgroundColor = UIColor.INat.DarkBlue
+        if let gradient = self.gradientBackground {
+            gradient.insideColor = UIColor.INat.LighterDarkBlue
+            gradient.outsideColor = UIColor.INat.DarkBlue
+        }
         self.collectionView?.backgroundColor = UIColor.clear
         self.footer?.backgroundColor = UIColor.clear
+        self.footerScrim?.backgroundColor = UIColor.INat.ChallengesFooterBackground
         
         let nib = UINib(nibName: "SpeciesCollectionView", bundle: Bundle.main)
         self.collectionView?.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
-        self.collectionView?.contentInset = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
+        self.collectionView?.contentInset = UIEdgeInsetsMake(0, 16, 0, 16)
         self.collectionView?.delegate = self
         self.collectionView?.dataSource = self
         
-        if let head = FAKIonIcons.personIcon(withSize: 40) {
-            self.footerHead?.attributedText = head.attributedString()
+        if let profileImage = UIImage(named: "icn-profile") {
+            self.footerProfileIcon?.tintColor = UIColor.white
+            self.footerProfileIcon?.setImage(profileImage, for: .normal)
         }
         
-        if let plusCircle = FAKIonIcons.androidAddCircleIcon(withSize: 60),
-            let plus = FAKIonIcons.androidAddIcon(withSize: 40)
-        {
-            plusCircle.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.INat.Green)
-            plus.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.white)
-            
-            let image = UIImage(stackedIcons: [plusCircle, plus], imageSize: CGSize(width: 60, height: 60)).withRenderingMode(.alwaysOriginal)
-            self.footerPlus?.setImage(image, for: .normal)
-        }
-        
+        self.navigationController?.delegate = self
+                
         self.loadMyLocation()
     }
 
@@ -141,11 +195,57 @@ class ChallengesViewController: UIViewController {
             let dest = segue.destination as? LocationPickerViewController
         {
             dest.delegate = self
+            dest.locationName = self.placeName
+            dest.coordinate = self.coordinate
         } else if segue.identifier == "segueToTaxonPicker",
             let dest = segue.destination as? TaxonPickerViewController
         {
             dest.delegate = self
+            dest.selectedTaxon = self.chosenIconicTaxon
+        } else if segue.identifier == "segueToSpeciesDetail",
+            let dest = segue.destination as? SpeciesDetailViewController,
+            let count = sender as? SpeciesCount
+        {
+            dest.species = count.taxon
+            // how does speciesDetail handle this coordinate?
+            dest.userPlaceName = self.placeName
+            dest.userCoordinate = self.coordinate
+            self.navigationController?.navigationBar.barStyle = .blackTranslucent
+            self.navigationController?.navigationBar.tintColor = .white
+        } else {
+            self.navigationController?.navigationBar.barStyle = .default
+            self.navigationController?.navigationBar.tintColor = .black
         }
+    }
+    
+    // MARK: - Badges Helper
+
+    func recalculateBadges() {
+        let realm = try! Realm()
+        let collected = realm.objects(TaxonRealm.self)
+        for badge in realm.objects(BadgeRealm.self).filter("earned == false") {
+            if badge.iconicTaxonId != 0, badge.count != 0 {
+                let filteredCollected = collected.filter("iconicTaxonId == \(badge.iconicTaxonId)")
+                if filteredCollected.count >= badge.count {
+                    try! realm.write {
+                        badge.earned = true
+                        badge.earnedDate = NSDate()
+                    }
+                }
+            } else if badge.count != 0 {
+                if collected.count >= badge.count {
+                    try! realm.write {
+                        badge.earned = true
+                        badge.earnedDate = NSDate()
+                    }
+                }
+            }
+        }
+        
+        let observations = realm.objects(ObservationRealm.self)
+        let earnedBadges = realm.objects(BadgeRealm.self).filter("earned = TRUE")
+        let str = "Species: \(observations.count) | Badges: \(earnedBadges.count)"
+        self.footerCollectionButton?.setTitle(str, for: .normal)
     }
 }
 
@@ -157,7 +257,16 @@ extension ChallengesViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
+        if self.speciesCounts.count == 0, let spinner = self.activitySpinner, spinner.isHidden {
+            // if the spinner is hidden but we have no results, tell the user we have no data
+            self.failureTitle?.text = "Poopers"
+            self.failureMessage?.text = "Looks like we're not turning up any species in this area. Please try another location."
+            self.failureTitle?.isHidden = false
+            self.failureMessage?.isHidden = false
+        } else {
+            self.failureTitle?.isHidden = true
+            self.failureMessage?.isHidden = true
+        }
         return min(9, self.speciesCounts.count)
     }
 
@@ -166,6 +275,7 @@ extension ChallengesViewController: UICollectionViewDataSource {
         
         let count = self.speciesCounts[indexPath.item]
         cell.nameLabel?.text = count.taxon.anyName
+        
         if let photo = count.taxon.default_photo,
             let urlString = photo.medium_url,
             let url = URL(string: urlString)
@@ -175,26 +285,55 @@ extension ChallengesViewController: UICollectionViewDataSource {
         return cell
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! ChallengesHeaderView
-        if let place = self.chosenPlace {
-            view.placeButton?.setTitle("\(place.name) ^", for: .normal)
-        } else if let place = self.nearbyPlace {
-            view.placeButton?.setTitle("\(place.name) ^", for: .normal)
-        }
-        if let iconicTaxon = self.chosenIconicTaxon {
-            view.taxaButton?.setTitle("\(iconicTaxon.anyName) ^", for: .normal)
+        if kind == UICollectionElementKindSectionHeader {
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! ChallengesHeaderView
+            
+            if let downArrow = FAKIonIcons.arrowDownBIcon(withSize: 25) {
+                if let placeName = self.placeName {
+                    downArrow.addAttribute(NSAttributedStringKey.baselineOffset.rawValue, value: -3)
+                    let str = NSMutableAttributedString(string: placeName.uppercased())
+                    str.append(NSAttributedString(string: " "))
+                    str.append(downArrow.attributedString())
+                    view.placeButton?.setAttributedTitle(str, for: .normal)
+                } else if self.coordinate == nil {
+                    // usa
+                    downArrow.addAttribute(NSAttributedStringKey.baselineOffset.rawValue, value: -3)
+                    let str = NSMutableAttributedString(string: Place.Fixed.UnitedStates.name.uppercased())
+                    str.append(NSAttributedString(string: " "))
+                    str.append(downArrow.attributedString())
+                    view.placeButton?.setAttributedTitle(str, for: .normal)
+                }
+            }
+            
+            if let downArrow = FAKIonIcons.arrowDownBIcon(withSize: 14) {
+                var taxonFilterName: String
+                if let iconicTaxon = self.chosenIconicTaxon {
+                    taxonFilterName = "\(iconicTaxon.anyName)"
+                } else {
+                    taxonFilterName = "All Species"
+                }
+                let str = NSMutableAttributedString(string: taxonFilterName)
+                str.append(NSAttributedString(string: " "))
+                str.append(downArrow.attributedString())
+                view.taxaButton?.setAttributedTitle(str, for: .normal)
+            }
+            view.backgroundColor = UIColor.clear
+            return view
         } else {
-            view.taxaButton?.setTitle("All Species ^", for: .normal)
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footer", for: indexPath)
         }
-        view.backgroundColor = UIColor.clear
-        return view
     }
 }
 
 // MARK: - UICollectionViewDelegate
 extension ChallengesViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let count = self.speciesCounts[indexPath.item]
+        self.performSegue(withIdentifier: "segueToSpeciesDetail", sender: count)
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -202,22 +341,26 @@ extension ChallengesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let tilesPerRow = 3
-        let side = collectionView.frame.size.width / CGFloat(tilesPerRow)
-        return CGSize(width: side - 7.5, height: side)
+        let width = (collectionView.frame.size.width / CGFloat(tilesPerRow)) - 21
+        return CGSize(width: width, height: width * 1.3)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.bounds.size.width, height: 100)
+        return CGSize(width: collectionView.bounds.size.width, height: 75)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.size.width, height: 100)
+    }
+ 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 0.0
+        return 15
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 5.0
+        return 15
     }
 }
 
@@ -227,23 +370,19 @@ extension ChallengesViewController: CLLocationManagerDelegate {
         if let location = locations.last {
             manager.stopUpdatingLocation()
             self.locationManager = nil
-            
-            let lat = location.coordinate.latitude
-            let lng = location.coordinate.longitude
-            
-            let urlString = "https://api.inaturalist.org/v1/places/nearby?nelat=\(lat)&nelng=\(lng)&swlat=\(lat)&swlng=\(lng)"
-            
-            if let url = URL(string: urlString) {
-                Alamofire.request(url).responseData { response in
-                    if let data = response.result.value {
-                        let response = try! JSONDecoder().decode(PlaceNearbyResponse.self, from: data)
-                        self.nearbyPlace = response.results?.standard?.last
-                        if self.nearbyPlace != nil, self.chosenPlace == nil {
-                            // show the updated header
-                            self.collectionView?.reloadData()
-                            // load species for this place
-                            self.loadSpecies()
-                        }
+            // fuzz the location
+            self.coordinate = location.coordinate.truncate(places: 2)
+            self.loadSpecies()
+            CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
+                if let placemarks = placemarks, let first = placemarks.first {
+                    // last aoi seems to give the most useful results in the bay
+                    // area
+                    if let aoi = first.areasOfInterest, let lastAoi = aoi.last {
+                        self.placeName = lastAoi
+                    } else if let locality = first.locality {
+                        self.placeName = locality
+                    } else if let name = first.name {
+                        self.placeName = name
                     }
                 }
             }
@@ -253,6 +392,8 @@ extension ChallengesViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse || status == .authorizedAlways {
             manager.startUpdatingLocation()
+        } else {
+            self.loadSpecies()
         }
     }
 }
@@ -260,9 +401,16 @@ extension ChallengesViewController: CLLocationManagerDelegate {
 extension ChallengesViewController: CropViewControllerDelegate {
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
         
-        print("cropped image is \(image)")
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "challengeResults") as? ChallengeResultsViewController {
+            
+            if let detail = self.navigationController?.topViewController as? SpeciesDetailViewController {
+                vc.targetTaxon = detail.species
+            }
+
             vc.image = image
+            vc.takenLocation = self.activePhotoLocation
+            vc.takenDate = self.activePhotoDate
+            vc.delegate = self
             cropViewController.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -271,15 +419,30 @@ extension ChallengesViewController: CropViewControllerDelegate {
 extension  ChallengesViewController: GalleryControllerDelegate {
     func galleryController(_ controller: GalleryController, didSelectImages images: [Gallery.Image]) {
         if let image = images.first {
+            
+            PKHUD.sharedHUD.dimsBackground = true
+            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+            
+            HUD.show(.progress, onView: controller.view)
             image.resolve(completion: { resolvedImage in
                 let asset = image.asset
+                self.activePhotoDate = asset.creationDate
+                self.activePhotoLocation = asset.location
+                
                 if let image = resolvedImage {
+                    HUD.hide()
                     let crop = CropViewController(image: image)
                     crop.rotateButtonsHidden = true
                     crop.aspectRatioPickerButtonHidden = true
                     crop.cancelButtonTitle = "Retake"
                     crop.delegate = self
                     controller.navigationController?.pushViewController(crop, animated: true)
+                } else {
+                    HUD.flash(.error, onView: controller.view, delay: 1.0, completion: nil)
+                    // clear the selection
+                    for image in controller.cart.images {
+                        controller.cart.remove(image)
+                    }
                 }
             })
         }
@@ -302,17 +465,24 @@ extension ChallengesViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if viewController.isKind(of: GalleryController.self) {
             navigationController.setNavigationBarHidden(true, animated: animated)
+        } else if viewController.isKind(of: ChallengesViewController.self) {
+            navigationController.setNavigationBarHidden(true, animated: animated)
         } else {
             navigationController.setNavigationBarHidden(false, animated: animated)
         }
+        
+        let item = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        viewController.navigationItem.backBarButtonItem = item
     }
 }
 
 extension ChallengesViewController: LocationChooserDelegate {
-    func chosePlace(_ place: Place) {
-        self.chosenPlace = place
+    func choseLocation(_ name: String, coordinate: CLLocationCoordinate2D) {
+        self.placeName = name
+        self.coordinate = coordinate
+        
         self.loadSpecies()
-        self.navigationController?.popToRootViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -320,6 +490,55 @@ extension ChallengesViewController: IconicTaxonPickerDelegate {
     func choseIconicTaxon(_ taxon: Taxon?) {
         self.chosenIconicTaxon = taxon
         self.loadSpecies()
-        self.navigationController?.popToRootViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension ChallengesViewController: ChallengeResultsDelegate {
+    func addedToCollection(_ taxon: Taxon) {
+        
+        self.recalculateBadges()
+        
+        self.navigationController?.popToRootViewController(animated: false)
+        
+        dismiss(animated: true) {
+            
+            // show toast
+            
+            if let toast = ToastView.instanceFromNib() {
+                if let imageName = taxon.iconicImageName(),
+                    let image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate)
+                {
+                    toast.imageView?.image = image
+                }
+                toast.imageView?.tintColor = UIColor.lightGray
+                toast.titleLabel?.text = "\(taxon.anyName) collected!"
+                toast.messageLabel?.text = nil
+                toast.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 70)
+                toast.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
+                self.navigationController?.view.showToast(toast, duration: 2.0, position: .top)
+            }
+            
+            // animate the challenge out
+            // todo: better animation
+            if let cv = self.collectionView {
+                var indexOfCollectedTaxon: IndexPath?
+                for ip in cv.indexPathsForVisibleItems {
+                    let count = self.speciesCounts[ip.item]
+                    if count.taxon == taxon {
+                        // need to remove this count from speciesCounts
+                        indexOfCollectedTaxon = ip
+                        break
+                    }
+                }
+                if let ipToDelete = indexOfCollectedTaxon {
+                    self.speciesCounts.remove(at: ipToDelete.item)
+                    cv.performBatchUpdates({
+                        cv.insertItems(at: [IndexPath(item: 8, section: 0)])
+                        cv.deleteItems(at: [ipToDelete])
+                    }, completion: nil)
+                }
+            }
+        }
     }
 }
