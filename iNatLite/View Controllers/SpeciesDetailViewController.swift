@@ -162,7 +162,7 @@ class SpeciesDetailViewController: UIViewController {
             var histogramUrl = "https://api.inaturalist.org/v1/observations/histogram?taxon_id=\(speciesId)&date_field=observed&interval=month_of_year"
             
             if let coordinate = self.coordinate {
-                histogramUrl.append("lat=\(coordinate.latitude)&lng=\(coordinate.longitude)&radius=50")
+                histogramUrl.append("&lat=\(coordinate.latitude)&lng=\(coordinate.longitude)&radius=50")
             }
             Alamofire.request(histogramUrl).responseData { response in
                 if let data = response.result.value {
