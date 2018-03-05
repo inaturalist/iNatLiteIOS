@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        if let font = UIFont(name: "Whitney-Medium", size: 24) {
+        if let font = UIFont(name: "Whitney-Medium", size: 20) {
             UINavigationBar.appearance().titleTextAttributes = [
                 NSAttributedStringKey.font: font
             ]
