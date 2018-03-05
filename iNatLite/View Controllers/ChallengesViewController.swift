@@ -38,6 +38,7 @@ class ChallengesViewController: UIViewController {
     var locationManager: CLLocationManager?
     var chosenIconicTaxon: Taxon?
     var locationLookupFailed = false
+    var reachabilityManager: Alamofire.NetworkReachabilityManager?
     
     var userLocation: CLLocationCoordinate2D?
     var chosenCoordinate: CLLocationCoordinate2D?
@@ -224,7 +225,6 @@ class ChallengesViewController: UIViewController {
         }
         
         if let profileImage = UIImage(named: profileImageName)?.withRenderingMode(.alwaysOriginal) {
-            //self.footerProfileIcon?.tintColor = UIColor.white
             self.footerProfileIcon?.setImage(profileImage, for: .normal)
         }
     }
@@ -252,7 +252,16 @@ class ChallengesViewController: UIViewController {
         
         self.navigationController?.delegate = self
         
-        self.loadMyLocation()
+        self.reachabilityManager = Alamofire.NetworkReachabilityManager(host: "www.inaturalist.org")
+        self.reachabilityManager?.listener = { status in
+            if self.speciesCounts.count == 0 {
+                self.loadMyLocation()
+            }
+        }
+        self.reachabilityManager?.startListening()
+        if let reachability = self.reachabilityManager?.isReachable, !reachability {
+            self.loadMyLocation()
+        }
     }
 
     // MARK: - Navigation
