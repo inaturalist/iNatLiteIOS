@@ -114,8 +114,8 @@ extension BadgesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let tilesPerRow = 3
-        let side = collectionView.frame.size.width / CGFloat(tilesPerRow)
-        return CGSize(width: side - 7.5, height: 150)
+        let width = (collectionView.frame.size.width / CGFloat(tilesPerRow)) - 21
+        return CGSize(width: width, height: width * 1.3)
     }
  
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
