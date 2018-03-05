@@ -94,6 +94,10 @@ class LocationPickerViewController: UIViewController {
             locationLabel?.text = Place.Fixed.UnitedStates.name
         }
         
+        if let locationName = self.locationName {
+            self.locationLabel?.text = locationName
+        }
+        
         if let pin = FAKIonIcons.iosLocationIcon(withSize: 64) {
             pin.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.INat.Green)
             centerPin?.attributedText = pin.attributedString()
