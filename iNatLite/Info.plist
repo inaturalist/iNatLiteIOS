@@ -37,11 +37,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>We Take Pictures</string>
+	<string>We use the camera so you can get identifications of your nature photos.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We Use Your Location</string>
+	<string>We use your location to suggest plants and animals to find near you.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We Use Pictures</string>
+	<string>We use the photo library so you can get identifications of your nature photos.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>riffic-bold.ttf</string>
