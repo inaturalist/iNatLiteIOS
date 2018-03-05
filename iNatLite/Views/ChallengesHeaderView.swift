@@ -15,5 +15,6 @@ class ChallengesHeaderView: UICollectionReusableView {
     override func awakeFromNib() {
         placeButton?.tintColor = UIColor.white
         taxaButton?.tintColor = UIColor.white
+        placeButton?.titleLabel?.textAlignment = .natural
     }
 }
