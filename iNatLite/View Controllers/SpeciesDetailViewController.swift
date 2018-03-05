@@ -88,7 +88,7 @@ class SpeciesDetailViewController: UIViewController {
     }
     
     @IBAction func addPressed() {
-        Gallery.Config.tabsToShow = [.imageTab, .cameraTab]
+        Gallery.Config.tabsToShow = [.cameraTab, .imageTab]
         Gallery.Config.Camera.imageLimit = 1
         Gallery.Config.Camera.recordLocation = true
         
