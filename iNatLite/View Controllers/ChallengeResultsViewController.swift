@@ -282,9 +282,17 @@ class ChallengeResultsViewController: UIViewController {
                     for observation in observations {
                         if let obsTaxon = observation.taxon, let obsDate = observation.dateString {
                             if obsTaxon.id == result.taxon.id {
-                                cell.infoLabel?.text = "You collected a \(obsTaxon.anyNameCapitalized) on \(obsDate)."
+                                cell.infoLabel?.text = "You collected a photo of a \(obsTaxon.anyNameCapitalized) on \(obsDate)."
                                 cell.infoLabel?.textColor = UIColor.INat.SpeciesAddButton
-                                cell.actionButton?.isHidden = true
+                                
+                                cell.actionButton?.setTitle("OK", for: .normal)
+                                cell.actionButton?.backgroundColor = UIColor.clear
+                                cell.actionButton?.tintColor = UIColor.white
+                                cell.actionButton?.layer.cornerRadius = 22
+                                cell.actionButton?.layer.borderColor = UIColor.INat.Green.cgColor
+                                cell.actionButton?.layer.borderWidth = 2.0
+                                cell.actionButton?.clipsToBounds = true
+                                cell.actionButton?.addTarget(self, action: #selector(ChallengeResultsViewController.okPressed), for: .touchUpInside)
                             }
                         }
                     }
@@ -332,8 +340,26 @@ class ChallengeResultsViewController: UIViewController {
         } else {
             // show tips
             cell.infoLabel?.text = "Here are some photo tips:\nGet as close as possible while being safe\nCrop out unimportant parts\nMake sure things are in focus"
-            cell.actionButton?.isHidden = true
+
+            cell.actionButton?.setTitle("Start Over", for: .normal)
+            cell.actionButton?.backgroundColor = UIColor.clear
+            cell.actionButton?.tintColor = UIColor.white
+            cell.actionButton?.layer.cornerRadius = 22
+            cell.actionButton?.layer.borderColor = UIColor.INat.Green.cgColor
+            cell.actionButton?.layer.borderWidth = 2.0
+            cell.actionButton?.clipsToBounds = true
+            cell.actionButton?.addTarget(self, action: #selector(ChallengeResultsViewController.startOverPressed), for: .touchUpInside)
         }
+    }
+    
+    @objc
+    func okPressed() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc
+    func startOverPressed() {
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     @objc
