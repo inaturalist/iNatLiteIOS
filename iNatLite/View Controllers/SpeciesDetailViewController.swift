@@ -312,6 +312,10 @@ extension SpeciesDetailViewController: UITableViewDataSource {
                 cell.commonName?.text = species.anyNameCapitalized
                 cell.scientificNameLabel?.text = "Scientific Name:"
                 cell.scientificName?.text = species.name
+            } else if let observation = self.observation, let taxon = observation.taxon {
+                cell.commonName?.text = taxon.anyNameCapitalized
+                cell.scientificNameLabel?.text = "Scientific Name:"
+                cell.scientificName?.text = taxon.name
             }
             
             return cell
@@ -340,11 +344,11 @@ extension SpeciesDetailViewController: UITableViewDataSource {
             
             if let species = self.species {
                 if let placeName = self.placeName {
-                    cell.locationLabel?.text = "Where to find it near \(placeName)"
+                    cell.locationLabel?.text = "Where are people seeing it nearby?"
                 } else if self.observation != nil {
                     cell.locationLabel?.text = "Location"
                 } else {
-                    cell.locationLabel?.text = "Where to find it"
+                    cell.locationLabel?.text = "Where are people seeing it nearby?"
                 }
                 
                 let template = "https://api.inaturalist.org/v1/colored_heatmap/{z}/{x}/{y}.png?taxon_id=\(species.id)"
@@ -383,11 +387,7 @@ extension SpeciesDetailViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: speciesPhenologyCellId, for: indexPath) as! SpeciesPhenologyCell
             cell.selectionStyle = .none
             
-            if let placeName = placeName {
-                cell.phenologyLabel?.text = "When to find it near \(placeName)"
-            } else {
-                cell.phenologyLabel?.text = "When to find it worldwide"
-            }
+            cell.phenologyLabel?.text = "When is the best time to find it?"
             
             if let histogramData = self.histogramData, let chartView = cell.lineChartView {
                 
