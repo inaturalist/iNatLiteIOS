@@ -11,12 +11,22 @@ import FontAwesomeKit
 
 class WarningsViewController: UIViewController {
     
+    @IBOutlet var welcomeLabel: UILabel?
+    @IBOutlet var subtitleLabel: UILabel?
+    @IBOutlet var legalLabel: UILabel?
+    
     @IBOutlet var goButton: UIButton?
     
     @IBOutlet var checkOne: UILabel?
     @IBOutlet var checkTwo: UILabel?
     @IBOutlet var checkThree: UILabel?
     @IBOutlet var checkFour: UILabel?
+    
+    @IBOutlet var labelOne: UILabel?
+    @IBOutlet var labelTwo: UILabel?
+    @IBOutlet var labelThree: UILabel?
+    @IBOutlet var labelFour: UILabel?
+
 
     @IBAction func goButtonPressed() {
         if let delegate = UIApplication.shared.delegate,
@@ -43,16 +53,35 @@ class WarningsViewController: UIViewController {
             go.clipsToBounds = true
             go.backgroundColor = .white
         }
+        
+        if let subtitleLabel = self.subtitleLabel,
+            let initialText = subtitleLabel.text,
+            let font = UIFont(name: "Whitney-Medium", size: 20)
+        {
+            let attrs = INatTextAttrs.attrsForFont(font, lineSpacing: 27/20, alignment: .natural)
+            let str = NSAttributedString(string: initialText, attributes: attrs)
+            subtitleLabel.attributedText = str
+        }
+        
+        if let legalLabel = self.legalLabel,
+            let initialText = legalLabel.text,
+            let font = UIFont(name: "Whitney-Medium", size: 14)
+        {
+            let attrs = INatTextAttrs.attrsForFont(font, lineSpacing: 18/14, alignment: .natural)
+            let str = NSAttributedString(string: initialText, attributes: attrs)
+            legalLabel.attributedText = str
+        }
+        
+        for label in [labelOne, labelTwo, labelThree, labelFour] {
+            if let label = label,
+                let initialText = label.text,
+                let font = UIFont(name: "Whitney-Medium", size: 16)
+            {
+                let attrs = INatTextAttrs.attrsForFont(font, lineSpacing: 18/16, alignment: .natural)
+                let str = NSAttributedString(string: initialText, attributes: attrs)
+                label.attributedText = str
+            }
+        }
+
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
