@@ -123,7 +123,7 @@ class SpeciesDetailViewController: UIViewController {
             if let plus = FAKIonIcons.androidAddCircleIcon(withSize: 20) {
                 plus.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.INat.SpeciesChicletLabelBackground)
                 let attrStr = NSMutableAttributedString(attributedString: plus.attributedString())
-                attrStr.append(NSAttributedString(string: " Make an Observation"))
+                attrStr.append(NSAttributedString(string: " Found It!"))
                 addButton?.setAttributedTitle(attrStr, for: .normal)
             }
         }
