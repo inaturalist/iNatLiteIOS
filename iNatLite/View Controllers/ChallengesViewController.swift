@@ -508,7 +508,7 @@ extension  ChallengesViewController: GalleryControllerDelegate {
             PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
             
             HUD.show(.progress, onView: controller.view)
-            image.resolve(completion: { resolvedImage in
+            image.resolveWithError(completion: { (resolvedImage, error) in
                 let asset = image.asset
                 self.activePhotoDate = asset.creationDate
                 self.activePhotoLocation = asset.location
@@ -522,7 +522,12 @@ extension  ChallengesViewController: GalleryControllerDelegate {
                     crop.delegate = self
                     controller.navigationController?.pushViewController(crop, animated: true)
                 } else {
-                    HUD.flash(.error, onView: controller.view, delay: 1.0, completion: nil)
+                    var errorMsg = "Unable to load image."
+                    if let error = error {
+                        errorMsg = error.localizedDescription
+                    }
+                    HUD.flash(HUDContentType.labeledError(title: "Error", subtitle: errorMsg), onView: controller.view, delay: 4.0, completion: nil)
+                    
                     // clear the selection
                     for image in controller.cart.images {
                         controller.cart.remove(image)
