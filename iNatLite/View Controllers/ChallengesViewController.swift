@@ -605,6 +605,7 @@ extension ChallengesViewController: ChallengeResultsDelegate {
             if let toast = ToastView.instanceFromNib() {
                 
                 if let lastEarned = lastEarned {
+                    // toast about last earned badge
                     if let imageName = lastEarned.earnedIconName,
                         let image = UIImage(named: imageName)
                     {
@@ -619,7 +620,7 @@ extension ChallengesViewController: ChallengeResultsDelegate {
                         toast.imageView?.image = image
                     }
                     toast.titleLabel?.text = "\(taxon.anyNameCapitalized) collected!"
-                    toast.imageView?.tintColor = UIColor.lightGray
+                    toast.imageView?.tintColor = UIColor.INat.SpeciesAddButton
                 }
                 toast.messageLabel?.text = nil
                 toast.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 70)
