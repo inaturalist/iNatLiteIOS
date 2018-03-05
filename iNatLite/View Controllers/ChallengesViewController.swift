@@ -331,16 +331,16 @@ extension ChallengesViewController: UICollectionViewDataSource {
         if kind == UICollectionElementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! ChallengesHeaderView
             
-            if let downArrow = FAKIonIcons.arrowDownBIcon(withSize: 25) {
+            if let downArrow = FAKIonIcons.arrowDownBIcon(withSize: 20) {
                 if let placeName = self.placeName {
-                    downArrow.addAttribute(NSAttributedStringKey.baselineOffset.rawValue, value: -3)
+                    downArrow.addAttribute(NSAttributedStringKey.baselineOffset.rawValue, value: 0)
                     let str = NSMutableAttributedString(string: placeName.uppercased())
                     str.append(NSAttributedString(string: " "))
                     str.append(downArrow.attributedString())
                     view.placeButton?.setAttributedTitle(str, for: .normal)
                 } else if self.coordinate == nil {
                     // usa
-                    downArrow.addAttribute(NSAttributedStringKey.baselineOffset.rawValue, value: -3)
+                    downArrow.addAttribute(NSAttributedStringKey.baselineOffset.rawValue, value: 0)
                     let str = NSMutableAttributedString(string: Place.Fixed.UnitedStates.name.uppercased())
                     str.append(NSAttributedString(string: " "))
                     str.append(downArrow.attributedString())
