@@ -11,7 +11,6 @@ import CoreLocation
 import FontAwesomeKit
 import Alamofire
 import Imaginary
-import ALCameraViewController
 import Gallery
 import CropViewController
 import RealmSwift
@@ -63,13 +62,13 @@ class ChallengesViewController: UIViewController {
     
     // MARK: - ibaction targets
     @IBAction func tappedPlus() {
-        Gallery.Config.tabsToShow = [.imageTab, .cameraTab]
+        Gallery.Config.tabsToShow = [.cameraTab, .imageTab]
         Gallery.Config.Camera.imageLimit = 1
         Gallery.Config.Camera.recordLocation = true
         
         let gallery = GalleryController()
         gallery.delegate = self
-
+        
         let nav = UINavigationController(rootViewController: gallery)
         nav.navigationBar.barStyle = .blackTranslucent
         nav.navigationBar.tintColor = .white
@@ -77,7 +76,7 @@ class ChallengesViewController: UIViewController {
         // but show it when confirm/crop/results have been pushed onto the
         // navigation stack
         nav.delegate = self
-        present(nav, animated: true, completion: nil)
+        self.present(nav, animated: true, completion: nil)
     }
     
     @IBAction func tappedProfile() {

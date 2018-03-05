@@ -1,6 +1,5 @@
 PODS:
   - Alamofire (4.6.0)
-  - ALCameraViewController (3.0.2)
   - Auk (8.0.2):
     - moa
   - Cache (4.1.2)
@@ -34,7 +33,7 @@ PODS:
     - FontAwesomeKit/Core
   - FontAwesomeKit/Zocial (2.2.1):
     - FontAwesomeKit/Core
-  - Gallery (2.0.6)
+  - Gallery (2.0.5)
   - Imaginary (3.0.2):
     - Cache (~> 4.0)
   - JSONWebToken (2.2.0)
@@ -51,7 +50,6 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - ALCameraViewController
   - Auk (~> 8.0)
   - Charts
   - Crashlytics
@@ -59,7 +57,7 @@ DEPENDENCIES:
   - CRToast
   - Fabric
   - FontAwesomeKit
-  - Gallery (from `https://github.com/alexshepard/Gallery.git`)
+  - Gallery
   - Imaginary
   - JSONWebToken
   - moa (~> 9.0)
@@ -68,18 +66,8 @@ DEPENDENCIES:
   - Toast-Swift
   - UIImageViewAlignedSwift
 
-EXTERNAL SOURCES:
-  Gallery:
-    :git: https://github.com/alexshepard/Gallery.git
-
-CHECKOUT OPTIONS:
-  Gallery:
-    :commit: ba876ee661286029d83d0bdb9bf5573f1fd481ef
-    :git: https://github.com/alexshepard/Gallery.git
-
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
-  ALCameraViewController: 1edce3497633f0df138523645ed1228961ee2eab
   Auk: 82be62a2cf650437fe745c81b12ac2440a0f682c
   Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
   Charts: 0705898046257443f0afbbc3179f4b67507b6e48
@@ -88,7 +76,7 @@ SPEC CHECKSUMS:
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   FontAwesomeKit: 3614979b3dbb0ec3f7fac1bd760b91f66c31db67
-  Gallery: f75c3faefcb5da2cae2150ce3db29fcfbeed8b0f
+  Gallery: cff13f3b14b8923b02d7105e0f9ec26f15eebd0e
   Imaginary: d675200546110e305d6a26db6267c0622ffe5e6b
   JSONWebToken: 6fae32489632658d563dd6952a5c34020ea813e4
   moa: b73dc5e0efa1fad00711c4608e41b197f4d15b12
@@ -99,6 +87,6 @@ SPEC CHECKSUMS:
   TOCropViewController: a21b39c910d161600a26b6e3f89a58707afaa4f8
   UIImageViewAlignedSwift: 2e09096e6081ad26b848e19b4bc35a7d69165740
 
-PODFILE CHECKSUM: 8554beb3626845a83992030ac7dabe2cc8ae36c1
+PODFILE CHECKSUM: 893739c86088e0b3cb273f2d8487944c3eeab797
 
 COCOAPODS: 1.4.0.rc.1
