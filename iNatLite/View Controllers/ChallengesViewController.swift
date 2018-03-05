@@ -627,26 +627,16 @@ extension ChallengesViewController: ChallengeResultsDelegate {
                 self.navigationController?.view.showToast(toast, duration: 2.0, position: .top)
             }
             
-            // animate the challenge out
             // todo: better animation
-            if let cv = self.collectionView {
-                var indexOfCollectedTaxon: IndexPath?
-                for ip in cv.indexPathsForVisibleItems {
-                    let count = self.speciesCounts[ip.item]
-                    if count.taxon == taxon {
-                        // need to remove this count from speciesCounts
-                        indexOfCollectedTaxon = ip
-                        break
-                    }
-                }
-                if let ipToDelete = indexOfCollectedTaxon {
-                    self.speciesCounts.remove(at: ipToDelete.item)
-                    cv.performBatchUpdates({
-                        cv.insertItems(at: [IndexPath(item: 8, section: 0)])
-                        cv.deleteItems(at: [ipToDelete])
-                    }, completion: nil)
-                }
-            }
+            let realm = try! Realm()
+            let collectedTaxa = realm.objects(TaxonRealm.self)
+            let collectedTaxaIds = collectedTaxa.map({ (taxon) -> Int in
+                return taxon.id
+            })
+            self.speciesCounts = self.speciesCounts.filter({ (speciesCount) -> Bool in
+                return !collectedTaxaIds.contains(speciesCount.taxon.id)
+            })
+            self.collectionView?.reloadData()
         }
     }
 }
