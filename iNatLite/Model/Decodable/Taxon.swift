@@ -33,7 +33,9 @@ struct Taxon: Decodable {
     }
     
     var wikipediaText: String? {
-        return self.wikipedia_summary?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        var str = self.wikipedia_summary?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        str?.append(" (reference: Wikipedia)")
+        return str
     }
     
     var wikipediaHtml: NSAttributedString? {
