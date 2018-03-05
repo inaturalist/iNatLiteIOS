@@ -144,11 +144,15 @@ class SpeciesDetailViewController: UIViewController {
         if let speciesId = speciesId, let url = URL(string: "https://api.inaturalist.org/v1/taxa/\(speciesId)") {
             Alamofire.request(url).responseData { response in
                 if let data = response.result.value {
-                    let response = try! JSONDecoder().decode(TaxaResponse.self, from: data)
-                    print(response)
-                    if let results = response.results, let first = results.first {
-                        self.species = first
-                        self.tableView?.reloadData()
+                    do {
+                        let response = try JSONDecoder().decode(TaxaResponse.self, from: data)
+                        print(response)
+                        if let results = response.results, let first = results.first {
+                            self.species = first
+                            self.tableView?.reloadData()
+                        }
+                    } catch {
+                        // todo: error handling here
                     }
                 }
             }
@@ -159,11 +163,15 @@ class SpeciesDetailViewController: UIViewController {
             let url = "https://api.inaturalist.org/v1/observations?lat=\(coordinate.latitude)&lng=\(coordinate.longitude)&radius=50&taxon_id=\(speciesId)&per_page=1&return_bounds=true"
             Alamofire.request(url).responseData { response in
                 if let data = response.result.value {
-                    let response = try! JSONDecoder().decode(BoundingBoxResponse.self, from: data)
-                    if let bounds = response.total_bounds {
-                        self.boundingBox = bounds
-                        let mapIndexPath = IndexPath(item: 3, section: 0)
-                        self.tableView?.reloadRows(at: [mapIndexPath], with: .none)
+                    do {
+                        let response = try JSONDecoder().decode(BoundingBoxResponse.self, from: data)
+                        if let bounds = response.total_bounds {
+                            self.boundingBox = bounds
+                            let mapIndexPath = IndexPath(item: 3, section: 0)
+                            self.tableView?.reloadRows(at: [mapIndexPath], with: .none)
+                        }
+                    } catch {
+                        // todo: error handling here
                     }
                 }
             }
@@ -178,11 +186,15 @@ class SpeciesDetailViewController: UIViewController {
             }
             Alamofire.request(histogramUrl).responseData { response in
                 if let data = response.result.value {
-                    let response = try! JSONDecoder().decode(HistogramResponse.self, from: data)
-                    if let month_of_year = response.results?.month_of_year {
-                        self.histogramData = month_of_year
-                        let chartIndexPath = IndexPath(item: 4, section: 0)
-                        self.tableView?.reloadRows(at: [chartIndexPath], with: .none)
+                    do {
+                        let response = try JSONDecoder().decode(HistogramResponse.self, from: data)
+                        if let month_of_year = response.results?.month_of_year {
+                            self.histogramData = month_of_year
+                            let chartIndexPath = IndexPath(item: 4, section: 0)
+                            self.tableView?.reloadRows(at: [chartIndexPath], with: .none)
+                        }
+                    } catch {
+                        // todo: error handling here
                     }
                 }
             }
@@ -196,17 +208,21 @@ class SpeciesDetailViewController: UIViewController {
             let countUrl = "https://api.inaturalist.org/v1/observations/species_counts?lat=\(coordinate.latitude)&lng=\(coordinate.longitude)&radius=50&taxon_id=\(speciesId)"
             Alamofire.request(countUrl).responseData { response in
                 if let data = response.result.value {
-                    let response = try! JSONDecoder().decode(SpeciesCountResponse.self, from: data)
-                    if let results = response.results, results.count > 0 {
-                        // just in case we get more than one response, which will happen
-                        // if we ever stop being species only
-                        for result in results {
-                            if result.taxon == self.species {
-                                self.obsCountInPlace = result.count                                
-                                let obsCountIndexPath = IndexPath(item: 5, section: 0)
-                                self.tableView?.reloadRows(at: [obsCountIndexPath], with: .none)
+                    do {
+                        let response = try JSONDecoder().decode(SpeciesCountResponse.self, from: data)
+                        if let results = response.results, results.count > 0 {
+                            // just in case we get more than one response, which will happen
+                            // if we ever stop being species only
+                            for result in results {
+                                if result.taxon == self.species {
+                                    self.obsCountInPlace = result.count
+                                    let obsCountIndexPath = IndexPath(item: 5, section: 0)
+                                    self.tableView?.reloadRows(at: [obsCountIndexPath], with: .none)
+                                }
                             }
                         }
+                    } catch {
+                        // todo: error handling here
                     }
                 }
             }
