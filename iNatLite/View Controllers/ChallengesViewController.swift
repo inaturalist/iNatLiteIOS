@@ -168,6 +168,32 @@ class ChallengesViewController: UIViewController {
         super.viewDidAppear(animated)
         
         self.recalculateBadges()
+        
+        let realm = try! Realm()
+        let observations = realm.objects(ObservationRealm.self)
+        var profileImageName = "icn-profile"
+        if observations.count == 0 {
+            profileImageName = "icn-profile-egg"
+        } else if observations.count == 1 {
+            profileImageName = "icn-profile-egg-crack-1"
+        } else if observations.count == 2 {
+            profileImageName = "icn-profile-egg-crack-2"
+        } else if observations.count < 15 {
+            profileImageName = "icn-profile-tadpole"
+        } else if observations.count < 35 {
+            profileImageName = "icn-profile-cub"
+        } else if observations.count < 65 {
+            profileImageName = "icn-profile-surveyor"
+        } else if observations.count < 100 {
+            profileImageName = "icn-profile-naturalist"
+        } else {
+            profileImageName = "icn-profile-explorer"
+        }
+        
+        if let profileImage = UIImage(named: profileImageName)?.withRenderingMode(.alwaysOriginal) {
+            //self.footerProfileIcon?.tintColor = UIColor.white
+            self.footerProfileIcon?.setImage(profileImage, for: .normal)
+        }
     }
     
     override func viewDidLoad() {
@@ -191,10 +217,6 @@ class ChallengesViewController: UIViewController {
         self.collectionView?.delegate = self
         self.collectionView?.dataSource = self
         
-        if let profileImage = UIImage(named: "icn-profile") {
-            self.footerProfileIcon?.tintColor = UIColor.white
-            self.footerProfileIcon?.setImage(profileImage, for: .normal)
-        }
         
         self.navigationController?.delegate = self
                 
@@ -234,9 +256,10 @@ class ChallengesViewController: UIViewController {
     
     // MARK: - Badges Helper
 
-    func recalculateBadges() {
+    func recalculateBadges() -> BadgeRealm? {
         let realm = try! Realm()
         let collected = realm.objects(TaxonRealm.self)
+        var lastEarned: BadgeRealm?
         for badge in realm.objects(BadgeRealm.self).filter("earned == false") {
             if badge.iconicTaxonId != 0, badge.count != 0 {
                 let filteredCollected = collected.filter("iconicTaxonId == \(badge.iconicTaxonId)")
@@ -245,6 +268,7 @@ class ChallengesViewController: UIViewController {
                         badge.earned = true
                         badge.earnedDate = NSDate()
                     }
+                    lastEarned = badge
                 }
             } else if badge.count != 0 {
                 if collected.count >= badge.count {
@@ -252,6 +276,7 @@ class ChallengesViewController: UIViewController {
                         badge.earned = true
                         badge.earnedDate = NSDate()
                     }
+                    lastEarned = badge
                 }
             }
         }
@@ -260,6 +285,7 @@ class ChallengesViewController: UIViewController {
         let earnedBadges = realm.objects(BadgeRealm.self).filter("earned = TRUE")
         let str = "Species: \(observations.count) | Badges: \(earnedBadges.count)"
         self.footerCollectionButton?.setTitle(str, for: .normal)
+        return lastEarned
     }
 }
 
@@ -514,22 +540,32 @@ extension ChallengesViewController: IconicTaxonPickerDelegate {
 extension ChallengesViewController: ChallengeResultsDelegate {
     func addedToCollection(_ taxon: Taxon) {
         
-        self.recalculateBadges()
+        let lastEarned = self.recalculateBadges()
         
         self.navigationController?.popToRootViewController(animated: false)
         
         dismiss(animated: true) {
             
             // show toast
-            
             if let toast = ToastView.instanceFromNib() {
-                if let imageName = taxon.iconicImageName(),
+                
+                if let lastEarned = lastEarned {
+                    if let imageName = lastEarned.earnedIconName,
+                        let image = UIImage(named: imageName)
+                    {
+                        toast.imageView?.image = image
+                    }
+                    toast.titleLabel?.text = "\(lastEarned.name) earned!"
+                } else {
+                    // toast about taxon
+                    if let imageName = taxon.iconicImageName(),
                     let image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate)
-                {
-                    toast.imageView?.image = image
+                    {
+                        toast.imageView?.image = image
+                    }
+                    toast.titleLabel?.text = "\(taxon.anyNameCapitalized) collected!"
+                    toast.imageView?.tintColor = UIColor.lightGray
                 }
-                toast.imageView?.tintColor = UIColor.lightGray
-                toast.titleLabel?.text = "\(taxon.anyNameCapitalized) collected!"
                 toast.messageLabel?.text = nil
                 toast.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 70)
                 toast.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
