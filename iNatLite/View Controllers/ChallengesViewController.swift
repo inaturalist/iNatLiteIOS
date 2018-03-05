@@ -555,7 +555,7 @@ extension ChallengesViewController: ChallengeResultsDelegate {
                     {
                         toast.imageView?.image = image
                     }
-                    toast.titleLabel?.text = "\(lastEarned.name) earned!"
+                    toast.titleLabel?.text = "\(lastEarned.name) badge earned!"
                 } else {
                     // toast about taxon
                     if let imageName = taxon.iconicImageName(),
