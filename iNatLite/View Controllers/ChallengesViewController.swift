@@ -283,7 +283,7 @@ class ChallengesViewController: UIViewController {
         
         let observations = realm.objects(ObservationRealm.self)
         let earnedBadges = realm.objects(BadgeRealm.self).filter("earned = TRUE")
-        let str = "Species: \(observations.count) | Badges: \(earnedBadges.count)"
+        let str = "Species: \(observations.count)    Badges: \(earnedBadges.count)"
         self.footerCollectionButton?.setTitle(str, for: .normal)
         return lastEarned
     }
