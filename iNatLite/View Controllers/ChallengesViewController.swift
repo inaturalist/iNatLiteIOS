@@ -95,9 +95,11 @@ class ChallengesViewController: UIViewController {
         
         if let coordinate = self.coordinate {
             urlString = "https://api.inaturalist.org/v1/observations/species_counts?lat=\(coordinate.latitude)&lng=\(coordinate.longitude)&radius=50&threatened=false&verifiable=true&oauth_application_id=2,3&hrank=species&include_only_vision_taxa=true&not_in_list_id=945029"
-        } else {
+        } else if locationLookupFailed {
             let usa = Place.Fixed.UnitedStates
             urlString = "https://api.inaturalist.org/v1/observations/species_counts?place_id=\(usa.id)&threatened=false&verifiable=true&oauth_application_id=2,3&hrank=species&include_only_vision_taxa=true&not_in_list_id=945029"
+        } else {
+            return
         }
         
         // get the a month on either side of the current month
@@ -121,25 +123,52 @@ class ChallengesViewController: UIViewController {
         if let urlString = urlString, let url = URL(string: urlString) {
             // Do any additional setup after loading the view.
             Alamofire.request(url).responseData { response in
-                if let data = response.result.value {
-                    let response = try! JSONDecoder().decode(SpeciesCountResponse.self, from: data)
-                    if let speciesCounts = response.results {
-                        let realm = try! Realm()
-                        let collectedTaxa = realm.objects(TaxonRealm.self)
-                        let collectedTaxaIds = collectedTaxa.map({ (taxon) -> Int in
-                            return taxon.id
-                        })
-                        self.speciesCounts = speciesCounts.filter({ (speciesCount) -> Bool in
-                            return !collectedTaxaIds.contains(speciesCount.taxon.id)
-                        })
-
+                switch response.result {
+                case .failure(let error):
+                    print(error)
+                    self.activitySpinner?.isHidden = true
+                    self.activitySpinner?.stopAnimating()
+                    
+                    self.failureTitle?.text = "Bummer"
+                    if let font = UIFont(name: "Whitney-Medium", size: 16) {
+                        let attrs = INatTextAttrs.attrsForFont(font, lineSpacing: 24, alignment: .center)
+                        let msg = NSMutableAttributedString(string: "Unable to load challenges: \(error.localizedDescription)", attributes: attrs)
+                        self.failureMessage?.attributedText = msg
+                    }
+                    self.failureTitle?.isHidden = false
+                    self.failureMessage?.isHidden = false
+                case .success(let value):
+                    
+                    do {
+                        let response = try JSONDecoder().decode(SpeciesCountResponse.self, from: value)
+                        if let speciesCounts = response.results {
+                            let realm = try! Realm()
+                            let collectedTaxa = realm.objects(TaxonRealm.self)
+                            let collectedTaxaIds = collectedTaxa.map({ (taxon) -> Int in
+                                return taxon.id
+                            })
+                            self.speciesCounts = speciesCounts.filter({ (speciesCount) -> Bool in
+                                return !collectedTaxaIds.contains(speciesCount.taxon.id)
+                            })
+                            
+                            self.activitySpinner?.isHidden = true
+                            self.activitySpinner?.stopAnimating()
+                            
+                            self.collectionView?.reloadData()
+                        }
+                    } catch {
+                        self.failureTitle?.text = "Bummer"
+                        if let font = UIFont(name: "Whitney-Medium", size: 16) {
+                            let attrs = INatTextAttrs.attrsForFont(font, lineSpacing: 24, alignment: .center)
+                            let msg = NSMutableAttributedString(string: "Unable to load challenges, try again later.", attributes: attrs)
+                            self.failureMessage?.attributedText = msg
+                        }
                         self.activitySpinner?.isHidden = true
                         self.activitySpinner?.stopAnimating()
-
-                        self.collectionView?.reloadData()
                     }
                 }
             }
+            
         }
     }
 
@@ -152,6 +181,7 @@ class ChallengesViewController: UIViewController {
             self.locationManager?.startUpdatingLocation()
         case .denied, .restricted:
             self.locationLookupFailed = true
+            self.loadSpecies()
         case .notDetermined:
             self.locationManager = CLLocationManager()
             self.locationManager?.delegate = self
@@ -220,9 +250,8 @@ class ChallengesViewController: UIViewController {
         self.collectionView?.delegate = self
         self.collectionView?.dataSource = self
         
-        
         self.navigationController?.delegate = self
-                
+        
         self.loadMyLocation()
     }
 
@@ -303,7 +332,12 @@ extension ChallengesViewController: UICollectionViewDataSource {
         if self.speciesCounts.count == 0, let spinner = self.activitySpinner, spinner.isHidden {
             // if the spinner is hidden but we have no results, tell the user we have no data
             self.failureTitle?.text = "Bummer"
-            self.failureMessage?.text = "Looks like we're not turning up any species in this area. Please try another location."
+            if let font = UIFont(name: "Whitney-Medium", size: 16) {
+                let attrs = INatTextAttrs.attrsForFont(font, lineSpacing: 24, alignment: .center)
+                let msg = NSMutableAttributedString(string: "Looks like we're not turning up any species in this area. Please try another location.", attributes: attrs)
+                self.failureMessage?.attributedText = msg
+            }
+            
             self.failureTitle?.isHidden = false
             self.failureMessage?.isHidden = false
         } else {
