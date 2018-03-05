@@ -127,9 +127,19 @@ extension LocationPickerViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         // get center coordinate
         let center = mapView.centerCoordinate
-        let location = CLLocation(latitude: center.latitude, longitude: center.longitude)
+        let location = CLLocation(latitude: center.latitude,
+                                  longitude: center.longitude)
         
-        CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
+        let centerOfUSA = CLLocation(latitude: 37.132840000000016,
+                                     longitude: -95.785580000000024)
+        
+        // don't reverse geocode from exact center of the map
+        // TODO: if you live in Independence, USA, this probably sucks
+        if location.distance(from: centerOfUSA) < 100 {
+            //return
+        }
+        
+        CLGeocoder().reverseGeocodeLocation(centerOfUSA) { (placemarks, error) in
             if let placemarks = placemarks, let first = placemarks.first {
                 // last aoi seems to give the most useful results in the bay
                 // area at least
