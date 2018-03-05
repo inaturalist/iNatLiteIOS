@@ -17,10 +17,20 @@ import RealmSwift
 import Toast_Swift
 import PKHUD
 
+private let hasSeenKey = "hasSeenV1"
 private let reuseIdentifier = "species"
 
 class ChallengesViewController: UIViewController {
     
+    @IBOutlet var directionsView: UIView?
+    @IBOutlet var directionsCheckOne: UILabel?
+    @IBOutlet var directionsCheckTwo: UILabel?
+    @IBOutlet var directionsCheckThree: UILabel?
+    @IBOutlet var directionsLabelOne: UILabel?
+    @IBOutlet var directionsLabelTwo: UILabel?
+    @IBOutlet var directionsLabelThree: UILabel?
+    @IBOutlet var directionsGoButton: UIButton?
+
     @IBOutlet var gradientBackground: RadialGradientView?
     @IBOutlet var collectionView: UICollectionView?
     
@@ -83,6 +93,16 @@ class ChallengesViewController: UIViewController {
     
     @IBAction func tappedProfile() {
         self.performSegue(withIdentifier: "segueToMyCollection", sender: nil)
+    }
+    
+    @IBAction func tappedSeenV1() {
+        UserDefaults.standard.set(true, forKey: hasSeenKey)
+        UserDefaults.standard.synchronize()
+        UIView.animate(withDuration: 0.3, animations: {
+            self.directionsView?.alpha = 0.0
+        }) { (done) in
+            self.directionsView?.isHidden = true
+        }
     }
     
     // MARK: - loaders of data from iNat
@@ -261,6 +281,35 @@ class ChallengesViewController: UIViewController {
         self.reachabilityManager?.startListening()
         if let reachability = self.reachabilityManager?.isReachable, !reachability {
             self.loadMyLocation()
+        }
+        
+        if UserDefaults.standard.bool(forKey: hasSeenKey) {
+            self.directionsView?.isHidden = true
+        } else {
+            self.directionsView?.isHidden = false
+            self.directionsView?.backgroundColor = UIColor.INat.DarkBlue.withAlphaComponent(0.9)
+            for check in [directionsCheckOne, directionsCheckTwo, directionsCheckThree] {
+                if let check = check, let checkMark = FAKFontAwesome.checkIcon(withSize: 25) {
+                    checkMark.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.INat.CategoryForeground)
+                    check.attributedText = checkMark.attributedString()
+                }
+            }
+            
+            for label in [directionsLabelOne, directionsLabelTwo, directionsLabelThree] {
+                if let label = label,
+                    let initialText = label.text,
+                    let font = UIFont(name: "Whitney-Medium", size: 16)
+                {
+                    let attrs = INatTextAttrs.attrsForFont(font, lineSpacing: 20/16, alignment: .natural)
+                    let str = NSAttributedString(string: initialText, attributes: attrs)
+                    label.attributedText = str
+                }
+            }
+            
+            self.directionsGoButton?.layer.cornerRadius = 20
+            self.directionsGoButton?.clipsToBounds = true
+            self.directionsGoButton?.tintColor = UIColor.INat.DarkBlue
+            self.directionsGoButton?.backgroundColor = .white
         }
     }
 
