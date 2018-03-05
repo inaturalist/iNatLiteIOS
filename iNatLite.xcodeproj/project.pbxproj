@@ -70,6 +70,7 @@
 		FA9E5FD22044671500CBC9DE /* Whitney-Book-Pro.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA9E5FC62044671500CBC9DE /* Whitney-Book-Pro.otf */; };
 		FAA2537E204C8FCE00D6EBAA /* CLLocationCoordinate2D+INatLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA2537D204C8FCE00D6EBAA /* CLLocationCoordinate2D+INatLite.swift */; };
 		FAA25380204D0F1C00D6EBAA /* NSAttributedString+INatLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA2537F204D0F1C00D6EBAA /* NSAttributedString+INatLite.swift */; };
+		FAA25382204DCC3E00D6EBAA /* Image+INatLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25381204DCC3E00D6EBAA /* Image+INatLite.swift */; };
 		FAB17008203F5E1B00967951 /* SpeciesImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB17007203F5E1B00967951 /* SpeciesImageCell.swift */; };
 		FAC610142044CBC30024BC5E /* RadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC610132044CBC30024BC5E /* RadialGradientView.swift */; };
 		FACB2D01204903280050053A /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB2D00204903280050053A /* AboutViewController.swift */; };
@@ -173,6 +174,7 @@
 		FA9E5FC62044671500CBC9DE /* Whitney-Book-Pro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Whitney-Book-Pro.otf"; sourceTree = "<group>"; };
 		FAA2537D204C8FCE00D6EBAA /* CLLocationCoordinate2D+INatLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+INatLite.swift"; sourceTree = "<group>"; };
 		FAA2537F204D0F1C00D6EBAA /* NSAttributedString+INatLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+INatLite.swift"; sourceTree = "<group>"; };
+		FAA25381204DCC3E00D6EBAA /* Image+INatLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+INatLite.swift"; sourceTree = "<group>"; };
 		FAB17007203F5E1B00967951 /* SpeciesImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesImageCell.swift; sourceTree = "<group>"; };
 		FAC610132044CBC30024BC5E /* RadialGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialGradientView.swift; sourceTree = "<group>"; };
 		FACB2D00204903280050053A /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				FAC610132044CBC30024BC5E /* RadialGradientView.swift */,
 				FAA2537D204C8FCE00D6EBAA /* CLLocationCoordinate2D+INatLite.swift */,
 				FAA2537F204D0F1C00D6EBAA /* NSAttributedString+INatLite.swift */,
+				FAA25381204DCC3E00D6EBAA /* Image+INatLite.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -729,6 +732,7 @@
 				FAF849C720434BFD009F10E3 /* BadgeCell.swift in Sources */,
 				FA0A0DCB2040BDF9005B19F9 /* HistogramResponse.swift in Sources */,
 				FA1DE1B52037A06A00ACBD17 /* ResultsImageCell.swift in Sources */,
+				FAA25382204DCC3E00D6EBAA /* Image+INatLite.swift in Sources */,
 				FA1DE1AA203765D800ACBD17 /* ChallengeResultsViewController.swift in Sources */,
 				FA0A0DB7204085FB005B19F9 /* TaxaResponse.swift in Sources */,
 				FAF849CC20435C2A009F10E3 /* MyCollectionHeaderView.swift in Sources */,
