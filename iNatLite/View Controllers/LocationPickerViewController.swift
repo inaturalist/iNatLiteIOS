@@ -38,6 +38,8 @@ class LocationPickerViewController: UIViewController {
     @IBAction func donePressed() {
         if let name = self.locationName, let map = self.mapView {
             self.delegate?.choseLocation(name, coordinate: map.centerCoordinate)
+        } else {
+            dismiss(animated: true, completion: nil)
         }
     }
     
