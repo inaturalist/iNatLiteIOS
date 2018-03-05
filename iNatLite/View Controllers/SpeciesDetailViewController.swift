@@ -14,6 +14,7 @@ import MapKit
 import CoreLocation
 import Charts
 import Gallery
+import FontAwesomeKit
 
 private let speciesImageCellId = "SpeciesImageCell"
 private let speciesNameCellId = "SpeciesNameCell"
@@ -115,11 +116,16 @@ class SpeciesDetailViewController: UIViewController {
             }
         } else {
             addView?.backgroundColor = UIColor.INat.SpeciesAddButtonBackground
-            addButton?.backgroundColor = UIColor.INat.SpeciesAddButton
-            addButton?.tintColor = .white
+            addButton?.backgroundColor = UIColor.INat.CategoryForeground
+            addButton?.tintColor = UIColor.INat.SpeciesChicletLabelBackground
             addButton?.layer.cornerRadius = 20
             addButton?.clipsToBounds = true
-            addButton?.setTitle("Add to Collection", for: .normal)
+            if let plus = FAKIonIcons.androidAddCircleIcon(withSize: 20) {
+                plus.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.INat.SpeciesChicletLabelBackground)
+                let attrStr = NSMutableAttributedString(attributedString: plus.attributedString())
+                attrStr.append(NSAttributedString(string: " Make an Observation"))
+                addButton?.setAttributedTitle(attrStr, for: .normal)
+            }
         }
         
         if self.observation == nil {
