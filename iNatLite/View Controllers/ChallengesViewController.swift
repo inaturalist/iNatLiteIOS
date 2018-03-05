@@ -334,14 +334,14 @@ extension ChallengesViewController: UICollectionViewDataSource {
             if let downArrow = FAKIonIcons.arrowDownBIcon(withSize: 20) {
                 if let placeName = self.placeName {
                     downArrow.addAttribute(NSAttributedStringKey.baselineOffset.rawValue, value: 0)
-                    let str = NSMutableAttributedString(string: placeName.uppercased())
+                    let str = NSMutableAttributedString(string: placeName)
                     str.append(NSAttributedString(string: " "))
                     str.append(downArrow.attributedString())
                     view.placeButton?.setAttributedTitle(str, for: .normal)
                 } else if self.coordinate == nil {
                     // usa
                     downArrow.addAttribute(NSAttributedStringKey.baselineOffset.rawValue, value: 0)
-                    let str = NSMutableAttributedString(string: Place.Fixed.UnitedStates.name.uppercased())
+                    let str = NSMutableAttributedString(string: Place.Fixed.UnitedStates.name)
                     str.append(NSAttributedString(string: " "))
                     str.append(downArrow.attributedString())
                     view.placeButton?.setAttributedTitle(str, for: .normal)
