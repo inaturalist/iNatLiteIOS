@@ -16,7 +16,7 @@ class BadgeRealm: Object {
     
     @objc dynamic var name: String = ""
     @objc dynamic var earned: Bool = false
-    @objc dynamic var earnedDate: NSDate?
+    @objc dynamic var earnedDate: Date?
     @objc dynamic var iconicTaxonName: String?
     @objc dynamic var iconicTaxonId: Int = 0
     @objc dynamic var count: Int = 0
@@ -24,4 +24,19 @@ class BadgeRealm: Object {
     @objc dynamic var unearnedIconName: String?
     @objc dynamic var infoText: String?
     @objc dynamic var index: Int = 0
+    
+    var relativeEarnedDateString: String? {
+        get {
+            let fmt = DateFormatter()
+            fmt.doesRelativeDateFormatting = true
+            fmt.dateStyle = .medium
+            fmt.timeStyle = .none
+            if let date = self.earnedDate {
+                return fmt.string(from: date)
+            } else {
+                return nil
+            }
+        }
+    }
+
 }

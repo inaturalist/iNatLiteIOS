@@ -266,7 +266,7 @@ class ChallengesViewController: UIViewController {
                 if filteredCollected.count >= badge.count {
                     try! realm.write {
                         badge.earned = true
-                        badge.earnedDate = NSDate()
+                        badge.earnedDate = Date()
                     }
                     lastEarned = badge
                 }
@@ -274,7 +274,7 @@ class ChallengesViewController: UIViewController {
                 if collected.count >= badge.count {
                     try! realm.write {
                         badge.earned = true
-                        badge.earnedDate = NSDate()
+                        badge.earnedDate = Date()
                     }
                     lastEarned = badge
                 }
