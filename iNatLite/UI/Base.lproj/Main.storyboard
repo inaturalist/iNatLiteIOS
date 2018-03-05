@@ -266,9 +266,9 @@
                                                     <rect key="frame" x="0.0" y="24" width="375" height="19"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9j-jQ-PcF">
-                                                            <rect key="frame" x="0.0" y="0.0" width="189" height="19"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="97" height="19"/>
                                                             <fontDescription key="fontDescription" name="Riffic-Bold" family="Riffic" pointSize="20"/>
-                                                            <state key="normal" title="SAN FRANCISCO ^">
+                                                            <state key="normal" title="Loading...">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <connections>
@@ -276,9 +276,9 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Upo-IQ-jKa">
-                                                            <rect key="frame" x="300" y="0.0" width="75" height="19"/>
+                                                            <rect key="frame" x="309" y="0.0" width="66" height="19"/>
                                                             <fontDescription key="fontDescription" name="Whitney-Semibold" family="Whitney" pointSize="14"/>
-                                                            <state key="normal" title="All Species ^">
+                                                            <state key="normal" title="All Species">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <connections>

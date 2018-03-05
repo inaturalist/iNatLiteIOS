@@ -37,6 +37,7 @@ class ChallengesViewController: UIViewController {
 
     var locationManager: CLLocationManager?
     var chosenIconicTaxon: Taxon?
+    var locationLookupFailed = false
     
     var userLocation: CLLocationCoordinate2D?
     var chosenCoordinate: CLLocationCoordinate2D?
@@ -149,7 +150,9 @@ class ChallengesViewController: UIViewController {
             self.locationManager = CLLocationManager()
             self.locationManager?.delegate = self
             self.locationManager?.startUpdatingLocation()
-        case .denied, .restricted, .notDetermined:
+        case .denied, .restricted:
+            self.locationLookupFailed = true
+        case .notDetermined:
             self.locationManager = CLLocationManager()
             self.locationManager?.delegate = self
             self.locationManager?.requestWhenInUseAuthorization()
@@ -333,15 +336,19 @@ extension ChallengesViewController: UICollectionViewDataSource {
             
             if let downArrow = FAKIonIcons.arrowDownBIcon(withSize: 20) {
                 if let placeName = self.placeName {
-                    downArrow.addAttribute(NSAttributedStringKey.baselineOffset.rawValue, value: 0)
                     let str = NSMutableAttributedString(string: placeName)
                     str.append(NSAttributedString(string: " "))
                     str.append(downArrow.attributedString())
                     view.placeButton?.setAttributedTitle(str, for: .normal)
-                } else if self.coordinate == nil {
-                    // usa
-                    downArrow.addAttribute(NSAttributedStringKey.baselineOffset.rawValue, value: 0)
+                } else if locationLookupFailed {
+                    // show usa
                     let str = NSMutableAttributedString(string: Place.Fixed.UnitedStates.name)
+                    str.append(NSAttributedString(string: " "))
+                    str.append(downArrow.attributedString())
+                    view.placeButton?.setAttributedTitle(str, for: .normal)
+                } else {
+                    // presumably still loading
+                    let str = NSMutableAttributedString(string: "Loading...")
                     str.append(NSAttributedString(string: " "))
                     str.append(downArrow.attributedString())
                     view.placeButton?.setAttributedTitle(str, for: .normal)
