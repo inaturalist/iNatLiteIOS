@@ -11,6 +11,8 @@ import FontAwesomeKit
 
 class WarningsViewController: UIViewController {
     
+    @IBOutlet var mainStack: UIStackView?
+    
     @IBOutlet var welcomeLabel: UILabel?
     @IBOutlet var subtitleLabel: UILabel?
     @IBOutlet var legalLabel: UILabel?
@@ -40,6 +42,19 @@ class WarningsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // if it's an iphone 5s or se, we need to adjust constraints
+        if self.view.bounds.size.width == 320 {
+            var filteredConstraints = self.view.constraints.filter { $0.identifier == "stackLeading" }
+            if let leading = filteredConstraints.first {
+                leading.constant = 10
+            }
+            filteredConstraints = self.view.constraints.filter { $0.identifier == "stackTrailing" }
+            if let trailing = filteredConstraints.first {
+                trailing.constant = 10
+            }
+            self.view.setNeedsLayout()
+        }
         
         for check in [checkOne, checkTwo, checkThree, checkFour] {
             if let check = check, let checkMark = FAKFontAwesome.checkIcon(withSize: 25) {
