@@ -55,7 +55,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="eX1-oS-LS9">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="eX1-oS-LS9">
                                         <rect key="frame" x="0.0" y="116" width="375" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ek8-q9-5Xc">
@@ -68,14 +68,14 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Always be aware of your surroundings and stay safe!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uwk-Wh-xwV">
-                                                <rect key="frame" x="50" y="0.0" width="375" height="16"/>
+                                                <rect key="frame" x="45" y="0.0" width="375" height="16"/>
                                                 <fontDescription key="fontDescription" name="Whitney-Medium" family="Whitney" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="m0T-gG-Np4">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="m0T-gG-Np4">
                                         <rect key="frame" x="0.0" y="156.5" width="375" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHT-E0-ONN">
@@ -88,14 +88,14 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't eat anything you find in the wild." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bF-th-L6p">
-                                                <rect key="frame" x="50" y="0.0" width="375" height="16"/>
+                                                <rect key="frame" x="45" y="0.0" width="375" height="16"/>
                                                 <fontDescription key="fontDescription" name="Whitney-Medium" family="Whitney" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="PcO-h3-m9n">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="PcO-h3-m9n">
                                         <rect key="frame" x="0.0" y="197" width="375" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cc6-59-FFL">
@@ -108,14 +108,14 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't trespass." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZ7-U2-bOe">
-                                                <rect key="frame" x="50" y="0.0" width="375" height="16"/>
+                                                <rect key="frame" x="45" y="0.0" width="375" height="16"/>
                                                 <fontDescription key="fontDescription" name="Whitney-Medium" family="Whitney" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="m0v-T6-QBz">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="m0v-T6-QBz">
                                         <rect key="frame" x="0.0" y="237.5" width="375" height="11536"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9H7-nj-Uxl">
@@ -128,7 +128,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Respect other living things by not harassing or touching them. Some may sting, bite, or make you itch." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTJ-gU-jYb">
-                                                <rect key="frame" x="50" y="0.0" width="325" height="11536"/>
+                                                <rect key="frame" x="45" y="0.0" width="330" height="11536"/>
                                                 <fontDescription key="fontDescription" name="Whitney-Medium" family="Whitney" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -150,7 +150,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="kXD-Xc-SSJ"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Whitney-Medium" family="Whitney" pointSize="24"/>
+                                                <fontDescription key="fontDescription" name="Whitney-Semibold" family="Whitney" pointSize="18"/>
                                                 <state key="normal" title="OK. Got it!">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -196,6 +196,13 @@
                         <outlet property="checkThree" destination="Cc6-59-FFL" id="Omg-4d-RnH"/>
                         <outlet property="checkTwo" destination="JHT-E0-ONN" id="jYo-CV-a44"/>
                         <outlet property="goButton" destination="6Gw-58-YVa" id="JZX-rx-ImA"/>
+                        <outlet property="labelFour" destination="dTJ-gU-jYb" id="e0M-R7-Ng8"/>
+                        <outlet property="labelOne" destination="Uwk-Wh-xwV" id="Ug9-2B-sGg"/>
+                        <outlet property="labelThree" destination="kZ7-U2-bOe" id="wcl-6n-8FD"/>
+                        <outlet property="labelTwo" destination="1bF-th-L6p" id="fbD-Hj-YrV"/>
+                        <outlet property="legalLabel" destination="1Cn-0T-7ct" id="MZg-qp-zv3"/>
+                        <outlet property="subtitleLabel" destination="57z-oJ-azl" id="n1z-WJ-VZx"/>
+                        <outlet property="welcomeLabel" destination="JGi-jp-Oou" id="yO4-wi-cgq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1qv-q3-e4W" userLabel="First Responder" sceneMemberID="firstResponder"/>
