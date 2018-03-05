@@ -348,7 +348,7 @@ extension ChallengesViewController: UICollectionViewDataSource {
                 }
             }
             
-            if let downArrow = FAKIonIcons.arrowDownBIcon(withSize: 14) {
+            if let downArrow = FAKIonIcons.arrowDownBIcon(withSize: 12) {
                 var taxonFilterName: String
                 if let iconicTaxon = self.chosenIconicTaxon {
                     taxonFilterName = "\(iconicTaxon.anyNameCapitalized)"
