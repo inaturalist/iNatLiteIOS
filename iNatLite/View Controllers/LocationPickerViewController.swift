@@ -136,10 +136,10 @@ extension LocationPickerViewController: MKMapViewDelegate {
         // don't reverse geocode from exact center of the map
         // TODO: if you live in Independence, USA, this probably sucks
         if location.distance(from: centerOfUSA) < 100 {
-            //return
+            return
         }
         
-        CLGeocoder().reverseGeocodeLocation(centerOfUSA) { (placemarks, error) in
+        CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
             if let placemarks = placemarks, let first = placemarks.first {
                 // last aoi seems to give the most useful results in the bay
                 // area at least
