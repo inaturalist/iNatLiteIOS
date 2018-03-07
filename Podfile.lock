@@ -6,12 +6,9 @@ PODS:
   - Charts (3.0.4):
     - Charts/Core (= 3.0.4)
   - Charts/Core (3.0.4)
-  - Crashlytics (3.9.3):
-    - Fabric (~> 1.7.2)
   - CropViewController (2.3.5):
     - TOCropViewController
   - CRToast (0.0.9)
-  - Fabric (1.7.2)
   - FontAwesomeKit (2.2.1):
     - FontAwesomeKit/Core (= 2.2.1)
     - FontAwesomeKit/FontAwesome (= 2.2.1)
@@ -52,10 +49,8 @@ DEPENDENCIES:
   - Alamofire
   - Auk (~> 8.0)
   - Charts
-  - Crashlytics
   - CropViewController
   - CRToast
-  - Fabric
   - FontAwesomeKit
   - Gallery
   - Imaginary
@@ -71,10 +66,8 @@ SPEC CHECKSUMS:
   Auk: 82be62a2cf650437fe745c81b12ac2440a0f682c
   Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
   Charts: 0705898046257443f0afbbc3179f4b67507b6e48
-  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   CropViewController: 73a095de5605b017afdf34c6f2604569e147bcbd
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
-  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   FontAwesomeKit: 3614979b3dbb0ec3f7fac1bd760b91f66c31db67
   Gallery: cff13f3b14b8923b02d7105e0f9ec26f15eebd0e
   Imaginary: d675200546110e305d6a26db6267c0622ffe5e6b
@@ -87,6 +80,6 @@ SPEC CHECKSUMS:
   TOCropViewController: a21b39c910d161600a26b6e3f89a58707afaa4f8
   UIImageViewAlignedSwift: 2e09096e6081ad26b848e19b4bc35a7d69165740
 
-PODFILE CHECKSUM: 893739c86088e0b3cb273f2d8487944c3eeab797
+PODFILE CHECKSUM: 51e7c8d0f4ad69831fbe95ee53e7b50f22a276f3
 
 COCOAPODS: 1.4.0.rc.1

@@ -16,6 +16,4 @@ target 'iNatLite' do
   pod 'CropViewController'
   pod 'moa', '~> 9.0'
   pod 'Auk', '~> 8.0'
-  pod 'Fabric'
-  pod 'Crashlytics'
 end
