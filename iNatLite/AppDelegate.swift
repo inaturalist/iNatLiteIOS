@@ -28,9 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let font = UIFont(name: "Whitney-Medium", size: 18) {
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
         }
-        
-        Fabric.with([Crashlytics.self])
-        
+                
         let fontFamilyNames = UIFont.familyNames
         for familyName in fontFamilyNames {
             print("Font Family Name = [\(familyName)]")
