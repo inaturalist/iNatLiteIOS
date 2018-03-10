@@ -87,10 +87,7 @@ class BadgesViewController: UICollectionViewController {
             
             if let info = badge.infoText            {
                 let title = badge.name
-                var msg = info
-                if let earnedDateStr = badge.relativeEarnedDateString {
-                    msg.append(" You earned this badge \(earnedDateStr.lowercased()).")
-                }
+                let msg = "\(info) You earned this badge."
                 let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
                 present(alert, animated: true)
