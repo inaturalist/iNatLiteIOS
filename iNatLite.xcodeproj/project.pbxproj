@@ -47,6 +47,7 @@
 		FA1DE1BB2038A25400ACBD17 /* ResultsActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1BA2038A25400ACBD17 /* ResultsActionCell.swift */; };
 		FA1DE1BD203A21FF00ACBD17 /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1BC203A21FF00ACBD17 /* LocationPickerViewController.swift */; };
 		FA1DE1BF203A3B8900ACBD17 /* LocationTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1BE203A3B8900ACBD17 /* LocationTagCell.swift */; };
+		FA323FDB20549F05006192C7 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA323FDA20549F05006192C7 /* SplashViewController.swift */; };
 		FA6D75AC203B6EAE00C3535F /* TaxonPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D75AB203B6EAE00C3535F /* TaxonPickerViewController.swift */; };
 		FA6D75AE203B6FA300C3535F /* IconicTaxonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D75AD203B6FA300C3535F /* IconicTaxonCell.swift */; };
 		FA6D75B3203BC07000C3535F /* ObservationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D75B2203BC07000C3535F /* ObservationRealm.swift */; };
@@ -151,6 +152,7 @@
 		FA1DE1BA2038A25400ACBD17 /* ResultsActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsActionCell.swift; sourceTree = "<group>"; };
 		FA1DE1BC203A21FF00ACBD17 /* LocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerViewController.swift; sourceTree = "<group>"; };
 		FA1DE1BE203A3B8900ACBD17 /* LocationTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTagCell.swift; sourceTree = "<group>"; };
+		FA323FDA20549F05006192C7 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		FA6D75AB203B6EAE00C3535F /* TaxonPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxonPickerViewController.swift; sourceTree = "<group>"; };
 		FA6D75AD203B6FA300C3535F /* IconicTaxonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconicTaxonCell.swift; sourceTree = "<group>"; };
 		FA6D75B2203BC07000C3535F /* ObservationRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationRealm.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				FA9E5FB82043B13800CBC9DE /* SpeciesMapViewController.swift */,
 				FAEDCA432048BB560016CEA4 /* WarningsViewController.swift */,
 				FACB2D00204903280050053A /* AboutViewController.swift */,
+				FA323FDA20549F05006192C7 /* SplashViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -749,6 +752,7 @@
 				FA0A0DC120409A44005B19F9 /* SpeciesAboutCell.swift in Sources */,
 				FA0A0DC52040A35B005B19F9 /* SpeciesCategoryCell.swift in Sources */,
 				FA7DF3B12045FB0700B73B02 /* ToastView.swift in Sources */,
+				FA323FDB20549F05006192C7 /* SplashViewController.swift in Sources */,
 				FA1DE1982034DE0A00ACBD17 /* UIColor+INatLite.swift in Sources */,
 				FAA2537E204C8FCE00D6EBAA /* CLLocationCoordinate2D+INatLite.swift in Sources */,
 				FA1DE1A22034F95100ACBD17 /* Taxon.swift in Sources */,
