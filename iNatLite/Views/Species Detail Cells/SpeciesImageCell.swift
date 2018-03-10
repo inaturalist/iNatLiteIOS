@@ -17,9 +17,38 @@ class SpeciesImageCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = UIColor.clear
-        self.photoLicenseButton?.backgroundColor = UIColor.black.withAlphaComponent(0.44)
-        self.photoLicenseButton?.layer.cornerRadius = 27/2
-        self.photoLicenseButton?.clipsToBounds = true
+        
+        backgroundColor = UIColor.clear
+        
+        photoLicenseButton?.backgroundColor = UIColor.black.withAlphaComponent(0.44)
+        photoLicenseButton?.layer.cornerRadius = 27/2
+        photoLicenseButton?.clipsToBounds = true
     }
+    
+    func hideCollectedUI() {
+        photoLicenseButton?.isHidden = false
+        collectedCheck?.isHidden = true
+        
+        if let view = collectedView {
+            let filteredConstraints = view.constraints.filter { $0.identifier == "collectedViewHeight" }
+            if let height = filteredConstraints.first {
+                height.constant = 0
+                self.layoutIfNeeded()
+            }
+        }
+    }
+    
+    func showCollectedUI() {
+        photoLicenseButton?.isHidden = true
+        collectedCheck?.isHidden = false
+        
+        if let view = collectedView {
+            let filteredConstraints = view.constraints.filter { $0.identifier == "collectedViewHeight" }
+            if let height = filteredConstraints.first {
+                height.constant = 42
+                self.layoutIfNeeded()
+            }
+        }
+    }
+    
 }

@@ -251,6 +251,67 @@ class SpeciesDetailViewController: UIViewController {
             dest.boundingBox = boundingBox
         }
     }
+    
+    // MARK: - tableview helpers
+    
+    func configurePhotoCell(_ cell: SpeciesImageCell) {
+        
+        cell.selectionStyle = .none
+
+        if cell.scrollView?.delegate == nil {
+            cell.scrollView?.delegate = self
+        }
+        cell.scrollView?.auk.removeAll()
+        
+        
+        // show the user photo first
+        if let observation = self.observation {
+            cell.showCollectedUI()
+            
+            // show collection data
+            var baseStr = "Collected"
+            if let dateStr = observation.relativeDateString {
+                baseStr.append(" \(dateStr)")
+            }
+            baseStr.append("!")
+            cell.collectedLabel?.text = baseStr
+            
+            // show collection photo
+            if let photoUrl = observation.pathForImage(),
+                let photoData = NSData(contentsOf: photoUrl) as Data?,
+                let photo = UIImage(data: photoData)
+            {
+                cell.scrollView?.auk.show(image: photo)
+            }
+            
+        } else {
+            cell.hideCollectedUI()
+        }
+        
+        // show taxon photos after
+        if let species = self.species {
+            if let taxon_photos = species.taxon_photos {
+                // show at most 10 taxon photos to avoid the
+                // giant hundred item indicator
+                for i in 0...min(taxon_photos.count, 10)-1 {
+                    let tp = taxon_photos[i]
+                    if let urlString = tp.photo.medium_url {
+                        cell.scrollView?.auk.show(url: urlString)
+                    }
+                }
+                if let first = taxon_photos.first,
+                    let attr = first.photo.attribution
+                {
+                    cell.photoLicenseButton?.setTitle("CC", for: .normal)
+                    self.activePhotoAttribution = attr
+                }
+            } else if let photo = species.default_photo, let urlString = photo.medium_url {
+                cell.scrollView?.auk.show(url: urlString)
+                cell.photoLicenseButton?.setTitle("CC", for: .normal)
+            }
+        }
+    }
+
 }
 
 // MARK: - UITableViewDataSource
@@ -269,55 +330,8 @@ extension SpeciesDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.item == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: speciesImageCellId, for: indexPath) as! SpeciesImageCell
-            cell.selectionStyle = .none
             
-            if cell.scrollView?.delegate == nil {
-                cell.scrollView?.delegate = self
-            }
-            cell.scrollView?.auk.removeAll()
-            
-            if let species = self.species {
-                if let taxon_photos = species.taxon_photos {
-                    // show at most 10 taxon photos to avoid the
-                    // giant hundred item indicator
-                    for i in 0...min(taxon_photos.count, 10)-1 {
-                        let tp = taxon_photos[i]
-                        if let urlString = tp.photo.medium_url {
-                            cell.scrollView?.auk.show(url: urlString)
-                        }
-                    }
-                    if let first = taxon_photos.first,
-                        let attr = first.photo.attribution
-                    {
-                        cell.photoLicenseButton?.setTitle("CC", for: .normal)
-                        self.activePhotoAttribution = attr
-                    }
-                } else if let photo = species.default_photo, let urlString = photo.medium_url {
-                    cell.scrollView?.auk.show(url: urlString)
-                    cell.photoLicenseButton?.setTitle("CC", for: .normal)
-                }
-                
-            }
-            
-            if let observation = self.observation {
-                // need to show collection data
-                var baseStr = "Collected"
-                if let dateStr = observation.relativeDateString {
-                    baseStr.append(" \(dateStr)")
-                }
-                baseStr.append("!")
-                cell.collectedLabel?.text = baseStr
-            } else {
-                // need to hide colleciton data
-                cell.collectedCheck?.isHidden = true
-                cell.collectedView?.isHidden = true
-                if let view = cell.collectedView {
-                    let filteredConstraints = view.constraints.filter { $0.identifier == "collectedViewHeight" }
-                    if let height = filteredConstraints.first {
-                        height.constant = 0
-                    }
-                }
-            }
+            self.configurePhotoCell(cell)
             
             return cell
         } else if indexPath.item == 1 {
@@ -515,10 +529,42 @@ extension SpeciesDetailViewController: MKMapViewDelegate {
 }
 
 extension SpeciesDetailViewController: UIScrollViewDelegate {
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.activePhotoAttribution = nil
+        struct Animating {
+            static var isAnimating = false
+        }
         
-        if let pageIndex = scrollView.auk.currentPageIndex, let species = self.species {
+        let photoIp = IndexPath(item: 0, section: 0)
+        if let cell = self.tableView?.cellForRow(at: photoIp) as? SpeciesImageCell {
+            if self.observation != nil, let index = scrollView.auk.currentPageIndex, index == 0 {
+                if !Animating.isAnimating {
+                    Animating.isAnimating = true
+                    UIView.animate(withDuration: 0.3, animations: {
+                        cell.showCollectedUI()
+                    }, completion: { (finished) in
+                        Animating.isAnimating = false
+                    })
+                }
+            } else {
+                if !Animating.isAnimating {
+                    Animating.isAnimating = true
+                    UIView.animate(withDuration: 0.3, animations: {
+                        cell.hideCollectedUI()
+                    }, completion: { (finished) in
+                        Animating.isAnimating = false
+                    })
+                }
+            }
+        }
+        
+        
+        var taxonPhotoIndex = scrollView.auk.currentPageIndex
+        if self.observation != nil, let index = taxonPhotoIndex {
+            taxonPhotoIndex = index - 1
+        }
+        
+        if let pageIndex = taxonPhotoIndex, pageIndex > 0, let species = self.species {
             if let taxonPhotos = species.taxon_photos {
                 let taxonPhoto = taxonPhotos[pageIndex]
                 if let attr = taxonPhoto.photo.attribution {
@@ -529,7 +575,7 @@ extension SpeciesDetailViewController: UIScrollViewDelegate {
                     self.activePhotoAttribution = attr
                 }
             }
-            
         }
     }
 }
+
