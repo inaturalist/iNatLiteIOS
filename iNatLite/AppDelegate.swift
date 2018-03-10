@@ -108,6 +108,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         badge.index = index
                     }
                     
+                    // realm will clobber any set values here
+                    if let prevBadge = realm.object(ofType: BadgeRealm.self, forPrimaryKey: badge.name) {
+                        badge.earned = prevBadge.earned
+                        badge.earnedDate = prevBadge.earnedDate
+                    }
+                    
                     try! realm.write {
                         realm.add(badge, update: true)
                     }
