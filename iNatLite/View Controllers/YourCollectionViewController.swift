@@ -207,7 +207,12 @@ extension YourCollectionViewController: UICollectionViewDelegate {
                 if let info = badge.infoText
                 {
                     let title = badge.name
-                    let msg = "\(info) You earned this badge."
+                    
+                    var msg = info
+                    if badge.earned {
+                        msg.append(" You earned this badge.")
+                    }
+
                     let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
                     present(alert, animated: true)
