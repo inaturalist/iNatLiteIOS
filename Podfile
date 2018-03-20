@@ -15,4 +15,8 @@ target 'iNatLite' do
   pod 'RealmSwift', '3.0.2'
   pod 'Toast-Swift', '3.0.1'
   pod 'UIImageViewAlignedSwift', '0.5.0'
+
+  target 'iNatLiteTests' do
+    inherit! :search_paths
+  end
 end
