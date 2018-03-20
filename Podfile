@@ -9,7 +9,6 @@ target 'iNatLite' do
   pod 'FontAwesomeKit', '2.2.1'
   pod 'Charts', '3.0.4'
   pod 'RealmSwift', '3.0.2'
-  pod 'CRToast', '0.0.9'
   pod 'Toast-Swift', '3.0.1'
   pod 'Gallery', '2.0.5'
   pod 'PKHUD', '~> 5.0'
