@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BF0E994E9A0187DF670162F4 /* Pods_iNatLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1007378444A1EA1076E2E3AC /* Pods_iNatLite.framework */; };
+		EFB13ABEA158E2F358ADB965 /* Pods_iNatLiteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F37436BEC5D686E837C570 /* Pods_iNatLiteTests.framework */; };
 		FA0A0DB7204085FB005B19F9 /* TaxaResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A0DB6204085FB005B19F9 /* TaxaResponse.swift */; };
 		FA0A0DBB204099FB005B19F9 /* SpeciesNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A0DBA204099FB005B19F9 /* SpeciesNameCell.swift */; };
 		FA0A0DBD20409A0B005B19F9 /* SpeciesLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A0DBC20409A0B005B19F9 /* SpeciesLocationCell.swift */; };
@@ -23,7 +24,6 @@
 		FA1DE15D2034C77A00ACBD17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1DE15B2034C77A00ACBD17 /* Main.storyboard */; };
 		FA1DE15F2034C77A00ACBD17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA1DE15E2034C77A00ACBD17 /* Assets.xcassets */; };
 		FA1DE1622034C77A00ACBD17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1DE1602034C77A00ACBD17 /* LaunchScreen.storyboard */; };
-		FA1DE16D2034C77A00ACBD17 /* iNatLiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE16C2034C77A00ACBD17 /* iNatLiteTests.swift */; };
 		FA1DE1782034C77A00ACBD17 /* iNatLiteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1772034C77A00ACBD17 /* iNatLiteUITests.swift */; };
 		FA1DE1892034CF1600ACBD17 /* ChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1882034CF1600ACBD17 /* ChallengesViewController.swift */; };
 		FA1DE18B2034CF2E00ACBD17 /* YourCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE18A2034CF2E00ACBD17 /* YourCollectionViewController.swift */; };
@@ -78,6 +78,7 @@
 		FACB2D0620490EF50050053A /* MadeByCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB2D0520490EF50050053A /* MadeByCell.swift */; };
 		FACB2D0D20490F4B0050053A /* INatCreditsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB2D0C20490F4B0050053A /* INatCreditsCell.swift */; };
 		FACB2D0F204A29D90050053A /* riffic-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FACB2D0E204A29D60050053A /* riffic-bold.ttf */; };
+		FADB959220609D6F00DC64E8 /* PlaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADB959120609D6F00DC64E8 /* PlaceTests.swift */; };
 		FAEDCA442048BB560016CEA4 /* WarningsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEDCA432048BB560016CEA4 /* WarningsViewController.swift */; };
 		FAF849C520434AA4009F10E3 /* BadgeRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF849C420434AA4009F10E3 /* BadgeRealm.swift */; };
 		FAF849C720434BFD009F10E3 /* BadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF849C620434BFD009F10E3 /* BadgeCell.swift */; };
@@ -104,8 +105,11 @@
 
 /* Begin PBXFileReference section */
 		1007378444A1EA1076E2E3AC /* Pods_iNatLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iNatLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F9670547C9A6ADF5EDC2959 /* Pods-iNatLiteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iNatLiteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iNatLiteTests/Pods-iNatLiteTests.release.xcconfig"; sourceTree = "<group>"; };
 		879C91F67D5FBD7BCDA49BDD /* Pods-iNatLite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iNatLite.release.xcconfig"; path = "Pods/Target Support Files/Pods-iNatLite/Pods-iNatLite.release.xcconfig"; sourceTree = "<group>"; };
+		A1D68563C664268D1467A5B4 /* Pods-iNatLiteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iNatLiteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iNatLiteTests/Pods-iNatLiteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CBC22DC9357BCAC8DA7FB1D7 /* Pods-iNatLite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iNatLite.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iNatLite/Pods-iNatLite.debug.xcconfig"; sourceTree = "<group>"; };
+		F3F37436BEC5D686E837C570 /* Pods_iNatLiteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iNatLiteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0A0DB6204085FB005B19F9 /* TaxaResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxaResponse.swift; sourceTree = "<group>"; };
 		FA0A0DBA204099FB005B19F9 /* SpeciesNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesNameCell.swift; sourceTree = "<group>"; };
 		FA0A0DBC20409A0B005B19F9 /* SpeciesLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesLocationCell.swift; sourceTree = "<group>"; };
@@ -124,7 +128,6 @@
 		FA1DE1612034C77A00ACBD17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA1DE1632034C77A00ACBD17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA1DE1682034C77A00ACBD17 /* iNatLiteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iNatLiteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA1DE16C2034C77A00ACBD17 /* iNatLiteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iNatLiteTests.swift; sourceTree = "<group>"; };
 		FA1DE16E2034C77A00ACBD17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA1DE1732034C77A00ACBD17 /* iNatLiteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iNatLiteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1DE1772034C77A00ACBD17 /* iNatLiteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iNatLiteUITests.swift; sourceTree = "<group>"; };
@@ -183,6 +186,7 @@
 		FACB2D0520490EF50050053A /* MadeByCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeByCell.swift; sourceTree = "<group>"; };
 		FACB2D0C20490F4B0050053A /* INatCreditsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INatCreditsCell.swift; sourceTree = "<group>"; };
 		FACB2D0E204A29D60050053A /* riffic-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "riffic-bold.ttf"; sourceTree = "<group>"; };
+		FADB959120609D6F00DC64E8 /* PlaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTests.swift; sourceTree = "<group>"; };
 		FAEDCA432048BB560016CEA4 /* WarningsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningsViewController.swift; sourceTree = "<group>"; };
 		FAF849C420434AA4009F10E3 /* BadgeRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeRealm.swift; sourceTree = "<group>"; };
 		FAF849C620434BFD009F10E3 /* BadgeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCell.swift; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFB13ABEA158E2F358ADB965 /* Pods_iNatLiteTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				1007378444A1EA1076E2E3AC /* Pods_iNatLite.framework */,
+				F3F37436BEC5D686E837C570 /* Pods_iNatLiteTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -229,6 +235,8 @@
 			children = (
 				CBC22DC9357BCAC8DA7FB1D7 /* Pods-iNatLite.debug.xcconfig */,
 				879C91F67D5FBD7BCDA49BDD /* Pods-iNatLite.release.xcconfig */,
+				A1D68563C664268D1467A5B4 /* Pods-iNatLiteTests.debug.xcconfig */,
+				2F9670547C9A6ADF5EDC2959 /* Pods-iNatLiteTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -300,8 +308,8 @@
 		FA1DE16B2034C77A00ACBD17 /* iNatLiteTests */ = {
 			isa = PBXGroup;
 			children = (
-				FA1DE16C2034C77A00ACBD17 /* iNatLiteTests.swift */,
 				FA1DE16E2034C77A00ACBD17 /* Info.plist */,
+				FADB959120609D6F00DC64E8 /* PlaceTests.swift */,
 			);
 			path = iNatLiteTests;
 			sourceTree = "<group>";
@@ -494,9 +502,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA1DE17F2034C77A00ACBD17 /* Build configuration list for PBXNativeTarget "iNatLiteTests" */;
 			buildPhases = (
+				823C1A8BA77D225B6640B449 /* [CP] Check Pods Manifest.lock */,
 				FA1DE1642034C77A00ACBD17 /* Sources */,
 				FA1DE1652034C77A00ACBD17 /* Frameworks */,
 				FA1DE1662034C77A00ACBD17 /* Resources */,
+				97E4CD1CA03F253BD8AD365D /* [CP] Embed Pods Frameworks */,
+				FB19A4C97E347688BA5B7A48 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -637,6 +648,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iNatLite/Pods-iNatLite-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		823C1A8BA77D225B6640B449 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iNatLiteTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8D65B1170A7720B6D1007865 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -653,6 +682,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		97E4CD1CA03F253BD8AD365D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iNatLiteTests/Pods-iNatLiteTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A84E9BE90D6F68829AF4A3FF /* [CP] Embed Pods Frameworks */ = {
@@ -701,6 +745,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iNatLite/Pods-iNatLite-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB19A4C97E347688BA5B7A48 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iNatLiteTests/Pods-iNatLiteTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -770,7 +829,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA1DE16D2034C77A00ACBD17 /* iNatLiteTests.swift in Sources */,
+				FADB959220609D6F00DC64E8 /* PlaceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -960,6 +1019,7 @@
 		};
 		FA1DE1802034C77A00ACBD17 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1D68563C664268D1467A5B4 /* Pods-iNatLiteTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -977,6 +1037,7 @@
 		};
 		FA1DE1812034C77A00ACBD17 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F9670547C9A6ADF5EDC2959 /* Pods-iNatLiteTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
