@@ -385,9 +385,9 @@ class ChallengeResultsViewController: UIViewController {
             // always use today's collection date, not photo taken date
             obs.date = Date()
             
-            if let location = self.takenLocation {
-                obs.latitude = Float(location.coordinate.latitude)
-                obs.longitude = Float(location.coordinate.longitude)
+            if let truncatedCoord = self.takenLocation?.coordinate.truncate(places: 2) {
+                obs.latitude = Float(truncatedCoord.latitude)
+                obs.longitude = Float(truncatedCoord.longitude)
             }
             
             let realm = try! Realm()
