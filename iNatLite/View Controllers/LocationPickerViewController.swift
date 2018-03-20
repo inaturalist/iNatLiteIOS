@@ -21,7 +21,7 @@ class LocationPickerViewController: UIViewController {
     
     var locationName: String?
     var chosenCoordinate: CLLocationCoordinate2D?
-    var userLocation: CLLocationCoordinate2D?
+    var truncatedUserCoordinate: CLLocationCoordinate2D?
     
     @IBOutlet var mapView: MKMapView?
     @IBOutlet var lookingLabel: UILabel?
@@ -44,7 +44,7 @@ class LocationPickerViewController: UIViewController {
     }
     
     @IBAction func gotoCurrentLocationPressed() {
-        if let userLoc = self.userLocation, let map = self.mapView {
+        if let userLoc = self.truncatedUserCoordinate, let map = self.mapView {
             let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
             let region = MKCoordinateRegion(center: userLoc, span: span)
             map.setRegion(region, animated: true)
@@ -83,7 +83,7 @@ class LocationPickerViewController: UIViewController {
                 let region = MKCoordinateRegion(center: coord, span: span)
                 map.setRegion(region, animated: false)
             }
-        } else if let coord = self.userLocation, CLLocationCoordinate2DIsValid(coord) {
+        } else if let coord = self.truncatedUserCoordinate, CLLocationCoordinate2DIsValid(coord) {
             if let map = self.mapView {
                 let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
                 let region = MKCoordinateRegion(center: coord, span: span)

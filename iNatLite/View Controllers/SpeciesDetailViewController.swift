@@ -32,7 +32,7 @@ class SpeciesDetailViewController: UIViewController {
     
     var species: Taxon?
     var userPlaceName: String?
-    var userCoordinate: CLLocationCoordinate2D?
+    var contextCoordinate: CLLocationCoordinate2D?
     var obsCountInPlace: Int?
     var boundingBox: BoundingBox?
     var histogramData: [String: Int]?
@@ -55,12 +55,13 @@ class SpeciesDetailViewController: UIViewController {
         }
     }
     
-    var coordinate: CLLocationCoordinate2D? {
+    var displayCoordinate: CLLocationCoordinate2D? {
         get {
-            if let coord = self.userCoordinate {
-                return coord
-            } else if let observation = self.observation, let coord = observation.coordinate {
-                return coord
+            if let observation = self.observation,
+                let truncatedCoordinate = observation.coordinate?.truncate(places: 2) {
+                return truncatedCoordinate
+            } else if let coordinate = self.contextCoordinate {
+                return coordinate
             } else {
                 return nil
             }
@@ -69,9 +70,10 @@ class SpeciesDetailViewController: UIViewController {
     
     var placeName: String? {
         get {
-            if let name = self.userPlaceName {
+            if let observation = self.observation,
+                let name = observation.placeName {
                 return name
-            } else if let observation = self.observation, let  name = observation.placeName {
+            } else if let name = self.userPlaceName {
                 return name
             } else {
                 return nil
@@ -159,7 +161,7 @@ class SpeciesDetailViewController: UIViewController {
         }
         
         // load the bounding box for this taxon/place
-        if let coordinate = self.coordinate, let speciesId = speciesId {
+        if let coordinate = self.displayCoordinate, let speciesId = speciesId {
             let url = "https://api.inaturalist.org/v1/observations?lat=\(coordinate.latitude)&lng=\(coordinate.longitude)&radius=50&taxon_id=\(speciesId)&per_page=1&return_bounds=true"
             Alamofire.request(url).responseData { response in
                 if let data = response.result.value {
@@ -181,7 +183,7 @@ class SpeciesDetailViewController: UIViewController {
         if let speciesId = self.speciesId {
             var histogramUrl = "https://api.inaturalist.org/v1/observations/histogram?taxon_id=\(speciesId)&date_field=observed&interval=month_of_year"
             
-            if let coordinate = self.coordinate {
+            if let coordinate = self.displayCoordinate {
                 histogramUrl.append("&lat=\(coordinate.latitude)&lng=\(coordinate.longitude)&radius=50")
             }
             Alamofire.request(histogramUrl).responseData { response in
@@ -200,7 +202,7 @@ class SpeciesDetailViewController: UIViewController {
             }
         }
         
-        if let speciesId = speciesId, let coordinate = self.coordinate {
+        if let speciesId = speciesId, let coordinate = self.displayCoordinate {
             // refetch the species counts
             // the count we use for the challenges screen is limited to only mobile, and only
             // a few months around the current month. we want the full count on iNat for the stats

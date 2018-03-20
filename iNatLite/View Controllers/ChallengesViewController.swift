@@ -50,7 +50,7 @@ class ChallengesViewController: UIViewController {
     var locationLookupFailed = false
     var reachabilityManager: Alamofire.NetworkReachabilityManager?
     
-    var userLocation: CLLocationCoordinate2D?
+    var truncatedUserCoordinate: CLLocationCoordinate2D?
     var chosenCoordinate: CLLocationCoordinate2D?
     var placeName: String?
 
@@ -63,7 +63,7 @@ class ChallengesViewController: UIViewController {
         get {
             if let coord = self.chosenCoordinate {
                 return coord
-            } else if let coord = self.userLocation {
+            } else if let coord = self.truncatedUserCoordinate {
                 return coord
             } else {
                 return nil
@@ -321,7 +321,7 @@ class ChallengesViewController: UIViewController {
         {
             dest.delegate = self
             dest.locationName = self.placeName
-            dest.userLocation = self.userLocation
+            dest.truncatedUserCoordinate = self.truncatedUserCoordinate
             dest.chosenCoordinate = self.coordinate
         } else if segue.identifier == "segueToTaxonPicker",
             let dest = segue.destination as? TaxonPickerViewController
@@ -333,9 +333,8 @@ class ChallengesViewController: UIViewController {
             let count = sender as? SpeciesCount
         {
             dest.species = count.taxon
-            // how does speciesDetail handle this coordinate?
             dest.userPlaceName = self.placeName
-            dest.userCoordinate = self.coordinate
+            dest.contextCoordinate = self.coordinate
             self.navigationController?.navigationBar.barStyle = .blackTranslucent
             self.navigationController?.navigationBar.tintColor = .white
         } else {
@@ -510,12 +509,12 @@ extension ChallengesViewController: CLLocationManagerDelegate {
             manager.stopUpdatingLocation()
             self.locationManager = nil
             // fuzz the location
-            self.userLocation = location.coordinate.truncate(places: 2)
+            self.truncatedUserCoordinate = location.coordinate.truncate(places: 2)
             self.loadSpecies()
             
-            if let userLoc = self.userLocation {
-                let loc = CLLocation(latitude: userLoc.latitude, longitude: userLoc.longitude)
-                CLGeocoder().reverseGeocodeLocation(loc) { (placemarks, error) in
+            if let truncatedCoord = self.truncatedUserCoordinate {
+                let truncatedLoc = CLLocation(latitude: truncatedCoord.latitude, longitude: truncatedCoord.longitude)
+                CLGeocoder().reverseGeocodeLocation(truncatedLoc) { (placemarks, error) in
                     if let placemarks = placemarks, let first = placemarks.first {
                         // last aoi seems to give the most useful results in the bay area
                         if let aoi = first.areasOfInterest, let lastAoi = aoi.last {
