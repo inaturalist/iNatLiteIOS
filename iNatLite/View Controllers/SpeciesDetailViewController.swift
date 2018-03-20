@@ -373,12 +373,10 @@ extension SpeciesDetailViewController: UITableViewDataSource {
             cell.mapView?.delegate = self
             
             if let species = self.species {
-                if let placeName = self.placeName {
+                if self.observation == nil {
                     cell.locationLabel?.text = "Where are people seeing it nearby?"
-                } else if self.observation != nil {
-                    cell.locationLabel?.text = "Location"
                 } else {
-                    cell.locationLabel?.text = "Where are people seeing it nearby?"
+                    cell.locationLabel?.text = "Location"
                 }
                 
                 let template = "https://api.inaturalist.org/v1/colored_heatmap/{z}/{x}/{y}.png?taxon_id=\(species.id)"
