@@ -9,7 +9,6 @@
 import UIKit
 import Imaginary
 import Auk
-import Alamofire
 import MapKit
 import CoreLocation
 import Charts
@@ -142,91 +141,79 @@ class SpeciesDetailViewController: UIViewController {
         // avoid extra lines below content
         self.tableView?.tableFooterView = UIView()
         
-        // reload the taxon from the server
-        if let speciesId = speciesId, let url = URL(string: "https://api.inaturalist.org/v1/taxa/\(speciesId)") {
-            Alamofire.request(url).responseData { response in
-                if let data = response.result.value {
-                    do {
-                        let response = try JSONDecoder().decode(TaxaResponse.self, from: data)
-                        print(response)
-                        if let results = response.results, let first = results.first {
-                            self.species = first
-                            self.tableView?.reloadData()
-                        }
-                    } catch {
-                        // todo: error handling here
-                    }
-                }
-            }
-        }
-        
-        // load the bounding box for this taxon/place
-        if let coordinate = self.displayCoordinate, let speciesId = speciesId {
-            let url = "https://api.inaturalist.org/v1/observations?lat=\(coordinate.latitude)&lng=\(coordinate.longitude)&radius=50&taxon_id=\(speciesId)&per_page=1&return_bounds=true"
-            Alamofire.request(url).responseData { response in
-                if let data = response.result.value {
-                    do {
-                        let response = try JSONDecoder().decode(BoundingBoxResponse.self, from: data)
-                        if let bounds = response.total_bounds {
-                            self.boundingBox = bounds
-                            let mapIndexPath = IndexPath(item: 3, section: 0)
-                            self.tableView?.reloadRows(at: [mapIndexPath], with: .none)
-                        }
-                    } catch {
-                        // todo: error handling here
-                    }
-                }
-            }
-        }
-        
-        // load the data for the histogram
-        if let speciesId = self.speciesId {
-            var histogramUrl = "https://api.inaturalist.org/v1/observations/histogram?taxon_id=\(speciesId)&date_field=observed&interval=month_of_year"
+        // load a bunch of data
+        if let speciesId = speciesId {
+            // full taxon for photos
+            self.loadFullTaxonForSpeciesId(speciesId)
+            // histogram for phenology chart
+            self.loadHistogramForSpeciesId(speciesId, coordinate: self.displayCoordinate)
             
             if let coordinate = self.displayCoordinate {
-                histogramUrl.append("&lat=\(coordinate.latitude)&lng=\(coordinate.longitude)&radius=50")
-            }
-            Alamofire.request(histogramUrl).responseData { response in
-                if let data = response.result.value {
-                    do {
-                        let response = try JSONDecoder().decode(HistogramResponse.self, from: data)
-                        if let month_of_year = response.results?.month_of_year {
-                            self.histogramData = month_of_year
-                            let chartIndexPath = IndexPath(item: 4, section: 0)
-                            self.tableView?.reloadRows(at: [chartIndexPath], with: .none)
-                        }
-                    } catch {
-                        // todo: error handling here
-                    }
-                }
+                // bbox for map
+                self.loadBBoxForSpeciesId(speciesId, coordinate: coordinate)
+                // the count we use for the challenges screen is limited to only mobile, and only
+                // a few months around the current month. we want the full count on iNat for the stats
+                // on this screen.
+                self.loadSpeciesCountsForSpeciesId(speciesId, coordinate: coordinate)
             }
         }
-        
-        if let speciesId = speciesId, let coordinate = self.displayCoordinate {
-            // refetch the species counts
-            // the count we use for the challenges screen is limited to only mobile, and only
-            // a few months around the current month. we want the full count on iNat for the stats
-            // on this screen.
-            let countUrl = "https://api.inaturalist.org/v1/observations/species_counts?lat=\(coordinate.latitude)&lng=\(coordinate.longitude)&radius=50&taxon_id=\(speciesId)"
-            Alamofire.request(countUrl).responseData { response in
-                if let data = response.result.value {
-                    do {
-                        let response = try JSONDecoder().decode(SpeciesCountResponse.self, from: data)
-                        if let results = response.results, results.count > 0 {
-                            // just in case we get more than one response, which will happen
-                            // if we ever stop being species only
-                            for result in results {
-                                if result.taxon == self.species {
-                                    self.obsCountInPlace = result.count
-                                    let obsCountIndexPath = IndexPath(item: 5, section: 0)
-                                    self.tableView?.reloadRows(at: [obsCountIndexPath], with: .none)
-                                }
-                            }
-                        }
-                    } catch {
-                        // todo: error handling here
+    }
+    
+    func loadFullTaxonForSpeciesId(_ speciesId: Int) {
+        INatApi().fullTaxonForSpeciesId(speciesId) { (response, error) in
+            if let response = response, let results = response.results, let first = results.first {
+                self.species = first
+                self.tableView?.reloadData()
+            } else if let error = error {
+                // display error
+            } else {
+                // display no data
+            }
+        }
+    }
+    
+    func loadBBoxForSpeciesId(_ speciesId: Int, coordinate: CLLocationCoordinate2D) {
+        INatApi().bboxForSpeciesId(speciesId, coordinate: coordinate) { (response, error) in
+            if let response = response, let bounds = response.total_bounds {
+                self.boundingBox = bounds
+                let mapIndexPath = IndexPath(item: 3, section: 0)
+                self.tableView?.reloadRows(at: [mapIndexPath], with: .none)
+            } else if let error = error {
+                // display error
+            } else {
+                // display no data
+            }
+        }
+    }
+
+    func loadHistogramForSpeciesId(_ speciesId: Int, coordinate: CLLocationCoordinate2D?) {
+        INatApi().histogramForSpeciesId(speciesId, coordinate: coordinate) { (response, error) in
+            if let response = response, let month_of_year = response.results?.month_of_year {
+                self.histogramData = month_of_year
+                let chartIndexPath = IndexPath(item: 4, section: 0)
+                self.tableView?.reloadRows(at: [chartIndexPath], with: .none)
+            } else if let error = error {
+                // display error
+            } else {
+                // display no data
+            }
+        }
+    }
+    
+    func loadSpeciesCountsForSpeciesId(_ speciesId: Int, coordinate: CLLocationCoordinate2D) {
+        INatApi().countsForSpeciesId(speciesId, coordinate: coordinate) { (response, error) in
+            if let response = response, let results = response.results, results.count > 0 {
+                for result in results {
+                    if result.taxon == self.species {
+                        self.obsCountInPlace = result.count
+                        let obsCountIndexPath = IndexPath(item: 5, section: 0)
+                        self.tableView?.reloadRows(at: [obsCountIndexPath], with: .none)
                     }
                 }
+            } else if let error = error {
+                // display error
+            } else {
+                // display no data
             }
         }
     }
