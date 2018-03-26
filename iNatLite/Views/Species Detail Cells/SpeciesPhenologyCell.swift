@@ -61,7 +61,7 @@ class SpeciesPhenologyCell: UITableViewCell {
         lineChartView?.leftAxis.enabled = true
         lineChartView?.leftAxis.drawGridLinesEnabled = false
         lineChartView?.leftAxis.axisMinimum = 0
-        lineChartView?.leftAxis.axisMaximum = Double(max + 2)
+        lineChartView?.leftAxis.axisMaximum = Double(max) * 1.1
         lineChartView?.leftAxis.axisLineColor = UIColor.white
         lineChartView?.leftAxis.labelTextColor = UIColor.white
         if let font = UIFont(name: "Whitney-Book", size: 12) {
