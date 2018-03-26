@@ -388,18 +388,14 @@ extension SpeciesDetailViewController: UITableViewDataSource {
                 cell.mapView?.addOverlays([overlay], level: .aboveRoads)
 
                 if let boundingBox = self.boundingBox {
-                    let sw = CLLocationCoordinate2D(latitude: boundingBox.swlat, longitude: boundingBox.swlng)
-                    let ne = CLLocationCoordinate2D(latitude: boundingBox.nelat, longitude: boundingBox.nelng)
-                    
-                    let p1 = MKMapPointForCoordinate(sw)
-                    let p2 = MKMapPointForCoordinate(ne)
-                    let zoomRect = MKMapRectMake(fmin(p1.x,p2.x), fmin(p1.y,p2.y), fabs(p1.x-p2.x), fabs(p1.y-p2.y))
-                    let inset = -zoomRect.size.width * 0.10;
-                    cell.mapView?.setVisibleMapRect(MKMapRectInset(zoomRect, inset, inset), animated: false)
+                    let bboxRect = boundingBox.mapRect()
+                    let inset = -bboxRect.size.width * 0.10;
+                    let zoomRect = MKMapRectInset(bboxRect, inset, inset)
+                    cell.mapView?.setVisibleMapRect(zoomRect, animated: false)
                 }
                 
                 if let observation = self.observation {
-                    if let coordiante = observation.coordinate {
+                    if let coordinate = observation.coordinate {
                         // add a map pin at the area they found it
                         
                     } else  {
