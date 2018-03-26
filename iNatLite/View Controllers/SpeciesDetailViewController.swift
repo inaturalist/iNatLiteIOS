@@ -423,7 +423,6 @@ extension SpeciesDetailViewController: UITableViewDataSource {
                 
                 let sortedKeys = histogramData.keys.sorted { Int($0)! < Int($1)! }
                 
-                let max = histogramData.values.max()
                 var dataEntry = [ChartDataEntry]()
                 for key in sortedKeys {
                     let point = ChartDataEntry(x: Double(sortedKeys.index(of: key)!), y: Double(histogramData[key]!))
@@ -431,50 +430,8 @@ extension SpeciesDetailViewController: UITableViewDataSource {
                 }
                 
                 let chartDataSet = LineChartDataSet(values: dataEntry, label: "Observations")
-                chartDataSet.drawValuesEnabled = false
-                chartDataSet.drawCirclesEnabled = false
-                chartDataSet.mode = .cubicBezier
-                chartDataSet.cubicIntensity = 0.2
-                chartDataSet.colors = [UIColor.white]
-                chartDataSet.lineWidth = 3.0
+                cell.displayChartDataSet(chartDataSet, max: histogramData.values.max()!)
                 
-                // gradient fill
-                let gradientColors = [UIColor.white.cgColor, UIColor.white.withAlphaComponent(0.8).cgColor, UIColor.white.withAlphaComponent(0.3).cgColor] as CFArray
-                let colorLocations: [CGFloat] = [1.0, 0.3, 0]
-                let colorSpace = CGColorSpaceCreateDeviceRGB()
-                if let gradient = CGGradient.init(colorsSpace: colorSpace, colors: gradientColors, locations: colorLocations) {
-                    chartDataSet.fill = Fill.fillWithLinearGradient(gradient, angle: 90.0)
-                    chartDataSet.drawFilledEnabled = true
-                }
-                
-                chartView.xAxis.labelPosition = .bottom
-                chartView.xAxis.drawGridLinesEnabled = false
-                chartView.xAxis.labelTextColor = UIColor.white
-                if let font = UIFont(name: "Whitney-Book", size: 12) {
-                    chartView.xAxis.labelFont = font
-                }
-                chartView.xAxis.axisLineColor = UIColor.white
-                
-                chartView.chartDescription?.enabled = false
-                chartView.legend.enabled = false
-                chartView.rightAxis.enabled = false
-                
-                chartView.leftAxis.enabled = true
-                chartView.leftAxis.drawGridLinesEnabled = false
-                chartView.leftAxis.axisMinimum = 0
-                chartView.leftAxis.axisMaximum = Double(max! + 2)
-                chartView.leftAxis.axisLineColor = UIColor.white
-                chartView.leftAxis.labelTextColor = UIColor.white
-                if let font = UIFont(name: "Whitney-Book", size: 12) {
-                    chartView.leftAxis.labelFont = font
-                }
-                
-                let xAxisLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-                chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxisLabels)
-                
-                let chartData = LineChartData()
-                chartData.addDataSet(chartDataSet)
-                chartView.data = chartData
             }
             
             return cell
