@@ -8,7 +8,6 @@
 
 import UIKit
 import MapKit
-import Alamofire
 import FontAwesomeKit
 
 private let locationTagCellId = "LocationTagCell"
