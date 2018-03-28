@@ -18,22 +18,26 @@ class INatApi {
     }
     
     func countsForSpeciesId(_ speciesId: Int, coordinate: CLLocationCoordinate2D, completion: @escaping (SpeciesCountResponse?, Error?) -> Void) {
-        let url = "https://api.inaturalist.org/v1/observations/species_counts?lat=\(coordinate.latitude)&lng=\(coordinate.longitude)&radius=50&taxon_id=\(speciesId)"
+        let truncatedCoord = coordinate.truncate(places: 2)
+        let url = "https://api.inaturalist.org/v1/observations/species_counts?lat=\(truncatedCoord.latitude)&lng=\(truncatedCoord.longitude)&radius=50&taxon_id=\(speciesId)"
         self.requestUrl(url, decodable: SpeciesCountResponse.self, completion: completion)
     }
     
     func histogramForSpeciesId(_ speciesId: Int, coordinate: CLLocationCoordinate2D?, completion: @escaping (HistogramResponse?, Error?) -> Void) {
         var url = "https://api.inaturalist.org/v1/observations/histogram?taxon_id=\(speciesId)&date_field=observed&interval=month_of_year"
         if let coordinate = coordinate {
-            url.append("&lat=\(coordinate.latitude)&lng=\(coordinate.longitude)&radius=50")
+            let truncatedCoord = coordinate.truncate(places: 2)
+            url.append("&lat=\(truncatedCoord.latitude)&lng=\(truncatedCoord.longitude)&radius=50")
         }
         self.requestUrl(url, decodable: HistogramResponse.self, completion: completion)
     }
     
     func bboxForSpeciesId(_ speciesId: Int, coordinate: CLLocationCoordinate2D, completion: @escaping (BoundingBoxResponse?, Error?) -> Void) {
-        let url = "https://api.inaturalist.org/v1/observations?lat=\(coordinate.latitude)&lng=\(coordinate.longitude)&radius=50&taxon_id=\(speciesId)&per_page=1&return_bounds=true"
+        let truncatedCoord = coordinate.truncate(places: 2)
+        let url = "https://api.inaturalist.org/v1/observations?lat=\(truncatedCoord.latitude)&lng=\(truncatedCoord.longitude)&radius=50&taxon_id=\(speciesId)&per_page=1&return_bounds=true"
         self.requestUrl(url, decodable: BoundingBoxResponse.self, completion: completion)
     }
+    
     
     func requestUrl<T>(_ url: URLConvertible, decodable: T.Type, completion: @escaping (T?, Error?) -> Void) where T : Decodable {
         Alamofire.request(url).responseData { response in
