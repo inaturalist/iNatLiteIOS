@@ -114,15 +114,6 @@ class ChallengesViewController: UIViewController {
         
         var urlString: String?
         
-        if let coordinate = self.coordinate {
-            urlString = "https://api.inaturalist.org/v1/observations/species_counts?lat=\(coordinate.latitude)&lng=\(coordinate.longitude)&radius=50&threatened=false&verifiable=true&oauth_application_id=2,3&hrank=species&include_only_vision_taxa=true&not_in_list_id=945029"
-        } else if locationLookupFailed {
-            let usa = Place.Fixed.UnitedStates
-            urlString = "https://api.inaturalist.org/v1/observations/species_counts?place_id=\(usa.id)&threatened=false&verifiable=true&oauth_application_id=2,3&hrank=species&include_only_vision_taxa=true&not_in_list_id=945029"
-        } else {
-            return
-        }
-        
         // get the a month on either side of the current month
         var months = [Int]()
         let calendar = NSCalendar.current
@@ -133,63 +124,46 @@ class ChallengesViewController: UIViewController {
                 months = [month-1,month,month+1]
             }
         }
-        let monthsStr = months.map({ "\($0)"}).joined(separator: ",")
-        urlString?.append("&month=\(monthsStr)")
-
-        if let iconicTaxon = self.chosenIconicTaxon {
-            urlString?.append("&taxon_id=\(iconicTaxon.id)")
+        
+        let completion: (SpeciesCountResponse?, Error?) -> Void = { (response, error) in
+            // hide loading UI
+            self.activitySpinner?.isHidden = true
+            self.activitySpinner?.stopAnimating()
+            
+            if let error = error {
+                self.failureTitle?.isHidden = false
+                self.failureTitle?.text = "Bummer"
+                
+                self.failureMessage?.isHidden = false
+                let failureMessageString = "Unable to load challenges: \(error.localizedDescription)"
+                if let font = UIFont(name: "Whitney-Medium", size: 16) {
+                    let attrs = INatTextAttrs.attrsForFont(font, lineSpacing: 24, alignment: .center)
+                    self.failureMessage?.attributedText = NSMutableAttributedString(string: failureMessageString, attributes: attrs)
+                }
+            } else if let response = response, let results = response.results {
+                let realm = try! Realm()
+                let collectedTaxa = realm.objects(TaxonRealm.self)
+                let collectedTaxaIds = collectedTaxa.map({ (taxon) -> Int in
+                    return taxon.id
+                })
+                self.speciesCounts = results.filter({ (speciesCount) -> Bool in
+                    return !collectedTaxaIds.contains(speciesCount.taxon.id)
+                })
+                self.collectionView?.reloadData()
+            } else {
+                // no error but no results, just reload the collection view and show the
+                // empty results screen
+                self.collectionView?.reloadData()
+            }
         }
         
-        // fetch and repopulate the collection view
-        if let urlString = urlString, let url = URL(string: urlString) {
-            // Do any additional setup after loading the view.
-            Alamofire.request(url).responseData { response in
-                switch response.result {
-                case .failure(let error):
-                    print(error)
-                    self.activitySpinner?.isHidden = true
-                    self.activitySpinner?.stopAnimating()
-                    
-                    self.failureTitle?.text = "Bummer"
-                    if let font = UIFont(name: "Whitney-Medium", size: 16) {
-                        let attrs = INatTextAttrs.attrsForFont(font, lineSpacing: 24, alignment: .center)
-                        let msg = NSMutableAttributedString(string: "Unable to load challenges: \(error.localizedDescription)", attributes: attrs)
-                        self.failureMessage?.attributedText = msg
-                    }
-                    self.failureTitle?.isHidden = false
-                    self.failureMessage?.isHidden = false
-                case .success(let value):
-                    
-                    do {
-                        let response = try JSONDecoder().decode(SpeciesCountResponse.self, from: value)
-                        if let speciesCounts = response.results {
-                            let realm = try! Realm()
-                            let collectedTaxa = realm.objects(TaxonRealm.self)
-                            let collectedTaxaIds = collectedTaxa.map({ (taxon) -> Int in
-                                return taxon.id
-                            })
-                            self.speciesCounts = speciesCounts.filter({ (speciesCount) -> Bool in
-                                return !collectedTaxaIds.contains(speciesCount.taxon.id)
-                            })
-                            
-                            self.activitySpinner?.isHidden = true
-                            self.activitySpinner?.stopAnimating()
-                            
-                            self.collectionView?.reloadData()
-                        }
-                    } catch {
-                        self.failureTitle?.text = "Bummer"
-                        if let font = UIFont(name: "Whitney-Medium", size: 16) {
-                            let attrs = INatTextAttrs.attrsForFont(font, lineSpacing: 24, alignment: .center)
-                            let msg = NSMutableAttributedString(string: "Unable to load challenges, try again later.", attributes: attrs)
-                            self.failureMessage?.attributedText = msg
-                        }
-                        self.activitySpinner?.isHidden = true
-                        self.activitySpinner?.stopAnimating()
-                    }
-                }
-            }
-            
+        if let coordinate = self.coordinate {
+            INatApi().speciesCountsForCoordinate(coordinate, radius: 50, months: months, iconicTaxonId: self.chosenIconicTaxon?.id, completion: completion)
+        } else if locationLookupFailed {
+            let usa = Place.Fixed.UnitedStates
+            INatApi().speciesCountsForPlaceId(usa.id, months: months, iconicTaxonId: self.chosenIconicTaxon?.id, completion: completion)
+        } else {
+            return
         }
     }
 
