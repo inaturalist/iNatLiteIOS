@@ -112,8 +112,6 @@ class ChallengesViewController: UIViewController {
         self.activitySpinner?.isHidden = false
         self.activitySpinner?.startAnimating()
         
-        var urlString: String?
-        
         // get the a month on either side of the current month
         var months = [Int]()
         let calendar = NSCalendar.current
