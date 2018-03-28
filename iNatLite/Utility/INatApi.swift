@@ -14,13 +14,13 @@ class INatApi {
     
     func fullTaxonForSpeciesId(_ speciesId: Int, completion: @escaping (TaxaResponse?, Error?) -> Void) {
         let url = "https://api.inaturalist.org/v1/taxa/\(speciesId)"
-        self.requestUrl(url, decodable: TaxaResponse.self, completion: completion)        
+        requestUrl(url, decodable: TaxaResponse.self, completion: completion)
     }
     
     func countsForSpeciesId(_ speciesId: Int, coordinate: CLLocationCoordinate2D, completion: @escaping (SpeciesCountResponse?, Error?) -> Void) {
         let truncatedCoord = coordinate.truncate(places: 2)
         let url = "https://api.inaturalist.org/v1/observations/species_counts?lat=\(truncatedCoord.latitude)&lng=\(truncatedCoord.longitude)&radius=50&taxon_id=\(speciesId)"
-        self.requestUrl(url, decodable: SpeciesCountResponse.self, completion: completion)
+        requestUrl(url, decodable: SpeciesCountResponse.self, completion: completion)
     }
     
     func histogramForSpeciesId(_ speciesId: Int, coordinate: CLLocationCoordinate2D?, completion: @escaping (HistogramResponse?, Error?) -> Void) {
@@ -29,13 +29,13 @@ class INatApi {
             let truncatedCoord = coordinate.truncate(places: 2)
             url.append("&lat=\(truncatedCoord.latitude)&lng=\(truncatedCoord.longitude)&radius=50")
         }
-        self.requestUrl(url, decodable: HistogramResponse.self, completion: completion)
+        requestUrl(url, decodable: HistogramResponse.self, completion: completion)
     }
     
     func bboxForSpeciesId(_ speciesId: Int, coordinate: CLLocationCoordinate2D, completion: @escaping (BoundingBoxResponse?, Error?) -> Void) {
         let truncatedCoord = coordinate.truncate(places: 2)
         let url = "https://api.inaturalist.org/v1/observations?lat=\(truncatedCoord.latitude)&lng=\(truncatedCoord.longitude)&radius=50&taxon_id=\(speciesId)&per_page=1&return_bounds=true"
-        self.requestUrl(url, decodable: BoundingBoxResponse.self, completion: completion)
+        requestUrl(url, decodable: BoundingBoxResponse.self, completion: completion)
     }
     
     
