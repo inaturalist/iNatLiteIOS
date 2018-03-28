@@ -37,15 +37,16 @@ class INatApi {
     
     func requestUrl<T>(_ url: URLConvertible, decodable: T.Type, completion: @escaping (T?, Error?) -> Void) where T : Decodable {
         Alamofire.request(url).responseData { response in
-            if let data = response.result.value {
+            switch response.result {
+            case .failure(let error):
+                completion(nil, error)
+            case .success(let data):
                 do {
                     let response = try JSONDecoder().decode(decodable, from: data)
                     completion(response, nil)
                 } catch {
                     completion(nil, error)
                 }
-            } else {
-                completion(nil, nil)
             }
         }
     }
