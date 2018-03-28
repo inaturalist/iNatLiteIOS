@@ -402,7 +402,7 @@ extension SpeciesDetailViewController: UITableViewDataSource {
             
             cell.phenologyLabel?.text = "When is the best time to find it?"
             
-            if let histogramData = self.histogramData, let chartView = cell.lineChartView {
+            if let histogramData = self.histogramData {
                 
                 let sortedKeys = histogramData.keys.sorted { Int($0)! < Int($1)! }
                 
