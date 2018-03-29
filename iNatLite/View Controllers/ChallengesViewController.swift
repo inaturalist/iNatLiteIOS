@@ -193,8 +193,6 @@ class ChallengesViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.recalculateBadges()
-        
         let realm = try! Realm()
         let observations = realm.objects(ObservationRealm.self)
         var profileImageName = "icn-profile"
