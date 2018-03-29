@@ -317,7 +317,7 @@ class ChallengesViewController: UIViewController {
 
     func recalculateBadges() -> BadgeRealm? {
         let realm = try! Realm()
-        let collected = realm.objects(TaxonRealm.self)
+        let collectedTaxa = realm.objects(TaxonRealm.self)
         var lastEarned: BadgeRealm?
         for badge in realm.objects(BadgeRealm.self).filter("earned == false") {
             if badge.iconicTaxonId != 0, badge.count != 0 {
@@ -330,7 +330,7 @@ class ChallengesViewController: UIViewController {
                     lastEarned = badge
                 }
             } else if badge.count != 0 {
-                if collected.count >= badge.count {
+                if collectedTaxa.count >= badge.count {
                     try! realm.write {
                         badge.earned = true
                         badge.earnedDate = Date()
