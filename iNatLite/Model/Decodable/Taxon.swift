@@ -23,12 +23,10 @@ struct Taxon: Decodable {
     let taxon_photos: [TaxonPhoto]?
     
     var anyNameCapitalized: String {
-        get {
-            if let name = preferred_common_name {
-                return name.localizedCapitalized
-            } else {
-                return self.name
-            }
+        if let name = preferred_common_name {
+            return name.localizedCapitalized
+        } else {
+            return self.name
         }
     }
     
