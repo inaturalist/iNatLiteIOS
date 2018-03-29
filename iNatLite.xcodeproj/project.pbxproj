@@ -352,6 +352,7 @@
 				FAB17006203F5E0000967951 /* Species Detail Cells */,
 				FA1DE1AF20377A6900ACBD17 /* Results Cells */,
 				FA1DE1942034DA5700ACBD17 /* SpeciesCollectionViewCell.swift */,
+				FAC610132044CBC30024BC5E /* RadialGradientView.swift */,
 				FA1DE19F2034F6CB00ACBD17 /* ChallengesHeaderView.swift */,
 				FA1DE1BE203A3B8900ACBD17 /* LocationTagCell.swift */,
 				FAF849C620434BFD009F10E3 /* BadgeCell.swift */,
@@ -378,7 +379,6 @@
 			isa = PBXGroup;
 			children = (
 				FA1DE1972034DE0A00ACBD17 /* UIColor+INatLite.swift */,
-				FAC610132044CBC30024BC5E /* RadialGradientView.swift */,
 				FAA2537D204C8FCE00D6EBAA /* CLLocationCoordinate2D+INatLite.swift */,
 				FAA2537F204D0F1C00D6EBAA /* NSAttributedString+INatLite.swift */,
 				FAA25381204DCC3E00D6EBAA /* Image+INatLite.swift */,
