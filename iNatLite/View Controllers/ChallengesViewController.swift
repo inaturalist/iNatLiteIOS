@@ -321,7 +321,7 @@ class ChallengesViewController: UIViewController {
         var lastEarned: BadgeRealm?
         for badge in realm.objects(BadgeRealm.self).filter("earned == false") {
             if badge.iconicTaxonId != 0, badge.count != 0 {
-                let filteredCollected = collected.filter("iconicTaxonId == \(badge.iconicTaxonId)")
+                let filteredCollected = collectedTaxa.filter("iconicTaxonId == \(badge.iconicTaxonId)")
                 if filteredCollected.count >= badge.count {
                     try! realm.write {
                         badge.earned = true
