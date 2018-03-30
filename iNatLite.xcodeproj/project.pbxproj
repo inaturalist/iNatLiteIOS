@@ -72,6 +72,7 @@
 		FAA2537E204C8FCE00D6EBAA /* CLLocationCoordinate2D+INatLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA2537D204C8FCE00D6EBAA /* CLLocationCoordinate2D+INatLite.swift */; };
 		FAA25380204D0F1C00D6EBAA /* NSAttributedString+INatLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA2537F204D0F1C00D6EBAA /* NSAttributedString+INatLite.swift */; };
 		FAA25382204DCC3E00D6EBAA /* Image+INatLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25381204DCC3E00D6EBAA /* Image+INatLite.swift */; };
+		FAAC4276206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC4275206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift */; };
 		FAB17008203F5E1B00967951 /* SpeciesImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB17007203F5E1B00967951 /* SpeciesImageCell.swift */; };
 		FAC610142044CBC30024BC5E /* RadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC610132044CBC30024BC5E /* RadialGradientView.swift */; };
 		FACB2D01204903280050053A /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB2D00204903280050053A /* AboutViewController.swift */; };
@@ -181,6 +182,7 @@
 		FAA2537D204C8FCE00D6EBAA /* CLLocationCoordinate2D+INatLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+INatLite.swift"; sourceTree = "<group>"; };
 		FAA2537F204D0F1C00D6EBAA /* NSAttributedString+INatLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+INatLite.swift"; sourceTree = "<group>"; };
 		FAA25381204DCC3E00D6EBAA /* Image+INatLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+INatLite.swift"; sourceTree = "<group>"; };
+		FAAC4275206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeResultsViewControllerTests.swift; sourceTree = "<group>"; };
 		FAB17007203F5E1B00967951 /* SpeciesImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesImageCell.swift; sourceTree = "<group>"; };
 		FAC610132044CBC30024BC5E /* RadialGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialGradientView.swift; sourceTree = "<group>"; };
 		FACB2D00204903280050053A /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 			children = (
 				FA1DE16E2034C77A00ACBD17 /* Info.plist */,
 				FADB959120609D6F00DC64E8 /* PlaceTests.swift */,
+				FAAC4275206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift */,
 			);
 			path = iNatLiteTests;
 			sourceTree = "<group>";
@@ -834,6 +837,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FADB959220609D6F00DC64E8 /* PlaceTests.swift in Sources */,
+				FAAC4276206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
