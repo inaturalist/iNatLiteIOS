@@ -82,8 +82,36 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         XCTAssertEqual(actionTarget, "startOverPressed", "With no target and no match, the action button should trigger a call to start over")
     }
     
-    func testNoTargetMatch() {
+    func testNoTargetMatchNotAlreadySeen() {
+        let emptyTaxon = Taxon(name: "", id: 0, iconic_taxon_id: 0, preferred_common_name: nil, default_photo: nil, wikipedia_summary: nil, observations_count: nil, rank: nil, rank_level: nil, taxon_photos: nil)
+        viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: emptyTaxon)
+        viewController.targetTaxon = nil
+        viewController.resultsLoaded = true
         
+        viewController.tableView!.reloadData()
+
+        let titleText = viewController.titleCell()!.title!.text!
+        XCTAssertTrue(titleText.contains("Sweet"), "With no target but a previously unseen match, the title should contain Sweet. May fail when tested in a non-english locale")
+        
+        let dividerCell = viewController.dividerCell()
+        let dividerImage = UIImage(named: "icn-results-match")
+        XCTAssertEqual(dividerImage, dividerCell?.dividerImageView?.image, "With no target but a previously unseen match, the divider cell should display the match image")
+
+        XCTAssertNil(viewController.imageCell(), "With no target but a previously unseen match, the image cell should not be displayed")
+        let imageTaxonCell = viewController.imageTaxonCell()
+        XCTAssertNotNil(imageTaxonCell, "With no target but a previously unseen match, the image taxon cell should be displayed")
+        XCTAssertNotNil(imageTaxonCell?.userImageView?.image, "With no target but a previously unseen match, image cell should contain an image from the user.")
+        
+        let actionCell = viewController.actionCell()
+        XCTAssertNil(actionCell?.infoLabel?.text, "With no target but a previously unseen match, the info text should be nil.")
+        XCTAssertFalse((actionCell?.actionButton?.isHidden)!, "With no target but a previously unseen match, the action button should be visible")
+        XCTAssertTrue(actionCell!.actionButton!.currentTitle!.contains("Add to Collection"), "With no target but a previously unseen match, the action button should be a call to add to collection. May fail when tested in a non-english locale.")
+        let actionTarget = actionCell?.actionButton?.actions(forTarget: viewController, forControlEvent: .touchUpInside)?.first
+        XCTAssertEqual(actionTarget, "addToCollection", "With no target but a previously unseen match, the action button should trigger a call to add to collection")
+    }
+    
+    func testNoTargetMatchAlreadySeen() {
+    
     }
     
     func testTargetNoMatch() {
