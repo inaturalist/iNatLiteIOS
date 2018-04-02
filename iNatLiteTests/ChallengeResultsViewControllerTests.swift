@@ -75,10 +75,9 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         
         
         let actionCell = viewController.actionCell()
-        XCTAssertTrue((actionCell?.infoLabel?.text?.contains("some photo tips"))!, "With no target and no match, the info text should contain photo tips. May fail when tested in a non-english locale")
-        XCTAssertFalse((actionCell?.infoLabel?.isHidden)!, "With no target and no match, the info label should be visible")
+        XCTAssertTrue((actionCell?.infoLabel?.text?.contains("some photo tips"))!, "With no target and no match, the info text should contain photo tips. May fail when tested in a non-english locale.")
         XCTAssertFalse((actionCell?.actionButton?.isHidden)!, "With no target and no match, the action button should be visible")
-        XCTAssertEqual(actionCell?.actionButton?.currentTitle, "Start Over", "With no target and no match, the action button should be a call to start over")
+        XCTAssertEqual(actionCell?.actionButton?.currentTitle, "Start Over", "With no target and no match, the action button should be a call to start over. May fail when test in a non-english locale.")
         let actionTarget = actionCell?.actionButton?.actions(forTarget: viewController, forControlEvent: .touchUpInside)?.first
         XCTAssertEqual(actionTarget, "startOverPressed", "With no target and no match, the action button should trigger a call to start over")
     }
