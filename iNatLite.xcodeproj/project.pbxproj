@@ -74,6 +74,7 @@
 		FAA25382204DCC3E00D6EBAA /* Image+INatLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25381204DCC3E00D6EBAA /* Image+INatLite.swift */; };
 		FAAC4276206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC4275206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift */; };
 		FAB17008203F5E1B00967951 /* SpeciesImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB17007203F5E1B00967951 /* SpeciesImageCell.swift */; };
+		FAC45A512071EB8C004AF1D2 /* IMG_0766.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAC45A502071EB8C004AF1D2 /* IMG_0766.jpg */; };
 		FAC610142044CBC30024BC5E /* RadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC610132044CBC30024BC5E /* RadialGradientView.swift */; };
 		FACB2D01204903280050053A /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB2D00204903280050053A /* AboutViewController.swift */; };
 		FACB2D0620490EF50050053A /* MadeByCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB2D0520490EF50050053A /* MadeByCell.swift */; };
@@ -184,6 +185,7 @@
 		FAA25381204DCC3E00D6EBAA /* Image+INatLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+INatLite.swift"; sourceTree = "<group>"; };
 		FAAC4275206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeResultsViewControllerTests.swift; sourceTree = "<group>"; };
 		FAB17007203F5E1B00967951 /* SpeciesImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesImageCell.swift; sourceTree = "<group>"; };
+		FAC45A502071EB8C004AF1D2 /* IMG_0766.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0766.jpg; sourceTree = "<group>"; };
 		FAC610132044CBC30024BC5E /* RadialGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialGradientView.swift; sourceTree = "<group>"; };
 		FACB2D00204903280050053A /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		FACB2D0520490EF50050053A /* MadeByCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeByCell.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 		FA1DE16B2034C77A00ACBD17 /* iNatLiteTests */ = {
 			isa = PBXGroup;
 			children = (
+				FAC45A522071EE11004AF1D2 /* Fixtures */,
 				FA1DE16E2034C77A00ACBD17 /* Info.plist */,
 				FADB959120609D6F00DC64E8 /* PlaceTests.swift */,
 				FAAC4275206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift */,
@@ -462,6 +465,14 @@
 				FA0A0DC220409A5A005B19F9 /* SpeciesSeenStatsCell.swift */,
 			);
 			path = "Species Detail Cells";
+			sourceTree = "<group>";
+		};
+		FAC45A522071EE11004AF1D2 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				FAC45A502071EB8C004AF1D2 /* IMG_0766.jpg */,
+			);
+			path = Fixtures;
 			sourceTree = "<group>";
 		};
 		FAC610152044E41E0024BC5E /* IconicTaxon */ = {
@@ -626,6 +637,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAC45A512071EB8C004AF1D2 /* IMG_0766.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
