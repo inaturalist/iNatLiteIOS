@@ -31,7 +31,7 @@ class ChallengeResultsViewController: UIViewController {
     @IBOutlet var activitySpinner: UIActivityIndicatorView?
     @IBOutlet var noticeLabel: UILabel?
     
-    var image: UIImage?
+    var imageFromUser: UIImage?
     var takenDate: Date?
     var takenLocation: CLLocation?
     
@@ -47,13 +47,13 @@ class ChallengeResultsViewController: UIViewController {
     weak var delegate: ChallengeResultsDelegate?
     
     func loadResults() {
-        if let image = self.image {
+        if let imageFromUser = self.imageFromUser {
             let jwtStr = JWT.encode(claims: ["application": "ios"], algorithm: .hs512(AppConfig.visionSekret.data(using: .utf8)!))
             // resize the image to 299x299
             let rect = CGRect(x: 0, y: 0, width: 299, height: 299)
             let newSize = CGSize(width: 299, height: 299)
             UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-            image.draw(in: rect)
+            imageFromUser.draw(in: rect)
             let newImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             let data = UIImageJPEGRepresentation(newImage!, 1)
@@ -227,7 +227,7 @@ class ChallengeResultsViewController: UIViewController {
     func configureImageCell(_ cell: ResultsImageCell) {
         cell.backgroundColor = UIColor.white.withAlphaComponent(0.07)
         
-        cell.userImageView?.image = self.image
+        cell.userImageView?.image = self.imageFromUser
         cell.userLabel?.text = nil
     }
     
@@ -242,7 +242,7 @@ class ChallengeResultsViewController: UIViewController {
         }
 
         // left photo is always user photo
-        cell.userImageView?.image = self.image
+        cell.userImageView?.image = self.imageFromUser
         
         // right label
         if let target = self.targetTaxon {
@@ -396,7 +396,7 @@ class ChallengeResultsViewController: UIViewController {
             }
  
             // save photo to documents directory
-            if let image = self.image, let data = UIImageJPEGRepresentation(image, 0.9)  {
+            if let imageFromUser = self.imageFromUser, let data = UIImageJPEGRepresentation(imageFromUser, 0.9)  {
                 if let photoPath = obs.pathForImage() {
                     try? data.write(to: photoPath)
                 }

@@ -518,7 +518,7 @@ extension ChallengesViewController: CropViewControllerDelegate {
                 vc.targetTaxon = detail.species
             }
 
-            vc.image = image
+            vc.imageFromUser = image
             vc.takenLocation = self.activePhotoLocation
             vc.takenDate = self.activePhotoDate
             vc.delegate = self
