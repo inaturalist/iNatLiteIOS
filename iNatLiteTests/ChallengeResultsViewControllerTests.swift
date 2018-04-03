@@ -86,6 +86,7 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         let emptyTaxon = Taxon(name: "", id: 0, iconic_taxon_id: 0, preferred_common_name: nil, default_photo: nil, wikipedia_summary: nil, observations_count: nil, rank: nil, rank_level: nil, taxon_photos: nil)
         viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: emptyTaxon)
         viewController.targetTaxon = nil
+        viewController.seenTaxaIds = []
         viewController.resultsLoaded = true
         
         viewController.tableView!.reloadData()
