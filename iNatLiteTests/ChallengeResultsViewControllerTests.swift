@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import iNatLite
+import RealmSwift
 
 class ChallengeResultsViewControllerTests: XCTestCase {
     
@@ -23,6 +24,12 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
+        
+        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = self.name
+        let realm = try! Realm()
+        try! realm.write {
+            realm.deleteAll()
+        }
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         viewController = storyboard.instantiateViewController(withIdentifier: "challengeResults") as! ChallengeResultsViewController
@@ -57,7 +64,6 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         viewController.resultScore = nil
         viewController.targetTaxon = nil
         viewController.resultsLoaded = true
-        
         viewController.tableView!.reloadData()
         
         let titleText = viewController.titleCell()!.title!.text!
@@ -88,7 +94,6 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         viewController.targetTaxon = nil
         viewController.seenTaxaIds = []
         viewController.resultsLoaded = true
-        
         viewController.tableView!.reloadData()
 
         let titleText = viewController.titleCell()!.title!.text!
@@ -112,7 +117,42 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     }
     
     func testNoTargetMatchAlreadySeen() {
-    
+        let emptyTaxon = Taxon(name: "", id: 0, iconic_taxon_id: 0, preferred_common_name: nil, default_photo: nil, wikipedia_summary: nil, observations_count: nil, rank: nil, rank_level: nil, taxon_photos: nil)
+        
+        let realm = try! Realm()
+        try! realm.write {
+            let observation = ObservationRealm()
+            observation.date = Date()
+            let taxon = TaxonRealm()
+            taxon.id = 0
+            observation.taxon = taxon
+            realm.add(observation)
+        }
+        
+        viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: emptyTaxon)
+        viewController.targetTaxon = nil
+        viewController.seenTaxaIds = [0]
+        viewController.resultsLoaded = true
+        viewController.tableView!.reloadData()
+        
+        let titleText = viewController.titleCell()!.title!.text!
+        XCTAssertTrue(titleText.contains("Deja"), "With no target but a previously seen match, the title should contain Deja. May fail when tested in a non-english locale")
+        
+        let dividerCell = viewController.dividerCell()
+        let dividerImage = UIImage(named: "icn-results-match")
+        XCTAssertEqual(dividerImage, dividerCell?.dividerImageView?.image, "With no target but a previously seen match, the divider cell should display the match image")
+        
+        XCTAssertNil(viewController.imageCell(), "With no target but a previously seen match, the image cell should not be displayed")
+        let imageTaxonCell = viewController.imageTaxonCell()
+        XCTAssertNotNil(imageTaxonCell, "With no target but a previously seen match, the image taxon cell should be displayed")
+        XCTAssertNotNil(imageTaxonCell?.userImageView?.image, "With no target but a previously seen match, image cell should contain an image from the user.")
+        
+        let actionCell = viewController.actionCell()
+        XCTAssertTrue((actionCell?.infoLabel?.text?.contains("You collected a photo"))!, "With no target but a previously seen match, the info text should contain a notice that you've already collected it. May fail when tested in a non-english locale.")
+        XCTAssertFalse((actionCell?.actionButton?.isHidden)!, "With no target but a previously seen match, the action button should be visible")
+        XCTAssertTrue(actionCell!.actionButton!.currentTitle!.contains("OK"), "With no target but a previously seen match, the action button should be OK. May fail when tested in a non-english locale.")
+        let actionTarget = actionCell?.actionButton?.actions(forTarget: viewController, forControlEvent: .touchUpInside)?.first
+        XCTAssertEqual(actionTarget, "okPressed", "With no target but a previously unseen match, the action button should trigger a call to a trigger to go back to the home screen.")
     }
     
     func testTargetNoMatch() {
