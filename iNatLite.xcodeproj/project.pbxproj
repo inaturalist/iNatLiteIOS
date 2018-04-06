@@ -54,6 +54,8 @@
 		FA7DF3AF2045FA5200B73B02 /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7DF3AE2045FA5200B73B02 /* ToastView.xib */; };
 		FA7DF3B12045FB0700B73B02 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7DF3B02045FB0700B73B02 /* ToastView.swift */; };
 		FA7DF3B3204612AA00B73B02 /* Badges.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA7DF3B2204612AA00B73B02 /* Badges.plist */; };
+		FA9556792077388E0029C974 /* UIImage+INatLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9556782077388E0029C974 /* UIImage+INatLite.swift */; };
+		FA95567B2077390C0029C974 /* UIImageInatLiteExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95567A2077390C0029C974 /* UIImageInatLiteExTests.swift */; };
 		FA9E5FB52043830C00CBC9DE /* TaxonRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9E5FB42043830C00CBC9DE /* TaxonRealm.swift */; };
 		FA9E5FB72043837000CBC9DE /* PhotoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9E5FB62043837000CBC9DE /* PhotoRealm.swift */; };
 		FA9E5FB92043B13800CBC9DE /* SpeciesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9E5FB82043B13800CBC9DE /* SpeciesMapViewController.swift */; };
@@ -165,6 +167,8 @@
 		FA7DF3AE2045FA5200B73B02 /* ToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
 		FA7DF3B02045FB0700B73B02 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		FA7DF3B2204612AA00B73B02 /* Badges.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Badges.plist; sourceTree = "<group>"; };
+		FA9556782077388E0029C974 /* UIImage+INatLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+INatLite.swift"; sourceTree = "<group>"; };
+		FA95567A2077390C0029C974 /* UIImageInatLiteExTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageInatLiteExTests.swift; sourceTree = "<group>"; };
 		FA9E5FB42043830C00CBC9DE /* TaxonRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxonRealm.swift; sourceTree = "<group>"; };
 		FA9E5FB62043837000CBC9DE /* PhotoRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRealm.swift; sourceTree = "<group>"; };
 		FA9E5FB82043B13800CBC9DE /* SpeciesMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesMapViewController.swift; sourceTree = "<group>"; };
@@ -318,6 +322,7 @@
 				FA1DE16E2034C77A00ACBD17 /* Info.plist */,
 				FADB959120609D6F00DC64E8 /* PlaceTests.swift */,
 				FAAC4275206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift */,
+				FA95567A2077390C0029C974 /* UIImageInatLiteExTests.swift */,
 			);
 			path = iNatLiteTests;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 				FAA2537F204D0F1C00D6EBAA /* NSAttributedString+INatLite.swift */,
 				FAA25381204DCC3E00D6EBAA /* Image+INatLite.swift */,
 				FAEB5C0B20687D7500BA3132 /* INatApi.swift */,
+				FA9556782077388E0029C974 /* UIImage+INatLite.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -795,6 +801,7 @@
 				FA0A0DBF20409A35005B19F9 /* SpeciesPhenologyCell.swift in Sources */,
 				FA1DE1B72037A07B00ACBD17 /* ResultsImageTaxonCell.swift in Sources */,
 				FA1DE18F2034CF6300ACBD17 /* SpeciesDetailViewController.swift in Sources */,
+				FA9556792077388E0029C974 /* UIImage+INatLite.swift in Sources */,
 				FA9E5FB52043830C00CBC9DE /* TaxonRealm.swift in Sources */,
 				FA1DE1AE2037761D00ACBD17 /* Config.swift in Sources */,
 				FA1DE18B2034CF2E00ACBD17 /* YourCollectionViewController.swift in Sources */,
@@ -849,6 +856,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FADB959220609D6F00DC64E8 /* PlaceTests.swift in Sources */,
+				FA95567B2077390C0029C974 /* UIImageInatLiteExTests.swift in Sources */,
 				FAAC4276206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

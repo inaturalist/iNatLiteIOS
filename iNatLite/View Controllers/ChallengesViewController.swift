@@ -193,30 +193,7 @@ class ChallengesViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let realm = try! Realm()
-        let observations = realm.objects(ObservationRealm.self)
-        var profileImageName = "icn-profile"
-        if observations.count == 0 {
-            profileImageName = "icn-profile-egg"
-        } else if observations.count == 1 {
-            profileImageName = "icn-profile-egg-crack-1"
-        } else if observations.count == 2 {
-            profileImageName = "icn-profile-egg-crack-2"
-        } else if observations.count < 15 {
-            profileImageName = "icn-profile-tadpole"
-        } else if observations.count < 35 {
-            profileImageName = "icn-profile-cub"
-        } else if observations.count < 65 {
-            profileImageName = "icn-profile-surveyor"
-        } else if observations.count < 100 {
-            profileImageName = "icn-profile-naturalist"
-        } else {
-            profileImageName = "icn-profile-explorer"
-        }
-        
-        if let profileImage = UIImage(named: profileImageName)?.withRenderingMode(.alwaysOriginal) {
-            self.footerProfileIcon?.setImage(profileImage, for: .normal)
-        }
+        self.configureFooter()
     }
     
     override func viewDidLoad() {
@@ -340,11 +317,21 @@ class ChallengesViewController: UIViewController {
             }
         }
         
+        return lastEarned
+    }
+    
+    // MARK: - Footer Helper
+    
+    func configureFooter() {
+        let realm = try! Realm()
         let observations = realm.objects(ObservationRealm.self)
         let earnedBadges = realm.objects(BadgeRealm.self).filter("earned = TRUE")
         let str = "Species: \(observations.count)    Badges: \(earnedBadges.count)"
         self.footerCollectionButton?.setTitle(str, for: .normal)
-        return lastEarned
+        
+        if let profileImage = UIImage.profileIconForObservationCount(observations.count) {
+            self.footerProfileIcon?.setImage(profileImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
     }
 }
 
