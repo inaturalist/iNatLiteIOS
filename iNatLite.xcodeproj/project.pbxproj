@@ -322,10 +322,10 @@
 			children = (
 				FAC45A522071EE11004AF1D2 /* Fixtures */,
 				FA1DE16E2034C77A00ACBD17 /* Info.plist */,
-				FADB959120609D6F00DC64E8 /* PlaceTests.swift */,
-				FAAC4275206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift */,
-				FA95567A2077390C0029C974 /* UIImageInatLiteExTests.swift */,
-				FA95567C207981470029C974 /* INatApiTests.swift */,
+				FA95567E20798AC10029C974 /* Model Tests */,
+				FA95567F20798AD70029C974 /* Utility Tests */,
+				FA95568120798AEA0029C974 /* View Controllers Tests */,
+				FA95568020798AE20029C974 /* Views Tests */,
 			);
 			path = iNatLiteTests;
 			sourceTree = "<group>";
@@ -440,6 +440,38 @@
 				FAF849CB20435C2A009F10E3 /* MyCollectionHeaderView.swift */,
 			);
 			path = "My Collection";
+			sourceTree = "<group>";
+		};
+		FA95567E20798AC10029C974 /* Model Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FADB959120609D6F00DC64E8 /* PlaceTests.swift */,
+			);
+			path = "Model Tests";
+			sourceTree = "<group>";
+		};
+		FA95567F20798AD70029C974 /* Utility Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FA95567A2077390C0029C974 /* UIImageInatLiteExTests.swift */,
+				FA95567C207981470029C974 /* INatApiTests.swift */,
+			);
+			path = "Utility Tests";
+			sourceTree = "<group>";
+		};
+		FA95568020798AE20029C974 /* Views Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Views Tests";
+			sourceTree = "<group>";
+		};
+		FA95568120798AEA0029C974 /* View Controllers Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FAAC4275206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift */,
+			);
+			path = "View Controllers Tests";
 			sourceTree = "<group>";
 		};
 		FA9E5FBA2044670100CBC9DE /* Fonts */ = {
