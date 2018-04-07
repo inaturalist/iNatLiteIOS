@@ -56,6 +56,7 @@
 		FA7DF3B3204612AA00B73B02 /* Badges.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA7DF3B2204612AA00B73B02 /* Badges.plist */; };
 		FA9556792077388E0029C974 /* UIImage+INatLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9556782077388E0029C974 /* UIImage+INatLite.swift */; };
 		FA95567B2077390C0029C974 /* UIImageInatLiteExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95567A2077390C0029C974 /* UIImageInatLiteExTests.swift */; };
+		FA95567D207981470029C974 /* INatApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95567C207981470029C974 /* INatApiTests.swift */; };
 		FA9E5FB52043830C00CBC9DE /* TaxonRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9E5FB42043830C00CBC9DE /* TaxonRealm.swift */; };
 		FA9E5FB72043837000CBC9DE /* PhotoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9E5FB62043837000CBC9DE /* PhotoRealm.swift */; };
 		FA9E5FB92043B13800CBC9DE /* SpeciesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9E5FB82043B13800CBC9DE /* SpeciesMapViewController.swift */; };
@@ -169,6 +170,7 @@
 		FA7DF3B2204612AA00B73B02 /* Badges.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Badges.plist; sourceTree = "<group>"; };
 		FA9556782077388E0029C974 /* UIImage+INatLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+INatLite.swift"; sourceTree = "<group>"; };
 		FA95567A2077390C0029C974 /* UIImageInatLiteExTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageInatLiteExTests.swift; sourceTree = "<group>"; };
+		FA95567C207981470029C974 /* INatApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INatApiTests.swift; sourceTree = "<group>"; };
 		FA9E5FB42043830C00CBC9DE /* TaxonRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxonRealm.swift; sourceTree = "<group>"; };
 		FA9E5FB62043837000CBC9DE /* PhotoRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRealm.swift; sourceTree = "<group>"; };
 		FA9E5FB82043B13800CBC9DE /* SpeciesMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesMapViewController.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				FADB959120609D6F00DC64E8 /* PlaceTests.swift */,
 				FAAC4275206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift */,
 				FA95567A2077390C0029C974 /* UIImageInatLiteExTests.swift */,
+				FA95567C207981470029C974 /* INatApiTests.swift */,
 			);
 			path = iNatLiteTests;
 			sourceTree = "<group>";
@@ -857,6 +860,7 @@
 			files = (
 				FADB959220609D6F00DC64E8 /* PlaceTests.swift in Sources */,
 				FA95567B2077390C0029C974 /* UIImageInatLiteExTests.swift in Sources */,
+				FA95567D207981470029C974 /* INatApiTests.swift in Sources */,
 				FAAC4276206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

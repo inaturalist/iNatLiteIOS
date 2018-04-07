@@ -13,19 +13,6 @@ import JWT
 
 class INatApi {
     
-    func postParamsForCoordinate(_ coordinate: CLLocationCoordinate2D?, date: Date?) -> [String: String] {
-        var params = [String: String]()
-        if let coordinate = coordinate {
-            let fuzzedCoordinate = coordinate.truncate(places: 2)
-            params["lat"] = "\(fuzzedCoordinate.latitude)"
-            params["lng"] = "\(fuzzedCoordinate.longitude)"
-        }
-        if let date = date {
-            params["observed_on"] = "\(date.timeIntervalSince1970)"
-        }
-        return params
-    }
-    
     func scoreImage(_ image: UIImage, coordinate: CLLocationCoordinate2D?, date: Date?, completion: @escaping (ScoreResponse?, Error?) -> Void) {
         if let resized = image.resizedTo(CGSize(width: 299, height: 299)), let imageData = UIImageJPEGRepresentation(resized, 1) {
             let jwtStr = JWT.encode(claims: ["application": "ios"], algorithm: .hs512(AppConfig.visionSekret.data(using: .utf8)!))
@@ -64,27 +51,6 @@ class INatApi {
         requestUrl(url, decodable: BoundingBoxResponse.self, completion: completion)
     }
     
-    func speciesCountsForPlaceParams(_ placeParams: [URLQueryItem], months:[Int], iconicTaxonId: Int?, completion: @escaping (SpeciesCountResponse?, Error?) -> Void) {
-        let urlString = "https://api.inaturalist.org/v1/observations/species_counts?threatened=false&verifiable=true&oauth_application_id=2,3&hrank=species&include_only_vision_taxa=true&not_in_list_id=945029"
-        
-        if var components = URLComponents(string: urlString) {
-            components.queryItems?.append(contentsOf: placeParams)
-            
-            let monthsStr = months.map({ "\($0)"}).joined(separator: ",")
-            components.queryItems?.append(URLQueryItem(name: "month", value: monthsStr))
-            
-            if let iconicTaxonId = iconicTaxonId {
-                components.queryItems?.append(URLQueryItem(name: "taxon_id", value: "\(iconicTaxonId)"))
-            }
-            
-            if let url = components.url {
-                requestUrl(url, decodable: SpeciesCountResponse.self, completion: completion)
-            }
-        } else {
-            completion(nil, nil)
-        }
-    }
-    
     func speciesCountsForPlaceId(_ placeId: Int, months:[Int], iconicTaxonId: Int?, completion: @escaping (SpeciesCountResponse?, Error?) -> Void) {
         let queryItem = URLQueryItem(name: "place_id", value: "\(placeId)")
         speciesCountsForPlaceParams([queryItem], months: months, iconicTaxonId: iconicTaxonId, completion: completion)
@@ -98,7 +64,56 @@ class INatApi {
         speciesCountsForPlaceParams(queryItems, months: months, iconicTaxonId: iconicTaxonId, completion: completion)
     }
     
-    func requestUrl<T>(_ url: URLConvertible, decodable: T.Type, completion: @escaping (T?, Error?) -> Void) where T : Decodable {
+    // MARK: - Internal helper methods
+    
+    internal func postParamsForCoordinate(_ coordinate: CLLocationCoordinate2D?, date: Date?) -> [String: String] {
+        var params = [String: String]()
+        if let coordinate = coordinate, CLLocationCoordinate2DIsValid(coordinate) {
+            let fuzzedCoordinate = coordinate.truncate(places: 2)
+            params["lat"] = "\(fuzzedCoordinate.latitude)"
+            params["lng"] = "\(fuzzedCoordinate.longitude)"
+        }
+        if let date = date {
+            params["observed_on"] = "\(date.timeIntervalSince1970)"
+        }
+        return params
+    }
+    
+    internal func speciesCountsUrlWithPlaceParams(_ placeParams: [URLQueryItem], months:[Int], iconicTaxonId: Int?) -> URL? {
+        let baseUrlString = "https://api.inaturalist.org/v1/observations/species_counts?threatened=false&verifiable=true&oauth_application_id=2,3&hrank=species&include_only_vision_taxa=true&not_in_list_id=945029"
+        
+        guard var components = URLComponents(string: baseUrlString) else {
+            return nil
+        }
+        
+        components.queryItems?.append(contentsOf: placeParams)
+        
+        if months.count > 0 {
+            let monthsStr = months.map({ "\($0)"}).joined(separator: ",")
+            components.queryItems?.append(URLQueryItem(name: "month", value: monthsStr))
+        }
+        
+        if let iconicTaxonId = iconicTaxonId {
+            components.queryItems?.append(URLQueryItem(name: "taxon_id", value: "\(iconicTaxonId)"))
+        }
+        
+        if let url = components.url {
+            return url
+        } else {
+            return nil
+        }
+    }
+    
+    internal func speciesCountsForPlaceParams(_ placeParams: [URLQueryItem], months:[Int], iconicTaxonId: Int?, completion: @escaping (SpeciesCountResponse?, Error?) -> Void) {
+        
+        if let url = self.speciesCountsUrlWithPlaceParams(placeParams, months: months, iconicTaxonId: iconicTaxonId) {
+            requestUrl(url, decodable: SpeciesCountResponse.self, completion: completion)
+        } else {
+            completion(nil, nil)
+        }
+    }
+
+    internal func requestUrl<T>(_ url: URLConvertible, decodable: T.Type, completion: @escaping (T?, Error?) -> Void) where T : Decodable {
         Alamofire.request(url).responseData { response in
             switch response.result {
             case .failure(let error):
@@ -114,7 +129,7 @@ class INatApi {
         }
     }
     
-    func multiPartPostToUrl<T>(_ url: URLConvertible, data: Data, params: [String: String]?, jwtStr: String?, decodable: T.Type, completion: @escaping (T?, Error?) -> Void) where T : Decodable {
+    internal func multiPartPostToUrl<T>(_ url: URLConvertible, data: Data, params: [String: String]?, jwtStr: String?, decodable: T.Type, completion: @escaping (T?, Error?) -> Void) where T : Decodable {
         
         Alamofire.upload(multipartFormData:{ multipartFormData in
             multipartFormData.append(data, withName: "image", fileName: "file.jpg", mimeType: "image/jpeg")
