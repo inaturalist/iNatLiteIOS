@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import CoreLocation
+import MapKit
 
 class ObservationRealm: Object {
     override static func primaryKey() -> String? {
@@ -22,21 +23,6 @@ class ObservationRealm: Object {
     @objc dynamic var latitude: Float = 0.0
     @objc dynamic var longitude: Float = 0.0
     @objc dynamic var placeName: String?
-    
-    var coordinate: CLLocationCoordinate2D? {
-        get {
-            if latitude != 0.0, longitude != 0.0 {
-                let coord = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
-                if CLLocationCoordinate2DIsValid(coord) {
-                    return coord
-                } else {
-                    return nil
-                }
-            } else {
-                return nil
-            }
-        }
-    }
     
     var uuid: UUID? {
         get {
@@ -84,6 +70,25 @@ class ObservationRealm: Object {
                 return fmt.string(from: date)
             } else {
                 return nil
+            }
+        }
+    }
+}
+
+extension ObservationRealm: MKAnnotation {
+    var coordinate: CLLocationCoordinate2D {
+        get {
+            if latitude != 0.0, longitude != 0.0 {
+                let coord = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude),
+                                                   longitude: CLLocationDegrees(longitude))
+                if CLLocationCoordinate2DIsValid(coord) {
+                    return coord
+                } else {
+                    return kCLLocationCoordinate2DInvalid
+                }
+            } else {
+                // nothing happens on null island
+                return kCLLocationCoordinate2DInvalid
             }
         }
     }

@@ -23,6 +23,9 @@ private let speciesPhenologyCellId = "SpeciesPhenologyCell"
 private let speciesAboutCellId = "SpeciesAboutCell"
 private let speciesSeenStatsCellId = "SpeciesSeenStatsCell"
 
+private let observationMarkerId = "observationMaker"
+
+
 class SpeciesDetailViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView?
@@ -57,8 +60,8 @@ class SpeciesDetailViewController: UIViewController {
     var displayCoordinate: CLLocationCoordinate2D? {
         get {
             if let observation = self.observation,
-                let truncatedCoordinate = observation.coordinate?.truncate(places: 2) {
-                return truncatedCoordinate
+                CLLocationCoordinate2DIsValid(observation.coordinate) {
+                return observation.coordinate.truncate(places: 2)
             } else if let coordinate = self.contextCoordinate {
                 return coordinate
             } else {
@@ -360,6 +363,7 @@ extension SpeciesDetailViewController: UITableViewDataSource {
             cell.selectionStyle = .none
             
             cell.mapView?.delegate = self
+            cell.mapView?.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: observationMarkerId)
             
             if let species = self.species {
                 if self.observation == nil {
@@ -382,9 +386,9 @@ extension SpeciesDetailViewController: UITableViewDataSource {
                 }
                 
                 if let observation = self.observation {
-                    if let coordinate = observation.coordinate {
+                    if CLLocationCoordinate2DIsValid(observation.coordinate) {
                         // add a map pin at the area they found it
-                        
+                        cell.mapView?.addAnnotation(observation)
                     } else  {
                         // hide the map and say no information is visible
                         cell.mapView?.isHidden = true
@@ -465,6 +469,19 @@ extension SpeciesDetailViewController: UITableViewDelegate {
 extension SpeciesDetailViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         return MKTileOverlayRenderer(tileOverlay: overlay as! MKTileOverlay)
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let obsAnnotation = annotation as? ObservationRealm else {
+            return nil
+        }
+        
+        if let view = mapView.dequeueReusableAnnotationView(withIdentifier: observationMarkerId, for: obsAnnotation) as? MKMarkerAnnotationView {
+            view.annotation = obsAnnotation
+            return view
+        } else {
+            return nil
+        }
     }
 }
 
