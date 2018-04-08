@@ -49,7 +49,7 @@ class BadgeRealm: Object {
     var localizedInfoText: String? {
         get {
             if let infoText = self.infoText {
-                //return NSLocalizedString(infoText, tableName: "LocalizableBadges.strings", bundle: Bundle.main, value: infoText, comment: "")
+                return NSLocalizedString(infoText, tableName: "LocalizableBadges.strings", bundle: Bundle.main, value: infoText, comment: "")
             } else {
                 return nil
             }
