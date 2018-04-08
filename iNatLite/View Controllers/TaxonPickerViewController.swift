@@ -24,7 +24,6 @@ class TaxonPickerViewController: UICollectionViewController, UICollectionViewDel
         super.viewDidLoad()
         
         self.collectionView?.contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        //self.collectionView?.backgroundColor = UIColor.INat.DarkBlue
         let gradient = RadialGradientView()
         gradient.insideColor = UIColor.INat.LighterDarkBlue
         gradient.outsideColor = UIColor.INat.DarkBlue
@@ -35,27 +34,12 @@ class TaxonPickerViewController: UICollectionViewController, UICollectionViewDel
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-
+    
     // MARK: - UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // 1 for all/world, 1 for each iconic taxon
