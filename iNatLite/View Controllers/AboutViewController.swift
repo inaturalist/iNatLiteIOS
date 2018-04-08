@@ -27,12 +27,10 @@ class AboutViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 3
     }
 
@@ -45,12 +43,12 @@ class AboutViewController: UITableViewController {
             
             return cell
         } else if indexPath.item == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: userActivityCellId, for: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: userActivityCellId, for: indexPath) 
             cell.backgroundColor = .clear
             
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: inatCreditsCellId, for: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: inatCreditsCellId, for: indexPath) 
             cell.backgroundColor = .clear
             
             return cell
