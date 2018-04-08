@@ -84,7 +84,6 @@
 		FACB2D0620490EF50050053A /* MadeByCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB2D0520490EF50050053A /* MadeByCell.swift */; };
 		FACB2D0D20490F4B0050053A /* INatCreditsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB2D0C20490F4B0050053A /* INatCreditsCell.swift */; };
 		FACB2D0F204A29D90050053A /* riffic-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FACB2D0E204A29D60050053A /* riffic-bold.ttf */; };
-		FADB959220609D6F00DC64E8 /* PlaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADB959120609D6F00DC64E8 /* PlaceTests.swift */; };
 		FAEB5C0C20687D7500BA3132 /* INatApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB5C0B20687D7500BA3132 /* INatApi.swift */; };
 		FAEDCA442048BB560016CEA4 /* WarningsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEDCA432048BB560016CEA4 /* WarningsViewController.swift */; };
 		FAF849C520434AA4009F10E3 /* BadgeRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF849C420434AA4009F10E3 /* BadgeRealm.swift */; };
@@ -201,7 +200,6 @@
 		FACB2D0520490EF50050053A /* MadeByCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeByCell.swift; sourceTree = "<group>"; };
 		FACB2D0C20490F4B0050053A /* INatCreditsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INatCreditsCell.swift; sourceTree = "<group>"; };
 		FACB2D0E204A29D60050053A /* riffic-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "riffic-bold.ttf"; sourceTree = "<group>"; };
-		FADB959120609D6F00DC64E8 /* PlaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTests.swift; sourceTree = "<group>"; };
 		FAEB5C0B20687D7500BA3132 /* INatApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INatApi.swift; sourceTree = "<group>"; };
 		FAEDCA432048BB560016CEA4 /* WarningsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningsViewController.swift; sourceTree = "<group>"; };
 		FAF849C420434AA4009F10E3 /* BadgeRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeRealm.swift; sourceTree = "<group>"; };
@@ -450,7 +448,6 @@
 		FA95567E20798AC10029C974 /* Model Tests */ = {
 			isa = PBXGroup;
 			children = (
-				FADB959120609D6F00DC64E8 /* PlaceTests.swift */,
 			);
 			path = "Model Tests";
 			sourceTree = "<group>";
@@ -896,7 +893,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FADB959220609D6F00DC64E8 /* PlaceTests.swift in Sources */,
 				FA95567B2077390C0029C974 /* UIImageInatLiteExTests.swift in Sources */,
 				FA95567D207981470029C974 /* INatApiTests.swift in Sources */,
 				FAAC4276206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift in Sources */,
