@@ -84,6 +84,7 @@
 		FACB2D0620490EF50050053A /* MadeByCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB2D0520490EF50050053A /* MadeByCell.swift */; };
 		FACB2D0D20490F4B0050053A /* INatCreditsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB2D0C20490F4B0050053A /* INatCreditsCell.swift */; };
 		FACB2D0F204A29D90050053A /* riffic-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FACB2D0E204A29D60050053A /* riffic-bold.ttf */; };
+		FAD48C462079FFC700FF3594 /* LocalizableBadges.strings in Resources */ = {isa = PBXBuildFile; fileRef = FAD48C482079FFC700FF3594 /* LocalizableBadges.strings */; };
 		FAEB5C0C20687D7500BA3132 /* INatApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB5C0B20687D7500BA3132 /* INatApi.swift */; };
 		FAEDCA442048BB560016CEA4 /* WarningsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEDCA432048BB560016CEA4 /* WarningsViewController.swift */; };
 		FAF849C520434AA4009F10E3 /* BadgeRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF849C420434AA4009F10E3 /* BadgeRealm.swift */; };
@@ -200,6 +201,7 @@
 		FACB2D0520490EF50050053A /* MadeByCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeByCell.swift; sourceTree = "<group>"; };
 		FACB2D0C20490F4B0050053A /* INatCreditsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INatCreditsCell.swift; sourceTree = "<group>"; };
 		FACB2D0E204A29D60050053A /* riffic-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "riffic-bold.ttf"; sourceTree = "<group>"; };
+		FAD48C472079FFC700FF3594 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LocalizableBadges.strings; sourceTree = "<group>"; };
 		FAEB5C0B20687D7500BA3132 /* INatApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INatApi.swift; sourceTree = "<group>"; };
 		FAEDCA432048BB560016CEA4 /* WarningsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningsViewController.swift; sourceTree = "<group>"; };
 		FAF849C420434AA4009F10E3 /* BadgeRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeRealm.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				FA1DE1572034C77A00ACBD17 /* AppDelegate.swift */,
 				FA1DE1AD2037761D00ACBD17 /* Config.swift */,
 				FAAA4F572079E62F00AA2D7C /* Localizable.strings */,
+				FAD48C482079FFC700FF3594 /* LocalizableBadges.strings */,
 				FA7DF3B2204612AA00B73B02 /* Badges.plist */,
 				FA1DE1632034C77A00ACBD17 /* Info.plist */,
 			);
@@ -660,6 +663,7 @@
 				FA7DF3AF2045FA5200B73B02 /* ToastView.xib in Resources */,
 				FA9E5FC72044671500CBC9DE /* Whitney-BlackItalic-Pro.otf in Resources */,
 				FA1DE1622034C77A00ACBD17 /* LaunchScreen.storyboard in Resources */,
+				FAD48C462079FFC700FF3594 /* LocalizableBadges.strings in Resources */,
 				FA1DE1932034D78200ACBD17 /* SpeciesCollectionView.xib in Resources */,
 				FAF849C920434C13009F10E3 /* BadgeCell.xib in Resources */,
 				FA1DE15F2034C77A00ACBD17 /* Assets.xcassets in Resources */,
@@ -947,6 +951,14 @@
 				FAAA4F562079E62F00AA2D7C /* en */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		FAD48C482079FFC700FF3594 /* LocalizableBadges.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAD48C472079FFC700FF3594 /* en */,
+			);
+			name = LocalizableBadges.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

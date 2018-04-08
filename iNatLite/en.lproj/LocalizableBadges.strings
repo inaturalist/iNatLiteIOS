@@ -1,0 +1,188 @@
+/* 
+  LocalizableBadges.strings
+  iNatLite
+
+  Created by Alex Shepard on 4/8/18.
+  Copyright © 2018 iNaturalist. All rights reserved.
+*/
+
+/* Badge Info Text for tadpole badge */
+"Earned after collecting your third species." = "Earned after collecting your third species.";
+/* Badge Title - like an ampibian tadpole */
+"Tadpole" = "Tadpole";
+
+/* Badge Info Text for cub badge */
+"Earned after collecting your 15th species." = "Earned after collecting your 15th species.";
+/* Badge Title - like bear cub */
+"Cub" = "Cub";
+
+/* Badge Info Text for surveyor badge */
+"Earned after collecting your 35th species." = "Earned after collecting your 35th species.";
+/* Badge Title */
+"Surveyor" = "Surveyor";
+
+/* Badge Info Text for Naturalist badge */
+"Earned after collecting your 65th species." = "Earned after collecting your 65th species.";
+/* Badge Title */
+"Naturalist" = "Naturalist";
+
+/* Badge Info Text for Explorer badge */
+"Earned after collecting your 100th species." = "Earned after collecting your 100th species.";
+/* Badge Title */
+"Explorer" = "Explorer";
+
+
+
+/* Badge Info Text */
+"Earned after collecting your first amphibian photo." = "Earned after collecting your first amphibian photo.";
+/* Badge Title */
+"1st Amphibian" = "1st Amphibian";
+
+/* Badge Info Text */
+"Earned after collecting your first arachnid photo." = "Earned after collecting your first arachnid photo.";
+/* Badge Title */
+"1st Arachnid" = "1st Arachnid";
+
+/* Badge Info Text */
+"Earned after collecting your first bird photo." = "Earned after collecting your first bird photo.";
+/* Badge Title */
+"1st Bird" = "1st Bird";
+
+/* Badge Info Text */
+"Earned after collecting your first fish photo." = "Earned after collecting your first fish photo.";
+/* Badge Title */
+"1st Fish" = "1st Fish";
+
+/* Badge Info Text */
+"Earned after collecting your first fungus photo." = "Earned after collecting your first fungus photo.";
+/* Badge Title */
+"1st Fungus" = "1st Fungus";
+
+/* Badge Info Text */
+"Earned after collecting your first insect photo." = "Earned after collecting your first insect photo.";
+/* Badge Title */
+"1st Insect" = "1st Insect";
+
+/* Badge Info Text */
+"Earned after collecting your first mammal photo." = "Earned after collecting your first mammal photo.";
+/* Badge Title */
+"1st Mammal" = "1st Mammal";
+
+/* Badge Info Text */
+"Earned after collecting your first mollusk photo." = "Earned after collecting your first mollusk photo.";
+/* Badge Title */
+"1st Mollusk" = "1st Mollusk";
+
+/* Badge Info Text */
+"Earned after collecting your first plant photo." = "Earned after collecting your first plant photo.";
+/* Badge Title */
+"1st Plant" = "1st Plant";
+
+/* Badge Info Text */
+"Earned after collecting your first reptile photo." = "Earned after collecting your first reptile photo.";
+/* Badge Title */
+"1st Reptile" = "1st Reptile";
+
+
+
+/* Badge Info Text */
+"Earned after collecting your fifth amphibian photo." = "Earned after collecting your fifth amphibian photo.";
+/* Badge Title */
+"5th Amphibian" = "5th Amphibian";
+
+/* Badge Info Text */
+"Earned after collecting your fifth arachnid photo." = "Earned after collecting your fifth arachnid photo.";
+/* Badge Title */
+"5th Arachnid" = "5th Arachnid";
+
+/* Badge Info Text */
+"Earned after collecting your fifth bird photo." = "Earned after collecting your fifth bird photo.";
+/* Badge Title */
+"5th Bird" = "5th Bird";
+
+/* Badge Info Text */
+"Earned after collecting your fifth fish photo." = "Earned after collecting your fifth fish photo.";
+/* Badge Title */
+"5th Fish" = "5th Fish";
+
+/* Badge Info Text */
+"Earned after collecting your fifth fungus photo." = "Earned after collecting your fifth fungus photo.";
+/* Badge Title */
+"5th Fungus" = "5th Fungus";
+
+/* Badge Info Text */
+"Earned after collecting your fifth insect photo." = "Earned after collecting your fifth insect photo.";
+/* Badge Title */
+"5th Insect" = "5th Insect";
+
+/* Badge Info Text */
+"Earned after collecting your fifth mammal photo." = "Earned after collecting your fifth mammal photo.";
+/* Badge Title */
+"5th Mammal" = "5th Mammal";
+
+/* Badge Info Text */
+"Earned after collecting your fifth mollusk photo." = "Earned after collecting your fifth mollusk photo.";
+/* Badge Title */
+"5th Mollusk" = "5th Mollusk";
+
+/* Badge Info Text */
+"Earned after collecting your fifth plant photo." = "Earned after collecting your fifth plant photo.";
+/* Badge Title */
+"5th Plant" = "5th Plant";
+
+/* Badge Info Text */
+"Earned after collecting your fifth reptile photo." = "Earned after collecting your fifth reptile photo.";
+/* Badge Title */
+"5th Reptile" = "5th Reptile";
+
+
+
+/* Badge Info Text */
+"Earned after collecting your 25th amphibian photo." = "Earned after collecting your 25th amphibian photo.";
+/* Badge Title */
+"25th Amphibian" = "25th Amphibian";
+
+/* Badge Info Text */
+"Earned after collecting your 25th arachnid photo." = "Earned after collecting your 25th arachnid photo.";
+/* Badge Title */
+"25th Arachnid" = "25th Arachnid";
+
+/* Badge Info Text */
+"Earned after collecting your 25th bird photo." = "Earned after collecting your 25th bird photo.";
+/* Badge Title */
+"25th Bird" = "25th Bird";
+
+/* Badge Info Text */
+"Earned after collecting your 25th fish photo." = "Earned after collecting your 25th fish photo.";
+/* Badge Title */
+"25th Fish" = "25th Fish";
+
+/* Badge Info Text */
+"Earned after collecting your 25th fungus photo." = "Earned after collecting your 25th fungus photo.";
+/* Badge Title */
+"25th Fungus" = "25th Fungus";
+
+/* Badge Info Text */
+"Earned after collecting your 25th insect photo." = "Earned after collecting your 25th insect photo.";
+/* Badge Title */
+"25th Insect" = "25th Insect";
+
+/* Badge Info Text */
+"Earned after collecting your 25th mammal photo." = "Earned after collecting your 25th mammal photo.";
+/* Badge Title */
+"25th Mammal" = "25th Mammal";
+
+/* Badge Info Text */
+"Earned after collecting your 25th mollusk photo." = "Earned after collecting your 25th mollusk photo.";
+/* Badge Title */
+"25th Mollusk" = "25th Mollusk";
+
+/* Badge Info Text */
+"Earned after collecting your 25th plant photo." = "Earned after collecting your 25th plant photo.";
+/* Badge Title */
+"25th Plant" = "25th Plant";
+
+/* Badge Info Text */
+"Earned after collecting your 25th reptile photo." = "Earned after collecting your 25th reptile photo.";
+/* Badge Title */
+"25th Reptile" = "25th Reptile";

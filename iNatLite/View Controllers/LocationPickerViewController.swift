@@ -48,8 +48,11 @@ class LocationPickerViewController: UIViewController {
             let region = MKCoordinateRegion(center: userLoc, span: span)
             map.setRegion(region, animated: true)
         } else {
-            let alert = UIAlertController(title: "Sorry", message: "Unable to determine your location.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            let alertTitle = NSLocalizedString("Sorry", comment: "Title of sorry alert")
+            let alertMsg = NSLocalizedString("Unable to determine your location.", comment: "Message of alert when we can't find your location")
+            let okButtonTitle = NSLocalizedString("OK", comment: "OK button title")
+            let alert = UIAlertController(title: alertTitle, message: alertMsg, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: okButtonTitle, style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
     }
@@ -89,7 +92,7 @@ class LocationPickerViewController: UIViewController {
                 map.setRegion(region, animated: false)
             }
         } else {
-            lookingLabel?.text = "Looking for species in:"
+            lookingLabel?.text = NSLocalizedString("Looking for species in:", comment: "Title for location picker. Below this text is a large label with the place name")
             locationLabel?.text = Place.Fixed.UnitedStates.name
         }
         
@@ -120,7 +123,7 @@ extension LocationPickerViewController: MKMapViewDelegate {
         // the user is panning or moving the map, clear the shown name
         // don't empty it so the UI stays fixed
         locationLabel?.text = " "
-        lookingLabel?.text = "Looking for species in a 50 mile radius around this point:"
+        lookingLabel?.text = NSLocalizedString("Looking for species in a 50 mile radius around this point:", comment: "The app currently uses US miles.")
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {

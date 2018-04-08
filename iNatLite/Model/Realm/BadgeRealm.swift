@@ -38,4 +38,23 @@ class BadgeRealm: Object {
             }
         }
     }
+    
+    var localizedName: String {
+        get {
+            return NSLocalizedString(self.name, tableName: "LocalizableBadges.strings", bundle: Bundle.main, value: self.name, comment: "")
+        }
+    }
+    
+    // translations manually added to Localizable.strings
+    var localizedInfoText: String? {
+        get {
+            if let infoText = self.infoText {
+                //return NSLocalizedString(infoText, tableName: "LocalizableBadges.strings", bundle: Bundle.main, value: infoText, comment: "")
+            } else {
+                return nil
+            }
+        }
+    }
+
+    
 }

@@ -53,8 +53,9 @@ class YourCollectionViewController: UIViewController {
                           SortDescriptor(keyPath: "index", ascending: true)]
         badges = realm.objects(BadgeRealm.self).sorted(by: badgeSorts)
         
-        let about = UIBarButtonItem(title: "About", style: .plain, target: self, action: #selector(YourCollectionViewController.aboutTapped))
-        self.navigationItem.rightBarButtonItem = about
+        let aboutTitle = NSLocalizedString("About", comment: "Button to go to about screen")
+        let aboutButton = UIBarButtonItem(title: aboutTitle, style: .plain, target: self, action: #selector(YourCollectionViewController.aboutTapped))
+        self.navigationItem.rightBarButtonItem = aboutButton
 
         badgesBackground?.backgroundColor = UIColor.INat.MyCollectionBadgesHeaderBackground
         view.backgroundColor = .white
@@ -127,7 +128,7 @@ extension YourCollectionViewController: UICollectionViewDataSource {
             
             if let badges = self.badges {
                 let badge = badges[indexPath.item]
-                cell.label?.text = badge.name
+                cell.label?.text = badge.localizedName
                 if badge.earned {
                     if let badgeIconName = badge.earnedIconName {
                         cell.imageView?.image = UIImage(named: badgeIconName)
@@ -174,19 +175,19 @@ extension YourCollectionViewController: UICollectionViewDataSource {
             // badges
             if let badges = self.badges {
                 if badges.filter("earned == TRUE").count > 0 {
-                    view.titleLabel?.text = "Recent Badges"
+                    view.titleLabel?.text = NSLocalizedString("Recent Badges", comment: "Title for badges section of my collection screen, if the user has earned any badges.")
                 } else {
-                    view.titleLabel?.text = "Badges"
+                    view.titleLabel?.text = NSLocalizedString("Badges", comment: "Title for badges section of my collection screen, if the user hasn't earned any badges.")
                 }
             }
-            view.moreButton?.setTitle("View All", for: .normal)
+            view.moreButton?.setTitle(NSLocalizedString("View All", comment: "Button to view all badges, seen next to the most recently earned badges"), for: .normal)
             view.moreButton?.addTarget(self, action: #selector(YourCollectionViewController.viewAllBadgesTapped), for: .touchUpInside)
             view.moreButton?.isHidden = false
             view.backgroundColor = UIColor.INat.MyCollectionBadgesHeaderBackground
         } else {
             // my collection
             if let observations = self.observations {
-                view.titleLabel?.text = "Species You've Seen (\(observations.count))"
+                view.titleLabel?.text = String(format: NSLocalizedString("Species You've Seen (%d)", comment: "Title for my collection section - the number is the count of species seen by the user"), observations.count)
             }
             view.moreButton?.isHidden = true
             view.backgroundColor = .white
@@ -204,17 +205,19 @@ extension YourCollectionViewController: UICollectionViewDelegate {
             // show alert
             if let badges = self.badges {
                 let badge = badges[indexPath.item]
-                if let info = badge.infoText
+                if let localizedInfo = badge.localizedInfoText
                 {
-                    let title = badge.name
+                    let title = badge.localizedName
                     
-                    var msg = info
+                    var msg = localizedInfo
                     if badge.earned {
-                        msg.append(" You earned this badge.")
+                        msg.append(" ")
+                        msg.append(NSLocalizedString("You earned this badge.", comment: "Message in a notice that indicates the user has earned a badge."))
                     }
 
                     let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                    let gotitButtonTitle = NSLocalizedString("Got it!", comment: "OK button after informational alert")
+                    alert.addAction(UIAlertAction(title: gotitButtonTitle, style: .default, handler: nil))
                     present(alert, animated: true)
                 }
             }

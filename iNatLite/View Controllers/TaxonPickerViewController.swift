@@ -55,7 +55,7 @@ class TaxonPickerViewController: UICollectionViewController, UICollectionViewDel
         // Configure the cell
         if indexPath.item == 0 {
             cell.imageView?.image = UIImage(named: "icn-iconic-taxa-all")?.withRenderingMode(.alwaysTemplate)
-            cell.label?.text = "All"
+            cell.label?.text = NSLocalizedString("All", comment: "Button to select all species for challenges")
             
             if self.selectedTaxon == nil {
                 cell.contentView.backgroundColor = UIColor.white

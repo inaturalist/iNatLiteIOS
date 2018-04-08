@@ -85,8 +85,10 @@ class SpeciesDetailViewController: UIViewController {
 
     @IBAction func licensePressed() {
         if let attr = self.activePhotoAttribution {
-            let alert = UIAlertController(title: "License", message: attr, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            let licenseText = NSLocalizedString("License", comment: "The creative commons license for a photograph")
+            let alert = UIAlertController(title: licenseText, message: attr, preferredStyle: .alert)
+            let okButtonTitle = NSLocalizedString("OK", comment: "OK button title")
+            alert.addAction(UIAlertAction(title: okButtonTitle, style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
     }
@@ -133,9 +135,9 @@ class SpeciesDetailViewController: UIViewController {
         }
         
         if self.observation == nil {
-            self.title = "Collect This!"
+            self.title = NSLocalizedString("Collect This!", comment: "Title for species details screen if the user hasn't collected this species")
         } else {
-            self.title = "Collected"
+            self.title = NSLocalizedString("Collected", comment: "Title for species details screen if the user has collected this species")
         }
         
         self.tableView?.backgroundColor = UIColor.INat.DarkBlue
@@ -227,11 +229,6 @@ class SpeciesDetailViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -261,12 +258,11 @@ class SpeciesDetailViewController: UIViewController {
             cell.showCollectedUI()
             
             // show collection data
-            var baseStr = "Collected"
             if let dateStr = observation.relativeDateString {
-                baseStr.append(" \(dateStr)")
+                cell.collectedLabel?.text = String(format: NSLocalizedString("Collected %@!", comment: "Date the user collected a species"), dateStr)
+            } else {
+                cell.collectedLabel?.text = NSLocalizedString("Collected!", comment: "The user collected a species, no date specified")
             }
-            baseStr.append("!")
-            cell.collectedLabel?.text = baseStr
             
             // show collection photo
             if let photoUrl = observation.pathForImage(),
@@ -282,6 +278,7 @@ class SpeciesDetailViewController: UIViewController {
         
         // show taxon photos after
         if let species = self.species {
+            
             if let taxon_photos = species.taxon_photos {
                 // show at most 10 taxon photos to avoid the
                 // giant hundred item indicator
@@ -294,13 +291,15 @@ class SpeciesDetailViewController: UIViewController {
                 if let first = taxon_photos.first,
                     let attr = first.photo.attribution
                 {
-                    cell.photoLicenseButton?.setTitle("CC", for: .normal)
                     self.activePhotoAttribution = attr
                 }
             } else if let photo = species.default_photo, let urlString = photo.medium_url {
                 cell.scrollView?.auk.show(url: urlString)
-                cell.photoLicenseButton?.setTitle("CC", for: .normal)
             }
+            
+            let ccText = NSLocalizedString("CC", comment: "CC is short for Creative Commons, which is how our photos are licensed. Tapping this button shows license details. This text should be very short.")
+            cell.photoLicenseButton?.setTitle(ccText, for: .normal)
+
         }
     }
 
@@ -330,13 +329,13 @@ extension SpeciesDetailViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: speciesNameCellId, for: indexPath) as! SpeciesNameCell
             cell.selectionStyle = .none
             
+            cell.scientificNameLabel?.text = NSLocalizedString("Scientific Name:", comment: "Below this label is the scientific name of this species.")
+
             if let species = self.species {
                 cell.commonName?.text = species.anyNameCapitalized
-                cell.scientificNameLabel?.text = "Scientific Name:"
                 cell.scientificName?.text = species.name
             } else if let observation = self.observation, let taxon = observation.taxon {
                 cell.commonName?.text = taxon.anyNameCapitalized
-                cell.scientificNameLabel?.text = "Scientific Name:"
                 cell.scientificName?.text = taxon.name
             }
             
@@ -347,9 +346,9 @@ extension SpeciesDetailViewController: UITableViewDataSource {
             
             if let species = self.species {
                 if let iconic = species.iconicTaxon() {
-                    cell.categoryLabel?.text = "Category: \(iconic.anyNameCapitalized)"
+                    cell.categoryLabel?.text = String(format: NSLocalizedString("Category: %@", comment: "Category of this species. Examples are Bird, Insect, Plant, etc"), iconic.anyNameCapitalized)
                 } else {
-                    cell.categoryLabel?.text = "Category: Other"
+                    cell.categoryLabel?.text = NSLocalizedString("Category: Other", comment: "If this species doesn't fit into our standard categories, then we just say other category.")
                 }
                 
                 if let iconicImage = species.iconicImageName() {
@@ -367,9 +366,9 @@ extension SpeciesDetailViewController: UITableViewDataSource {
             
             if let species = self.species {
                 if self.observation == nil {
-                    cell.locationLabel?.text = "Where are people seeing it nearby?"
+                    cell.locationLabel?.text = NSLocalizedString("Where are peope seeing it nearby?", comment: "Title for map section of species details")
                 } else {
-                    cell.locationLabel?.text = "Location"
+                    cell.locationLabel?.text = NSLocalizedString("Location", comment: "Title for map section of collected species, showing where you collected it")
                 }
                 
                 let template = "https://api.inaturalist.org/v1/colored_heatmap/{z}/{x}/{y}.png?taxon_id=\(species.id)"
@@ -393,7 +392,7 @@ extension SpeciesDetailViewController: UITableViewDataSource {
                         // hide the map and say no information is visible
                         cell.mapView?.isHidden = true
                         cell.mapProblemLabel?.isHidden = false
-                        cell.mapProblemLabel?.text = "Location Unknown"
+                        cell.mapProblemLabel?.text = NSLocalizedString("Location Unknown", comment: "When we are unable to find location information during species details")
                     }
                 }
                 
@@ -404,7 +403,7 @@ extension SpeciesDetailViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: speciesPhenologyCellId, for: indexPath) as! SpeciesPhenologyCell
             cell.selectionStyle = .none
             
-            cell.phenologyLabel?.text = "When is the best time to find it?"
+            cell.phenologyLabel?.text = NSLocalizedString("When is the best time to find it?", comment: "Title for chart showing when this species occurs over time")
             
             if let histogramData = self.histogramData {
                 
@@ -416,7 +415,7 @@ extension SpeciesDetailViewController: UITableViewDataSource {
                     dataEntry.append(point)
                 }
                 
-                let chartDataSet = LineChartDataSet(values: dataEntry, label: "Observations")
+                let chartDataSet = LineChartDataSet(values: dataEntry, label: nil)
                 cell.displayChartDataSet(chartDataSet, max: histogramData.values.max()!)
                 
             }
@@ -426,7 +425,7 @@ extension SpeciesDetailViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: speciesAboutCellId, for: indexPath) as! SpeciesAboutCell
             cell.selectionStyle = .none
             
-            cell.aboutLabel?.text = "About"
+            cell.aboutLabel?.text = NSLocalizedString("About", comment: "Title for About section")
             if let species = self.species, let text = species.wikipediaText {
                 cell.wikipediaTextLabel?.text = text
             }
@@ -436,13 +435,13 @@ extension SpeciesDetailViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: speciesSeenStatsCellId, for: indexPath) as! SpeciesSeenStatsCell
             cell.selectionStyle = .none
             
-            cell.seenLabel?.text = "Seen Using iNaturalist"
+            cell.seenLabel?.text = NSLocalizedString("Seen Using iNaturalist", comment: "Title for table showing stats on how often this species has been seen on inaturalist.org")
             
             if let species = self.species, let count = species.observations_count {
-                cell.worldwideStatsLabel?.text = "\(count) times worldwide"
+                cell.worldwideStatsLabel?.text = String(format: NSLocalizedString("%d times worldwide", comment: "number of times this species was seen on iNaturalist.org worldwide"), count)
             }
             if let count = obsCountInPlace, let placeName = placeName {
-                cell.localStatsLabel?.text = "\(count) times near \(placeName)"
+                cell.localStatsLabel?.text = String(format: NSLocalizedString("%d times near %@", comment: "number of times this species was seen on iNaturalist.org near the named place"), count, placeName)
             } else {
                 cell.localStatsLabel?.text = nil
             }

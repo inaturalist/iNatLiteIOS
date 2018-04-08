@@ -130,10 +130,10 @@ class ChallengesViewController: UIViewController {
             
             if let error = error {
                 self.failureTitle?.isHidden = false
-                self.failureTitle?.text = "Bummer"
+                self.failureTitle?.text = NSLocalizedString("Bummer", comment: "Title for a failure notice.")
                 
                 self.failureMessage?.isHidden = false
-                let failureMessageString = "Unable to load challenges: \(error.localizedDescription)"
+                let failureMessageString = String(format: NSLocalizedString("Unable to load challenges: %@", comment: "Failure message when we can't load challenges. The substitution string is a detailed error message from the OS"), error.localizedDescription)
                 if let font = UIFont(name: "Whitney-Medium", size: 16) {
                     let attrs = INatTextAttrs.attrsForFont(font, lineSpacing: 24, alignment: .center)
                     self.failureMessage?.attributedText = NSMutableAttributedString(string: failureMessageString, attributes: attrs)
@@ -326,7 +326,8 @@ class ChallengesViewController: UIViewController {
         let realm = try! Realm()
         let observations = realm.objects(ObservationRealm.self)
         let earnedBadges = realm.objects(BadgeRealm.self).filter("earned = TRUE")
-        let str = "Species: \(observations.count)    Badges: \(earnedBadges.count)"
+        
+        let str = String(format: NSLocalizedString("Species: %d    Badges: %d", comment: "Title for Species and Badge count button."), observations.count, earnedBadges.count)
         self.footerCollectionButton?.setTitle(str, for: .normal)
         
         if let profileImage = UIImage.profileIconForObservationCount(observations.count) {
@@ -345,11 +346,12 @@ extension ChallengesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if self.speciesCounts.count == 0, let spinner = self.activitySpinner, spinner.isHidden {
             // if the spinner is hidden but we have no results, tell the user we have no data
-            self.failureTitle?.text = "Bummer"
+            self.failureTitle?.text = NSLocalizedString("Bummer", comment: "Title for a failure notice.")
             if let font = UIFont(name: "Whitney-Medium", size: 16) {
                 let attrs = INatTextAttrs.attrsForFont(font, lineSpacing: 24, alignment: .center)
-                let msg = NSMutableAttributedString(string: "Looks like we're not turning up any species in this area. Please try another location.", attributes: attrs)
-                self.failureMessage?.attributedText = msg
+                let msgString = NSLocalizedString("Looks like we're not turning up any species in this area. Please try another location.", comment: "Failure notice when we can't find any challenges in your location.")
+                let msgAttrString = NSMutableAttributedString(string: msgString, attributes: attrs)
+                self.failureMessage?.attributedText = msgAttrString
             }
             
             self.failureTitle?.isHidden = false
@@ -396,7 +398,8 @@ extension ChallengesViewController: UICollectionViewDataSource {
                     view.placeButton?.setAttributedTitle(str, for: .normal)
                 } else {
                     // presumably still loading
-                    let str = NSMutableAttributedString(string: "Loading...")
+                    let loadingTxt = NSLocalizedString("Loading...", comment: "Loading text")
+                    let str = NSMutableAttributedString(string: loadingTxt)
                     str.append(NSAttributedString(string: " "))
                     str.append(downArrow.attributedString())
                     view.placeButton?.setAttributedTitle(str, for: .normal)
@@ -408,7 +411,7 @@ extension ChallengesViewController: UICollectionViewDataSource {
                 if let iconicTaxon = self.chosenIconicTaxon {
                     taxonFilterName = "\(iconicTaxon.anyNameCapitalized)"
                 } else {
-                    taxonFilterName = "All Species"
+                    taxonFilterName = NSLocalizedString("All Species", comment: "indicating that the user has chosen to see challenges from all species")
                 }
                 let str = NSMutableAttributedString(string: taxonFilterName)
                 str.append(NSAttributedString(string: " "))
@@ -532,15 +535,16 @@ extension  ChallengesViewController: GalleryControllerDelegate {
                     let crop = CropViewController(image: image)
                     crop.rotateButtonsHidden = true
                     crop.aspectRatioPickerButtonHidden = true
-                    crop.cancelButtonTitle = "Retake"
+                    crop.cancelButtonTitle = NSLocalizedString("Retake", comment: "Retake a photo")
                     crop.delegate = self
                     controller.navigationController?.pushViewController(crop, animated: true)
                 } else {
-                    var errorMsg = "Unable to load image."
+                    var errorMsg = NSLocalizedString("Unable to load image.", comment: "Error when we can't load an image from iCloud")
                     if let error = error {
                         errorMsg = error.localizedDescription
                     }
-                    HUD.flash(HUDContentType.labeledError(title: "Error", subtitle: errorMsg), onView: controller.view, delay: 4.0, completion: nil)
+                    let errorTitle = NSLocalizedString("Error", comment: "Title for error message")
+                    HUD.flash(HUDContentType.labeledError(title: errorTitle, subtitle: errorMsg), onView: controller.view, delay: 4.0, completion: nil)
                     
                     // clear the selection
                     for image in controller.cart.images {
@@ -616,7 +620,7 @@ extension ChallengesViewController: ChallengeResultsDelegate {
                     {
                         toast.imageView?.image = image
                     }
-                    toast.titleLabel?.text = "\(lastEarned.name) badge earned!"
+                    toast.titleLabel?.text = String(format: NSLocalizedString("%@ badge earned!", comment: "toast when the user has earned a badge, with the name of the badge."), lastEarned.name)
                 } else {
                     // toast about taxon
                     if let imageName = taxon.iconicImageName(),
@@ -624,7 +628,7 @@ extension ChallengesViewController: ChallengeResultsDelegate {
                     {
                         toast.imageView?.image = image
                     }
-                    toast.titleLabel?.text = "\(taxon.anyNameCapitalized) collected!"
+                    toast.titleLabel?.text = String(format: NSLocalizedString("%@ collected!", comment: "toast when the user has collected a species, with the name of the species."), taxon.anyNameCapitalized)
                     toast.imageView?.tintColor = UIColor.INat.SpeciesAddButton
                 }
                 toast.messageLabel?.text = nil

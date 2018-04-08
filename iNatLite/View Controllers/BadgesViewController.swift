@@ -31,11 +31,11 @@ class BadgesViewController: UICollectionViewController {
         if let badges = badges {
             let earned = badges.filter("earned == true")
             if earned.count == 0 {
-                self.title = "No Badges Earned"
+                self.title = NSLocalizedString("No Badges Earned", comment: "Title for badge screen when user hasn't earned any badges")
             } else if earned.count == 1 {
-                self.title = "1 Badge Earned!"
+                self.title = NSLocalizedString("1 Badge Earned!", comment: "Title for badge screen when the user has earned one badge.")
             } else {
-                self.title = "\(earned.count) Badges Earned!"
+                self.title = String(format: NSLocalizedString("%d Badges Earned!", comment: "Title for the badges screen when the user has earned more than one badge."), earned.count)
             }
         }
         
@@ -63,7 +63,7 @@ class BadgesViewController: UICollectionViewController {
     
         if let badges = self.badges {
             let badge = badges[indexPath.item]
-            cell.label?.text = badge.name
+            cell.label?.text = badge.localizedName
             cell.label?.textColor = UIColor.INat.BadgeNameText
             if badge.earned {
                 if let badgeIconName = badge.earnedIconName {
@@ -85,14 +85,16 @@ class BadgesViewController: UICollectionViewController {
         if let badges = self.badges {
             let badge = badges[indexPath.item]
             
-            if let info = badge.infoText {
-                let title = badge.name
-                var msg = info
+            if let localizedInfo = badge.localizedInfoText {
+                let title = badge.localizedName
+                var msg = localizedInfo
                 if badge.earned {
-                    msg.append(" You earned this badge.")
+                    msg.append(" ")
+                    msg.append(NSLocalizedString("You earned this badge.", comment: "Message in a notice that indicates the user has earned a badge."))
                 }
                 let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                let gotitButtonTitle = NSLocalizedString("Got it!", comment: "OK button after informational alert")
+                alert.addAction(UIAlertAction(title: gotitButtonTitle, style: .default, handler: nil))
                 present(alert, animated: true)
             }
         }
