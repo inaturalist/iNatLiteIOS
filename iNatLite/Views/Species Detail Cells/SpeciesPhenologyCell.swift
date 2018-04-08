@@ -68,8 +68,9 @@ class SpeciesPhenologyCell: UITableViewCell {
             lineChartView?.leftAxis.labelFont = font
         }
         
-        let xAxisLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        lineChartView?.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxisLabels)
+        let df = DateFormatter()
+        df.locale = Locale.current
+        lineChartView?.xAxis.valueFormatter = IndexAxisValueFormatter(values: df.shortMonthSymbols)
         
         let chartData = LineChartData()
         chartData.addDataSet(chartDataSet)
