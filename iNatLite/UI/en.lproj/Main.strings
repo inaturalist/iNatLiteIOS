@@ -1,0 +1,76 @@
+
+/* Privacy explanation about how we use your location. */
+"1Cn-0T-7ct.text" = "We use your location to suggest plants and animals to find near you, but we blur the location before we use it so your street name and town or city is not identifiable.";
+
+/* One of several warnings about how to be safe when exploring wildlife. */
+"1bF-th-L6p.text" = "Don't eat anything you find in the wild.";
+
+/* One of several warnings about how to be safe when exploring wildlife. */
+"Uwk-Wh-xwV.text" = "Always be aware of your surroundings and stay safe!";
+
+/* One of several warnings about how to be safe when exploring wildlife. */
+"dTJ-gU-jYb.text" = "Respect other living things by not harassing or touching them. Some may sting, bite, or make you itch.";
+
+/* One of several warnings about how to be safe when exploring wildlife. */
+"kZ7-U2-bOe.text" = "Don't trespass.";
+
+/* Part of the first launch text explaining how the app works. */
+"w4p-VQ-ooL.text" = "Here's what to do!";
+
+/* Part of the first launch explanation of how the app works. */
+"3xj-M3-D3M.text" = "Curious about a plant or critter? Take a photo with the plus button and we’ll do our best to tell you what species it is.";
+
+/* Part of the first launch explanation of how the app works. */
+"57z-oJ-azl.text" = "Earn badges for taking photos of the plants and wildlife around you. ";
+
+/* Part of the first launch explanation of how the app works. */
+"o1f-dQ-N3S.text" = "Check the home screen for suggestions of plants and animals found near you.";
+
+/* Help text explaining badges to the user. */
+"ulw-BF-NeZ.text" = "Earn badges by photographing as many species as you can!";
+
+/* Title for button to get started using Seek */
+"c55-2e-twX.normalTitle" = "Let’s Get Started!";
+
+/* OK button */
+"6Gw-58-YVa.normalTitle" = "OK. Got it!";
+
+/* Loading text */
+"G9j-jQ-PcF.normalTitle" = "Loading...";
+
+/* Title of the first launch explanation of how the app works */
+"JGi-jp-Oou.text" = "Welcome to Seek!";
+
+/* The app currently uses US miles. */
+"SuB-ud-Yz0.text" = "Looking for species in a 50 mile radius around this point:";
+
+/* Title for a screen that allows the user to select from several categories of wildlife (plants, insects, etc) */
+"TUe-b6-f2T.text" = "Show me...";
+
+/* Title for button to show challenges drawn from all species of wildlife */
+"Upo-IQ-jKa.normalTitle" = "All Species";
+
+/* The line below this text will contain the approximate geocoded place name of the user (or the place name they've chosen on the map) */
+"eIN-Ub-XAq.text" = "Species you're most likely to see near:";
+
+/* Backyard Wilderness is the title of a movie, and should not be translated. */
+"sLg-F6-zId.text" = "Backyard Wilderness presents:";
+
+/* Header for Backyard Wilderness movie title graphic */
+"yGK-Vi-S4r.text" = "Presented by";
+
+/* Seek app's institutional partnership credits */
+"bQj-I3-JL2.text" = "The Seek app was made by iNaturalist at the California Academy of Sciences and National Geographic Society with support from HHMI Tangled Bank Studios.";
+
+/* Header for credits section of the app */
+"oI2-RU-XqN.text" = "Credits:";
+
+/* Seek app development team credits */
+"jet-Gw-zJL.text" = "Designed and developed by the iNaturalist team: Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda. Special thanks to Caltech, Cornell Tech, Parker Kellman, and the iNaturalist community.\n\n";
+
+/* User and data privacy explanation of Seek app, presented in the about screen. */
+"ymA-0z-P9g.text" = "This app does not generate or share citizen science data with iNaturalist nor collect, use or disclose personal information. Geolocation information used by the app is blurred so that it is not sufficient to identify street name and name of a city or town";
+
+/* Done button */
+"k11-gm-NZK.normalTitle" = "Done";
+

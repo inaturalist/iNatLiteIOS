@@ -840,20 +840,20 @@
                                         <rect key="frame" x="0.0" y="717" width="375" height="212"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tG2-U6-idR" id="F5t-mQ-iVk">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="212"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="211.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9Io-4D-Jxa">
-                                                    <rect key="frame" x="16" y="16" width="343" height="179"/>
+                                                    <rect key="frame" x="16" y="16" width="343" height="179.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ioC-B2-k9W">
-                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="19"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="19.5"/>
                                                             <fontDescription key="fontDescription" name="Whitney-Medium" family="Whitney" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8w-WO-l5y">
-                                                            <rect key="frame" x="0.0" y="29" width="343" height="150"/>
+                                                            <rect key="frame" x="0.0" y="29.5" width="343" height="150"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lAD-U9-jyn" customClass="LineChartView" customModule="Charts">
                                                                     <rect key="frame" x="10" y="10" width="323" height="130"/>
@@ -890,20 +890,20 @@
                                         <rect key="frame" x="0.0" y="929" width="375" height="212"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NMn-48-yqz" id="78e-P0-1g3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="212"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="211.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3ya-g1-qe2">
-                                                    <rect key="frame" x="16" y="16" width="343" height="179"/>
+                                                    <rect key="frame" x="16" y="16" width="343" height="179.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2jS-wW-j7B">
-                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="153"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="153.5"/>
                                                             <fontDescription key="fontDescription" name="Whitney-Medium" family="Whitney" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVV-Cg-eA1">
-                                                            <rect key="frame" x="0.0" y="163" width="343" height="16"/>
+                                                            <rect key="frame" x="0.0" y="163.5" width="343" height="16"/>
                                                             <fontDescription key="fontDescription" name="Whitney-Book" family="Whitney" pointSize="16"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -1565,7 +1565,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ma2-ep-jBZ">
-                                                            <rect key="frame" x="187.5" y="0.0" width="167.5" height="120"/>
+                                                            <rect key="frame" x="187.5" y="0.0" width="167.5" height="104"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kmi-mS-qwX">
                                                                     <rect key="frame" x="14" y="0.0" width="140" height="94"/>
@@ -1574,8 +1574,8 @@
                                                                         <constraint firstAttribute="height" constant="140" id="MoF-65-7zz"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBJ-tf-vdh">
-                                                                    <rect key="frame" x="66" y="104" width="36" height="16"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBJ-tf-vdh">
+                                                                    <rect key="frame" x="84" y="104" width="0.0" height="0.0"/>
                                                                     <fontDescription key="fontDescription" name="Whitney-Medium" family="Whitney" pointSize="16"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
