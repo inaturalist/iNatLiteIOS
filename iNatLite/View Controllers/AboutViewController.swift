@@ -17,7 +17,7 @@ class AboutViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "About"
+        self.title = NSLocalizedString("About", comment: "Title of the about screen")
 
         let imageView = UIImageView(image: UIImage(named: "bg-splash"))
         imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
