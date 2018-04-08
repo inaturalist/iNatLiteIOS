@@ -75,6 +75,7 @@
 		FAA2537E204C8FCE00D6EBAA /* CLLocationCoordinate2D+INatLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA2537D204C8FCE00D6EBAA /* CLLocationCoordinate2D+INatLite.swift */; };
 		FAA25380204D0F1C00D6EBAA /* NSAttributedString+INatLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA2537F204D0F1C00D6EBAA /* NSAttributedString+INatLite.swift */; };
 		FAA25382204DCC3E00D6EBAA /* Image+INatLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25381204DCC3E00D6EBAA /* Image+INatLite.swift */; };
+		FAAA4F552079E62F00AA2D7C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FAAA4F572079E62F00AA2D7C /* Localizable.strings */; };
 		FAAC4276206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC4275206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift */; };
 		FAB17008203F5E1B00967951 /* SpeciesImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB17007203F5E1B00967951 /* SpeciesImageCell.swift */; };
 		FAC45A512071EB8C004AF1D2 /* IMG_0766.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAC45A502071EB8C004AF1D2 /* IMG_0766.jpg */; };
@@ -191,6 +192,7 @@
 		FAA25381204DCC3E00D6EBAA /* Image+INatLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+INatLite.swift"; sourceTree = "<group>"; };
 		FAAA4F502079E21500AA2D7C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		FAAA4F522079E21700AA2D7C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		FAAA4F562079E62F00AA2D7C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FAAC4275206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeResultsViewControllerTests.swift; sourceTree = "<group>"; };
 		FAB17007203F5E1B00967951 /* SpeciesImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesImageCell.swift; sourceTree = "<group>"; };
 		FAC45A502071EB8C004AF1D2 /* IMG_0766.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0766.jpg; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 				FA1DE1852034C92E00ACBD17 /* iNatLite.entitlements */,
 				FA1DE1572034C77A00ACBD17 /* AppDelegate.swift */,
 				FA1DE1AD2037761D00ACBD17 /* Config.swift */,
+				FAAA4F572079E62F00AA2D7C /* Localizable.strings */,
 				FA7DF3B2204612AA00B73B02 /* Badges.plist */,
 				FA1DE1632034C77A00ACBD17 /* Info.plist */,
 			);
@@ -663,6 +666,7 @@
 				FA1DE1932034D78200ACBD17 /* SpeciesCollectionView.xib in Resources */,
 				FAF849C920434C13009F10E3 /* BadgeCell.xib in Resources */,
 				FA1DE15F2034C77A00ACBD17 /* Assets.xcassets in Resources */,
+				FAAA4F552079E62F00AA2D7C /* Localizable.strings in Resources */,
 				FA1DE15D2034C77A00ACBD17 /* Main.storyboard in Resources */,
 				FA9E5FCD2044671500CBC9DE /* Whitney-Semibold-Pro.otf in Resources */,
 				FA9E5FCE2044671500CBC9DE /* Whitney-Bold-Pro.otf in Resources */,
@@ -939,6 +943,14 @@
 				FAAA4F522079E21700AA2D7C /* en */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		FAAA4F572079E62F00AA2D7C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAAA4F562079E62F00AA2D7C /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
