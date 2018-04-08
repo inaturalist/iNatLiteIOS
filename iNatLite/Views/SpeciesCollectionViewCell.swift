@@ -34,9 +34,4 @@ class SpeciesCollectionViewCell: UICollectionViewCell {
         
         self.nameScrim?.backgroundColor = UIColor.INat.SpeciesChicletLabelBackground
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        //self.nameLabel?.sizeToFit()
-    }
 }
