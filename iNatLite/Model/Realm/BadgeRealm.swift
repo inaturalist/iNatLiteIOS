@@ -45,7 +45,6 @@ class BadgeRealm: Object {
         }
     }
     
-    // translations manually added to Localizable.strings
     var localizedInfoText: String? {
         get {
             if let infoText = self.infoText {
