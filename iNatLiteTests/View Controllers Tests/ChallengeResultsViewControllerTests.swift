@@ -170,7 +170,31 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     }
     
     func testTargetNoMatch() {
+        viewController.targetTaxon = self.soldierFlyTaxon()
+        viewController.resultScore = nil
+        viewController.resultsLoaded = true
+        viewController.tableView!.reloadData()
         
+        let titleText = viewController.titleCell()!.title!.text!
+        XCTAssertTrue(titleText.contains("Hrm"), "With a target but no match, the title should contain Hrm. May fail when tested in a non-english locale")
+        
+        let dividerCell = viewController.dividerCell()
+        let dividerImage = UIImage(named: "icn-results-unknown")
+        XCTAssertEqual(dividerImage, dividerCell?.dividerImageView?.image, "With a target but no match, the divider cell should display the match image")
+        
+        
+        XCTAssertNil(viewController.imageCell(), "With a target but no match, the image cell should not be displayed")
+        let imageTaxonCell = viewController.imageTaxonCell()
+        XCTAssertNotNil(imageTaxonCell, "With a target but no match, the image taxon cell should be displayed")
+        // can't seem to test that the image equals the fixture image, perhaps due to resizing/compression?
+        XCTAssertNotNil(imageTaxonCell?.userImageView?.image, "With a target but no match, image cell should contain an image from the user.")
+        
+        let actionCell = viewController.actionCell()
+        XCTAssertTrue((actionCell?.infoLabel?.text?.contains("photo tips"))!, "With a target but no match, the info text should contain photo tips. May fail when tested in a non-english locale.")
+        XCTAssertFalse((actionCell?.actionButton?.isHidden)!, "With a target but no match, the action button should be visible")
+        XCTAssertTrue(actionCell!.actionButton!.currentTitle!.contains("Start Over"), "With a target but no match, the action button should be Start Over. May fail when tested in a non-english locale.")
+        let actionTarget = actionCell?.actionButton?.actions(forTarget: viewController, forControlEvent: .touchUpInside)?.first
+        XCTAssertEqual(actionTarget, "startOverPressed", "With a target but no match, the action button should start over.")
     }
     
     func testTargetMatch() {
