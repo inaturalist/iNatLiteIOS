@@ -64,4 +64,10 @@ class UIImageInatLiteExTests: XCTestCase {
         XCTAssertNotNil(resized, "resized image from fixture should not be nil")
         XCTAssertEqual(resized!.size, newSize, "resized image from fixture should be the correct size")
     }
+    
+    func testNilImageResize() {
+        let image: UIImage? = nil
+        let newSize = CGSize(width: 299, height: 299)
+        XCTAssertNil(image?.resizedTo(newSize), "resizing a nil uiimage should be nil, but mainly shouldn't crash")
+    }
 }
