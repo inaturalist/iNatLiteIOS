@@ -25,5 +25,9 @@ class FixtureHelperTests: XCTestCase {
     func testEpidendrumSecundumTaxonFixtureExists() {
         XCTAssertNotNil(FixtureHelper.epidendrumSecundumTaxon(), "Epidendrum Secundum taxon fixture should exist.")
     }
+    
+    func testOchreSeaStarTaxonFixtureExists() {
+        XCTAssertNotNil(FixtureHelper.ochreSeaStarTaxon(), "Ochre Sea Star taxon fixture should exist.")
+    }
 
 }

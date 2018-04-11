@@ -23,12 +23,11 @@ struct Taxon: Decodable {
     let taxon_photos: [TaxonPhoto]?
     
     var wikipediaText: String? {
-        if let summary = self.wikipedia_summary {
-            var str = summary.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-            str.append(" (reference: Wikipedia)")
-            return str
+        if let htmlSummary = self.wikipedia_summary {
+            let summary = htmlSummary.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+            return String(format: NSLocalizedString("%@ (reference: Wikipedia)", comment: "The substition here is an excerpt of the wikipedia article for a species, in the local language if possible."), summary)
         } else {
-            return "No additional information."
+            return NSLocalizedString("No additional information.", comment: "What we show instead when we have no wikipedia extract to show the user.")
         }
     }
 }

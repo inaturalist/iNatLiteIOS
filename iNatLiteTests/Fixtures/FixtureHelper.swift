@@ -31,6 +31,11 @@ class FixtureHelper: NSObject {
         return taxonFixtureWithId(130068)
     }
     
+    // this taxon has no iconic taxon (within seek)
+    class func ochreSeaStarTaxon() -> Taxon? {
+        return taxonFixtureWithId(49699)
+    }
+    
     internal class func taxonFixtureWithId(_ taxonId: Int) -> Taxon? {
         if let path = Bundle(for: ChallengeResultsViewControllerTests.self).path(forResource: "\(taxonId)", ofType: "json") {
             let url = URL(fileURLWithPath: path)

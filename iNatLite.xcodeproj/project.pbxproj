@@ -55,6 +55,8 @@
 		FA6814D0207EC8B000AF7C17 /* FixtureHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6814CF207EC8B000AF7C17 /* FixtureHelper.swift */; };
 		FA6814D3207EC9B200AF7C17 /* FixtureHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6814D2207EC9B200AF7C17 /* FixtureHelperTests.swift */; };
 		FA6814D5207ECA7E00AF7C17 /* TaxonNamingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6814D4207ECA7E00AF7C17 /* TaxonNamingTests.swift */; };
+		FA6814D7207ED3CD00AF7C17 /* TaxonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6814D6207ED3CD00AF7C17 /* TaxonTests.swift */; };
+		FA6814D9207ED76800AF7C17 /* 49699.json in Resources */ = {isa = PBXBuildFile; fileRef = FA6814D8207ED76800AF7C17 /* 49699.json */; };
 		FA6D75AC203B6EAE00C3535F /* TaxonPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D75AB203B6EAE00C3535F /* TaxonPickerViewController.swift */; };
 		FA6D75AE203B6FA300C3535F /* IconicTaxonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D75AD203B6FA300C3535F /* IconicTaxonCell.swift */; };
 		FA6D75B3203BC07000C3535F /* ObservationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D75B2203BC07000C3535F /* ObservationRealm.swift */; };
@@ -177,6 +179,8 @@
 		FA6814CF207EC8B000AF7C17 /* FixtureHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureHelper.swift; sourceTree = "<group>"; };
 		FA6814D2207EC9B200AF7C17 /* FixtureHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureHelperTests.swift; sourceTree = "<group>"; };
 		FA6814D4207ECA7E00AF7C17 /* TaxonNamingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxonNamingTests.swift; sourceTree = "<group>"; };
+		FA6814D6207ED3CD00AF7C17 /* TaxonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxonTests.swift; sourceTree = "<group>"; };
+		FA6814D8207ED76800AF7C17 /* 49699.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 49699.json; sourceTree = "<group>"; };
 		FA6D75AB203B6EAE00C3535F /* TaxonPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxonPickerViewController.swift; sourceTree = "<group>"; };
 		FA6D75AD203B6FA300C3535F /* IconicTaxonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconicTaxonCell.swift; sourceTree = "<group>"; };
 		FA6D75B2203BC07000C3535F /* ObservationRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationRealm.swift; sourceTree = "<group>"; };
@@ -447,6 +451,7 @@
 		FA6814CA207EB00C00AF7C17 /* Taxa */ = {
 			isa = PBXGroup;
 			children = (
+				FA6814D8207ED76800AF7C17 /* 49699.json */,
 				FA6814CD207EC88A00AF7C17 /* 130068.json */,
 				FA6814C8207EA44600AF7C17 /* 50913.json */,
 				FA6814C6207D441800AF7C17 /* 357883.json */,
@@ -477,6 +482,7 @@
 			isa = PBXGroup;
 			children = (
 				FA6814D4207ECA7E00AF7C17 /* TaxonNamingTests.swift */,
+				FA6814D6207ED3CD00AF7C17 /* TaxonTests.swift */,
 			);
 			path = "Model Tests";
 			sourceTree = "<group>";
@@ -718,6 +724,7 @@
 				FA6814CE207EC88A00AF7C17 /* 130068.json in Resources */,
 				FA6814C9207EA44700AF7C17 /* 50913.json in Resources */,
 				FA6814C7207D441800AF7C17 /* 357883.json in Resources */,
+				FA6814D9207ED76800AF7C17 /* 49699.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -932,6 +939,7 @@
 			files = (
 				FA6814D5207ECA7E00AF7C17 /* TaxonNamingTests.swift in Sources */,
 				FA95567B2077390C0029C974 /* UIImageInatLiteExTests.swift in Sources */,
+				FA6814D7207ED3CD00AF7C17 /* TaxonTests.swift in Sources */,
 				FA6814D3207EC9B200AF7C17 /* FixtureHelperTests.swift in Sources */,
 				FA6814D0207EC8B000AF7C17 /* FixtureHelper.swift in Sources */,
 				FA95567D207981470029C974 /* INatApiTests.swift in Sources */,
