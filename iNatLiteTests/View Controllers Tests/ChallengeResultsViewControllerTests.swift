@@ -177,8 +177,8 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         XCTAssertTrue(titleText.contains("Hrm"), "With a target but no match, the title should contain Hrm. May fail when tested in a non-english locale")
         
         let dividerCell = viewController.dividerCell()
-        let dividerImage = UIImage(named: "icn-results-unknown")
-        XCTAssertEqual(dividerImage, dividerCell?.dividerImageView?.image, "With a target but no match, the divider cell should display the match image")
+        let dividerImage = UIImage(named: "icn-results-mismatch")
+        XCTAssertEqual(dividerImage, dividerCell?.dividerImageView?.image, "With a target but no match, the divider cell should display the mismatch image")
         
         
         XCTAssertNil(viewController.imageCell(), "With a target but no match, the image cell should not be displayed")

@@ -143,7 +143,11 @@ class ChallengeResultsViewController: UIViewController {
                 cell.dividerImageView?.image = UIImage(named: "icn-results-match")
             }
         } else {
-            cell.dividerImageView?.image = UIImage(named: "icn-results-unknown")
+            if let _ = self.targetTaxon {
+                cell.dividerImageView?.image = UIImage(named: "icn-results-mismatch")
+            } else {
+                cell.dividerImageView?.image = UIImage(named: "icn-results-unknown")
+            }
         }
     }
 
