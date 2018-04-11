@@ -433,6 +433,15 @@
 			path = "Results Cells";
 			sourceTree = "<group>";
 		};
+		FA6814CA207EB00C00AF7C17 /* Taxa */ = {
+			isa = PBXGroup;
+			children = (
+				FA6814C8207EA44600AF7C17 /* 50913.json */,
+				FA6814C6207D441800AF7C17 /* 357883.json */,
+			);
+			path = Taxa;
+			sourceTree = "<group>";
+		};
 		FA6D75AF203BC04900C3535F /* Realm */ = {
 			isa = PBXGroup;
 			children = (
@@ -520,8 +529,7 @@
 		FAC45A522071EE11004AF1D2 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				FA6814C8207EA44600AF7C17 /* 50913.json */,
-				FA6814C6207D441800AF7C17 /* 357883.json */,
+				FA6814CA207EB00C00AF7C17 /* Taxa */,
 				FAC45A502071EB8C004AF1D2 /* IMG_0766.jpg */,
 			);
 			path = Fixtures;
