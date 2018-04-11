@@ -332,10 +332,10 @@ extension SpeciesDetailViewController: UITableViewDataSource {
             cell.scientificNameLabel?.text = NSLocalizedString("Scientific Name:", comment: "Below this label is the scientific name of this species.")
 
             if let species = self.species {
-                cell.commonName?.text = species.anyNameCapitalized
+                cell.commonName?.text = species.displayName
                 cell.scientificName?.text = species.name
             } else if let observation = self.observation, let taxon = observation.taxon {
-                cell.commonName?.text = taxon.anyNameCapitalized
+                cell.commonName?.text = taxon.displayName
                 cell.scientificName?.text = taxon.name
             }
             
@@ -346,7 +346,7 @@ extension SpeciesDetailViewController: UITableViewDataSource {
             
             if let species = self.species {
                 if let iconic = species.iconicTaxon() {
-                    cell.categoryLabel?.text = String(format: NSLocalizedString("Category: %@", comment: "Category of this species. Examples are Bird, Insect, Plant, etc"), iconic.anyNameCapitalized)
+                    cell.categoryLabel?.text = String(format: NSLocalizedString("Category: %@", comment: "Category of this species. Examples are Bird, Insect, Plant, etc"), iconic.displayName)
                 } else {
                     cell.categoryLabel?.text = NSLocalizedString("Category: Other", comment: "If this species doesn't fit into our standard categories, then we just say other category.")
                 }

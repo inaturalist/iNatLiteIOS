@@ -153,27 +153,27 @@ class ChallengeResultsViewController: UIViewController {
                 if target == score.taxon {
                     // you found your target
                     cell.title?.text = NSLocalizedString("It's a Match!", comment: "Title when the user has found the species they were challenged with.")
-                    cell.subtitle?.text = String(format: NSLocalizedString("You saw a %@.", comment: "Notice telling the user what species they saw."), score.taxon.anyNameCapitalized)
+                    cell.subtitle?.text = String(format: NSLocalizedString("You saw a %@.", comment: "Notice telling the user what species they saw."), score.taxon.displayName)
                 } else {
                     // you found something else
                     cell.title?.text = NSLocalizedString("Good Try!", comment: "Title when the user has found a different species than they one they were challenged with.")
-                    cell.subtitle?.text = String(format: NSLocalizedString("However, this isn't a %@, it's a %@.", comment: "Notice telling the user that they've found a different species than the one they were challenged with. First subtitution is the target/challenge species, second substitution is the actual found species."), target.anyNameCapitalized, score.taxon.anyNameCapitalized)
+                    cell.subtitle?.text = String(format: NSLocalizedString("However, this isn't a %@, it's a %@.", comment: "Notice telling the user that they've found a different species than the one they were challenged with. First subtitution is the target/challenge species, second substitution is the actual found species."), target.displayName, score.taxon.displayName)
 
-                    cell.subtitle?.text = "However, this isn't a \(target.anyNameCapitalized), it's a \(score.taxon.anyNameCapitalized)."
+                    cell.subtitle?.text = "However, this isn't a \(target.displayName), it's a \(score.taxon.displayName)."
                 }
             } else {
                 if self.seenTaxaIds.contains(score.taxon.id) {
                     cell.title?.text = NSLocalizedString("Deja Vu!", comment: "Title when the user has found a species that they've already seen.")
-                    cell.subtitle?.text = String(format: NSLocalizedString("Looks like you already collected a %@.", comment: "Notice telling the user that they've already seen this species."), score.taxon.anyNameCapitalized)
+                    cell.subtitle?.text = String(format: NSLocalizedString("Looks like you already collected a %@.", comment: "Notice telling the user that they've already seen this species."), score.taxon.displayName)
                 } else {
                     cell.title?.text = NSLocalizedString("Sweet!", comment: "Title when the user has found a new species (without having been given a challenge).")
-                    cell.subtitle?.text = String(format: NSLocalizedString("You saw a %@.", comment: "Notice telling the user what species they saw."), score.taxon.anyNameCapitalized)
+                    cell.subtitle?.text = String(format: NSLocalizedString("You saw a %@.", comment: "Notice telling the user what species they saw."), score.taxon.displayName)
                 }
             }
         } else {
             cell.title?.text = NSLocalizedString("Hrmmmmmm", comment: "Title when we can't figure out what species is in the user's photo.")
             if let ancestor = self.commonAncestor {
-                cell.subtitle?.text = String(format: NSLocalizedString("We think this is a photo of %@, but we can't say for sure what species it is.", comment: "Notice when we have only a rough idea of what's in the user's photo."), ancestor.taxon.anyNameCapitalized)
+                cell.subtitle?.text = String(format: NSLocalizedString("We think this is a photo of %@, but we can't say for sure what species it is.", comment: "Notice when we have only a rough idea of what's in the user's photo."), ancestor.taxon.displayName)
             } else {
                 cell.subtitle?.text = NSLocalizedString("We can't figure this one out. Please try some adjustments.", comment: "Notice when we have no idea what's in the user's photo.")
             }
@@ -192,7 +192,7 @@ class ChallengeResultsViewController: UIViewController {
 
         // left label
         if let score = self.resultScore {
-            cell.userLabel?.text = String(format: NSLocalizedString("Your Photo:\n%@", comment: "Title of the user photo. The substition is the species name in their photo."), score.taxon.anyNameCapitalized)
+            cell.userLabel?.text = String(format: NSLocalizedString("Your Photo:\n%@", comment: "Title of the user photo. The substition is the species name in their photo."), score.taxon.displayName)
         } else {
             cell.userLabel?.text = NSLocalizedString("Your Photo", comment: "Title of the user photo, when we don't have a species for it.")
         }
@@ -202,11 +202,11 @@ class ChallengeResultsViewController: UIViewController {
         
         // right label
         if let target = self.targetTaxon {
-            cell.userLabel?.text = String(format: NSLocalizedString("Target Species:\n%@", comment: "Title of the target species photo. The substition is the target species name."), target.anyNameCapitalized)
+            cell.userLabel?.text = String(format: NSLocalizedString("Target Species:\n%@", comment: "Title of the target species photo. The substition is the target species name."), target.displayName)
 
-            cell.taxonLabel?.text = "Target Species:\n\(target.anyNameCapitalized)"
+            cell.taxonLabel?.text = "Target Species:\n\(target.displayName)"
         } else if let score = self.resultScore {
-            cell.userLabel?.text = String(format: NSLocalizedString("Identified Species:\n%@", comment: "Title of the identified species photo. The substition is the identified species name."), score.taxon.anyNameCapitalized)
+            cell.userLabel?.text = String(format: NSLocalizedString("Identified Species:\n%@", comment: "Title of the identified species photo. The substition is the identified species name."), score.taxon.displayName)
         }
         
         // right photo
@@ -239,7 +239,7 @@ class ChallengeResultsViewController: UIViewController {
                     for observation in observations {
                         if let obsTaxon = observation.taxon, let obsDate = observation.dateString {
                             if obsTaxon.id == result.taxon.id {
-                                cell.infoLabel?.text = String(format: NSLocalizedString("You collected a photo of a %@ on %@", comment: "Notice about when the user collected a species photo. First subtitution is the species name, second substitution is the locally formatted date."), obsTaxon.anyNameCapitalized)
+                                cell.infoLabel?.text = String(format: NSLocalizedString("You collected a photo of a %@ on %@", comment: "Notice about when the user collected a species photo. First subtitution is the species name, second substitution is the locally formatted date."), obsTaxon.displayName)
                                 cell.infoLabel?.textColor = UIColor.INat.SpeciesAddButton
                                 
                                 cell.actionButton?.setTitle(NSLocalizedString("OK", comment: "OK button title"), for: .normal)
@@ -270,7 +270,7 @@ class ChallengeResultsViewController: UIViewController {
                         cell.actionButton?.addTarget(self, action: #selector(ChallengeResultsViewController.addToCollection), for: .touchUpInside)
                     } else {
                         // show notice that they still need to collect it
-                        cell.infoLabel?.text = "You still need to collect a \(result.taxon.anyNameCapitalized). Would you like to collect it now?"
+                        cell.infoLabel?.text = "You still need to collect a \(result.taxon.displayName). Would you like to collect it now?"
                         cell.actionButton?.setTitle(NSLocalizedString("Add to Collection", comment: "add species to your collection button title"), for: .normal)
                         cell.actionButton?.backgroundColor = UIColor.clear
                         cell.actionButton?.tintColor = UIColor.white

@@ -367,7 +367,7 @@ extension ChallengesViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! SpeciesCollectionViewCell
         
         let count = self.speciesCounts[indexPath.item]
-        cell.nameLabel?.text = count.taxon.anyNameCapitalized
+        cell.nameLabel?.text = count.taxon.displayName
         
         if let photo = count.taxon.default_photo,
             let urlString = photo.medium_url,
@@ -409,7 +409,7 @@ extension ChallengesViewController: UICollectionViewDataSource {
             if let downArrow = FAKIonIcons.arrowDownBIcon(withSize: 12) {
                 var taxonFilterName: String
                 if let iconicTaxon = self.chosenIconicTaxon {
-                    taxonFilterName = "\(iconicTaxon.anyNameCapitalized)"
+                    taxonFilterName = "\(iconicTaxon.displayName)"
                 } else {
                     taxonFilterName = NSLocalizedString("All Species", comment: "indicating that the user has chosen to see challenges from all species")
                 }
@@ -628,7 +628,7 @@ extension ChallengesViewController: ChallengeResultsDelegate {
                     {
                         toast.imageView?.image = image
                     }
-                    toast.titleLabel?.text = String(format: NSLocalizedString("%@ collected!", comment: "toast when the user has collected a species, with the name of the species."), taxon.anyNameCapitalized)
+                    toast.titleLabel?.text = String(format: NSLocalizedString("%@ collected!", comment: "toast when the user has collected a species, with the name of the species."), taxon.displayName)
                     toast.imageView?.tintColor = UIColor.INat.SpeciesAddButton
                 }
                 toast.messageLabel?.text = nil

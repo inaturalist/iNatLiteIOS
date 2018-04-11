@@ -81,7 +81,7 @@ extension Taxon {
     
     func iconicImageName() -> String? {
         if let iconic = self.iconicTaxon() {
-            return "icn-iconic-taxa-\(iconic.anyNameCapitalized.lowercased())"
+            return "icn-iconic-taxa-\(iconic.displayName.lowercased())"
         } else {
             return nil
         }

@@ -14,7 +14,7 @@ protocol TaxonNaming {
 }
 
 extension TaxonNaming {
-    var anyNameCapitalized: String {
+    var displayName: String {
         get {
             if let name = preferredCommonName {
                 return name.localizedCapitalized
