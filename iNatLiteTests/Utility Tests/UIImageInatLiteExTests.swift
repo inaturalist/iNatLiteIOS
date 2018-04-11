@@ -55,4 +55,13 @@ class UIImageInatLiteExTests: XCTestCase {
         XCTAssertEqual(UIImage.profileIconNameForObservationCount(110), "icn-profile-explorer", "110 observations should have the explorer.")
         XCTAssertNotNil(UIImage.profileIconForObservationCount(110), "110 observations should have a profile image.")
     }
+    
+    func testImageResize() {
+        let image = FixtureHelper.imageFromFixture()
+        XCTAssertNotNil(image, "image from fixture should not be nil")
+        let newSize = CGSize(width: 299, height: 299)
+        let resized = image!.resizedTo(newSize)
+        XCTAssertNotNil(resized, "resized image from fixture should not be nil")
+        XCTAssertEqual(resized!.size, newSize, "resized image from fixture should be the correct size")
+    }
 }
