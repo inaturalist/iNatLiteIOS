@@ -51,6 +51,9 @@
 		FA6814C7207D441800AF7C17 /* 357883.json in Resources */ = {isa = PBXBuildFile; fileRef = FA6814C6207D441800AF7C17 /* 357883.json */; };
 		FA6814C9207EA44700AF7C17 /* 50913.json in Resources */ = {isa = PBXBuildFile; fileRef = FA6814C8207EA44600AF7C17 /* 50913.json */; };
 		FA6814CC207EC68700AF7C17 /* TaxonNameExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6814CB207EC68700AF7C17 /* TaxonNameExtensions.swift */; };
+		FA6814CE207EC88A00AF7C17 /* 130068.json in Resources */ = {isa = PBXBuildFile; fileRef = FA6814CD207EC88A00AF7C17 /* 130068.json */; };
+		FA6814D0207EC8B000AF7C17 /* FixtureHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6814CF207EC8B000AF7C17 /* FixtureHelper.swift */; };
+		FA6814D3207EC9B200AF7C17 /* FixtureHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6814D2207EC9B200AF7C17 /* FixtureHelperTests.swift */; };
 		FA6D75AC203B6EAE00C3535F /* TaxonPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D75AB203B6EAE00C3535F /* TaxonPickerViewController.swift */; };
 		FA6D75AE203B6FA300C3535F /* IconicTaxonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D75AD203B6FA300C3535F /* IconicTaxonCell.swift */; };
 		FA6D75B3203BC07000C3535F /* ObservationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D75B2203BC07000C3535F /* ObservationRealm.swift */; };
@@ -169,6 +172,9 @@
 		FA6814C6207D441800AF7C17 /* 357883.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 357883.json; sourceTree = "<group>"; };
 		FA6814C8207EA44600AF7C17 /* 50913.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 50913.json; sourceTree = "<group>"; };
 		FA6814CB207EC68700AF7C17 /* TaxonNameExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxonNameExtensions.swift; sourceTree = "<group>"; };
+		FA6814CD207EC88A00AF7C17 /* 130068.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 130068.json; sourceTree = "<group>"; };
+		FA6814CF207EC8B000AF7C17 /* FixtureHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureHelper.swift; sourceTree = "<group>"; };
+		FA6814D2207EC9B200AF7C17 /* FixtureHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureHelperTests.swift; sourceTree = "<group>"; };
 		FA6D75AB203B6EAE00C3535F /* TaxonPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxonPickerViewController.swift; sourceTree = "<group>"; };
 		FA6D75AD203B6FA300C3535F /* IconicTaxonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconicTaxonCell.swift; sourceTree = "<group>"; };
 		FA6D75B2203BC07000C3535F /* ObservationRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationRealm.swift; sourceTree = "<group>"; };
@@ -439,6 +445,7 @@
 		FA6814CA207EB00C00AF7C17 /* Taxa */ = {
 			isa = PBXGroup;
 			children = (
+				FA6814CD207EC88A00AF7C17 /* 130068.json */,
 				FA6814C8207EA44600AF7C17 /* 50913.json */,
 				FA6814C6207D441800AF7C17 /* 357883.json */,
 			);
@@ -534,6 +541,8 @@
 			children = (
 				FA6814CA207EB00C00AF7C17 /* Taxa */,
 				FAC45A502071EB8C004AF1D2 /* IMG_0766.jpg */,
+				FA6814CF207EC8B000AF7C17 /* FixtureHelper.swift */,
+				FA6814D2207EC9B200AF7C17 /* FixtureHelperTests.swift */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -703,6 +712,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAC45A512071EB8C004AF1D2 /* IMG_0766.jpg in Resources */,
+				FA6814CE207EC88A00AF7C17 /* 130068.json in Resources */,
 				FA6814C9207EA44700AF7C17 /* 50913.json in Resources */,
 				FA6814C7207D441800AF7C17 /* 357883.json in Resources */,
 			);
@@ -918,6 +928,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA95567B2077390C0029C974 /* UIImageInatLiteExTests.swift in Sources */,
+				FA6814D3207EC9B200AF7C17 /* FixtureHelperTests.swift in Sources */,
+				FA6814D0207EC8B000AF7C17 /* FixtureHelper.swift in Sources */,
 				FA95567D207981470029C974 /* INatApiTests.swift in Sources */,
 				FAAC4276206DC67D008D5BA8 /* ChallengeResultsViewControllerTests.swift in Sources */,
 			);
