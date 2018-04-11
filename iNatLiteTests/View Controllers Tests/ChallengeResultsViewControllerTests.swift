@@ -99,7 +99,7 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         XCTAssertFalse((actionCell?.actionButton?.isHidden)!, "With no target and no match, the action button should be visible")
         XCTAssertEqual(actionCell?.actionButton?.currentTitle, "Start Over", "With no target and no match, the action button should be a call to start over. May fail when test in a non-english locale.")
         let actionTarget = actionCell?.actionButton?.actions(forTarget: viewController, forControlEvent: .touchUpInside)?.first
-        XCTAssertEqual(actionTarget, "startOverPressed", "With no target and no match, the action button should trigger a call to start over")
+        XCTAssertEqual(actionTarget, "startOverPressed", "With no target and no match, the action button should start over")
     }
     
     func testNoTargetMatchNotAlreadySeen() {
@@ -127,7 +127,7 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         XCTAssertFalse((actionCell?.actionButton?.isHidden)!, "With no target but a previously unseen match, the action button should be visible")
         XCTAssertTrue(actionCell!.actionButton!.currentTitle!.contains("Add to Collection"), "With no target but a previously unseen match, the action button should be a call to add to collection. May fail when tested in a non-english locale.")
         let actionTarget = actionCell?.actionButton?.actions(forTarget: viewController, forControlEvent: .touchUpInside)?.first
-        XCTAssertEqual(actionTarget, "addToCollection", "With no target but a previously unseen match, the action button should trigger a call to add to collection")
+        XCTAssertEqual(actionTarget, "addToCollection", "With no target but a previously unseen match, the action button should add to collection")
     }
     
     func testNoTargetMatchAlreadySeen() {
@@ -166,7 +166,7 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         XCTAssertFalse((actionCell?.actionButton?.isHidden)!, "With no target but a previously seen match, the action button should be visible")
         XCTAssertTrue(actionCell!.actionButton!.currentTitle!.contains("OK"), "With no target but a previously seen match, the action button should be OK. May fail when tested in a non-english locale.")
         let actionTarget = actionCell?.actionButton?.actions(forTarget: viewController, forControlEvent: .touchUpInside)?.first
-        XCTAssertEqual(actionTarget, "okPressed", "With no target but a previously unseen match, the action button should trigger a call to a trigger to go back to the home screen.")
+        XCTAssertEqual(actionTarget, "okPressed", "With no target but a previously unseen match, the action button should go back to the home screen.")
     }
     
     func testTargetNoMatch() {
