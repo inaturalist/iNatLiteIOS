@@ -39,8 +39,16 @@ class ChallengeResultsViewController: UIViewController {
     
     var commonAncestor: TaxonScore?
     
-    var observations: Results<ObservationRealm>?
-    var seenTaxaIds = [Int]()
+    var observations: Results<ObservationRealm>?    
+    var seenTaxaIds: [Int] {
+        get {
+            if let observations = self.observations {
+                return observations.filter { return $0.taxon != nil }.map { return $0.taxon!.id }
+            } else {
+                return [Int]()
+            }
+        }
+    }
     
     weak var delegate: ChallengeResultsDelegate?
     
@@ -105,13 +113,6 @@ class ChallengeResultsViewController: UIViewController {
         
         let realm = try! Realm()
         self.observations = realm.objects(ObservationRealm.self)
-        if let observations = self.observations {
-            for observation in observations {
-                if let obsTaxon = observation.taxon {
-                    self.seenTaxaIds.append(obsTaxon.id)
-                }
-            }
-        }
         
         self.loadResults()
     }
