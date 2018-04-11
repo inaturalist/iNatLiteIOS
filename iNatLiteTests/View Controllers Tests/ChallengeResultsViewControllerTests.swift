@@ -23,17 +23,24 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     }
     
     func soldierFlyTaxon() -> Taxon? {
-        if let path = Bundle(for: ChallengeResultsViewControllerTests.self).path(forResource: "357883", ofType: "json") {
+        return taxonFixtureWithId(357883)
+    }
+    
+    func silkMothTaxon() -> Taxon? {
+        return taxonFixtureWithId(50913)
+    }
+    
+    func taxonFixtureWithId(_ taxonId: Int) -> Taxon? {
+        if let path = Bundle(for: ChallengeResultsViewControllerTests.self).path(forResource: "\(taxonId)", ofType: "json") {
             let url = URL(fileURLWithPath: path)
             let data = try! Data(contentsOf: url)
             let decoded = try! JSONDecoder().decode(TaxaResponse.self, from: data)
-            if let response = decoded as? TaxaResponse,
-                let results = response.results, results.count == 1
-            {
+            if let results = decoded.results, results.count == 1 {
                 return results.first
             }
         }
         return nil
+
     }
     
     override func setUp() {

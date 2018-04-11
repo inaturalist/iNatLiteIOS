@@ -49,6 +49,7 @@
 		FA1DE1BF203A3B8900ACBD17 /* LocationTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1BE203A3B8900ACBD17 /* LocationTagCell.swift */; };
 		FA323FDB20549F05006192C7 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA323FDA20549F05006192C7 /* SplashViewController.swift */; };
 		FA6814C7207D441800AF7C17 /* 357883.json in Resources */ = {isa = PBXBuildFile; fileRef = FA6814C6207D441800AF7C17 /* 357883.json */; };
+		FA6814C9207EA44700AF7C17 /* 50913.json in Resources */ = {isa = PBXBuildFile; fileRef = FA6814C8207EA44600AF7C17 /* 50913.json */; };
 		FA6D75AC203B6EAE00C3535F /* TaxonPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D75AB203B6EAE00C3535F /* TaxonPickerViewController.swift */; };
 		FA6D75AE203B6FA300C3535F /* IconicTaxonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D75AD203B6FA300C3535F /* IconicTaxonCell.swift */; };
 		FA6D75B3203BC07000C3535F /* ObservationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D75B2203BC07000C3535F /* ObservationRealm.swift */; };
@@ -165,6 +166,7 @@
 		FA1DE1BE203A3B8900ACBD17 /* LocationTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTagCell.swift; sourceTree = "<group>"; };
 		FA323FDA20549F05006192C7 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		FA6814C6207D441800AF7C17 /* 357883.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 357883.json; sourceTree = "<group>"; };
+		FA6814C8207EA44600AF7C17 /* 50913.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 50913.json; sourceTree = "<group>"; };
 		FA6D75AB203B6EAE00C3535F /* TaxonPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxonPickerViewController.swift; sourceTree = "<group>"; };
 		FA6D75AD203B6FA300C3535F /* IconicTaxonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconicTaxonCell.swift; sourceTree = "<group>"; };
 		FA6D75B2203BC07000C3535F /* ObservationRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationRealm.swift; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 		FAC45A522071EE11004AF1D2 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
+				FA6814C8207EA44600AF7C17 /* 50913.json */,
 				FA6814C6207D441800AF7C17 /* 357883.json */,
 				FAC45A502071EB8C004AF1D2 /* IMG_0766.jpg */,
 			);
@@ -689,6 +692,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAC45A512071EB8C004AF1D2 /* IMG_0766.jpg in Resources */,
+				FA6814C9207EA44700AF7C17 /* 50913.json in Resources */,
 				FA6814C7207D441800AF7C17 /* 357883.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
