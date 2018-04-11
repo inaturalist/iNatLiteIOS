@@ -203,16 +203,109 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     }
     
     func testTargetMatchNotAlreadySeen() {
+        let soldierFly = self.soldierFlyTaxon()!
+        viewController.targetTaxon = soldierFly
+        viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: soldierFly)
+        viewController.resultsLoaded = true
+        viewController.tableView!.reloadData()
         
+        let titleText = viewController.titleCell()!.title!.text!
+        XCTAssertTrue(titleText.contains("Match"), "With a target and a previously unseen match, the title should contain Match. May fail when tested in a non-english locale")
+        
+        let dividerCell = viewController.dividerCell()
+        let dividerImage = UIImage(named: "icn-results-match")
+        XCTAssertEqual(dividerImage, dividerCell?.dividerImageView?.image, "With a target and a previously unseen match, the divider cell should display the match image")
+        
+        XCTAssertNil(viewController.imageCell(), "With a target and a previously unseen match, the image cell should not be displayed")
+        let imageTaxonCell = viewController.imageTaxonCell()
+        XCTAssertNotNil(imageTaxonCell, "With a target and a previously unseen match, the image taxon cell should be displayed")
+        // can't seem to test that the image equals the fixture image, perhaps due to resizing/compression?
+        XCTAssertNotNil(imageTaxonCell?.userImageView?.image, "With a target and a previously unseen match, image cell should contain an image from the user.")
+        
+        let actionCell = viewController.actionCell()
+        XCTAssertNil(actionCell?.infoLabel?.text, "With a target and a previously unseen match, the info text should be nil.")
+        XCTAssertFalse((actionCell?.actionButton?.isHidden)!, "With a target and a previously unseen match, the action button should be visible")
+        XCTAssertTrue(actionCell!.actionButton!.currentTitle!.contains("Add to Collection"), "With a target and a previously unseen match, the action button should be a call to add to collection. May fail when tested in a non-english locale.")
+        let actionTarget = actionCell?.actionButton?.actions(forTarget: viewController, forControlEvent: .touchUpInside)?.first
+        XCTAssertEqual(actionTarget, "addToCollection", "With a target and a previously unseen match, the action button should add to collection")
     }
     
-    func testTargetMatchAlreadySeen() {
+    // you won't get a target for something you've already seen
+    // (altho there should be a test for ^^)
+    // so no test for testTargetMatchAlreadySeen
+    
+    func testTargetDifferentMatchAlreadySeen() {
+        let soldierFly = self.soldierFlyTaxon()!
+        let silkMoth = self.silkMothTaxon()
         
-    }
+        let realm = try! Realm()
+        try! realm.write {
+            let silkMothObservation = ObservationRealm()
+            silkMothObservation.date = Date()
+            let silkMothTaxonRealm = TaxonRealm()
+            silkMothTaxonRealm.id = silkMoth!.id
+            silkMothTaxonRealm.name = silkMoth!.name
+            silkMothTaxonRealm.preferredCommonName = silkMoth!.preferred_common_name
+            silkMothObservation.taxon = silkMothTaxonRealm
+            realm.add(silkMothObservation)
+        }
 
-    
-    func testTargetMatchDifferentSpecies() {
+        viewController.targetTaxon = soldierFly
+        viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: silkMoth!)
+        viewController.resultsLoaded = true
+        viewController.tableView!.reloadData()
         
+        
+        let titleText = viewController.titleCell()!.title!.text!
+        XCTAssertTrue(titleText.contains("Good Try"), "With a target and a non-target match (previously seen), the title should contain Good Try. May fail when tested in a non-english locale")
+        
+        let dividerCell = viewController.dividerCell()
+        let dividerImage = UIImage(named: "icn-results-mismatch")
+        XCTAssertEqual(dividerImage, dividerCell?.dividerImageView?.image, "With a target and a non-target match (previously seen), the divider cell should display the unknown image")
+
+        XCTAssertNil(viewController.imageCell(), "With a target and a non-target match (previously seen), the image cell should not be displayed")
+        let imageTaxonCell = viewController.imageTaxonCell()
+        XCTAssertNotNil(imageTaxonCell, "With a target and a non-target match (previously seen), the image taxon cell should be displayed")
+        // can't seem to test that the image equals the fixture image, perhaps due to resizing/compression?
+        XCTAssertNotNil(imageTaxonCell?.userImageView?.image, "With a target and a non-target match (previously seen), image cell should contain an image from the user.")
+
+        let actionCell = viewController.actionCell()
+        XCTAssertTrue((actionCell?.infoLabel?.text?.contains("You collected a photo"))!, "With a target and a non-target match (previously seen), the info text should contain a notice that you've already collected it. May fail when tested in a non-english locale.")
+        XCTAssertFalse((actionCell?.actionButton?.isHidden)!, "With a target and a non-target match (previously seen), the action button should be visible")
+        XCTAssertTrue(actionCell!.actionButton!.currentTitle!.contains("OK"), "With a target and a non-target match (previously seen), the action button should be OK. May fail when tested in a non-english locale.")
+        let actionTarget = actionCell?.actionButton?.actions(forTarget: viewController, forControlEvent: .touchUpInside)?.first
+        XCTAssertEqual(actionTarget, "okPressed", "With a target and a non-target match (previously seen), the action button should go back to the home screen.")
+    }
+    
+    func testTargetDifferentMatchNotAlreadySeen() {
+        let soldierFly = self.soldierFlyTaxon()!
+        let silkMoth = self.silkMothTaxon()
+        
+        viewController.targetTaxon = soldierFly
+        viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: silkMoth!)
+        viewController.resultsLoaded = true
+        viewController.tableView!.reloadData()
+        
+        
+        let titleText = viewController.titleCell()!.title!.text!
+        XCTAssertTrue(titleText.contains("Good Try"), "With a target and a non-target match, the title should contain Good Try. May fail when tested in a non-english locale")
+        
+        let dividerCell = viewController.dividerCell()
+        let dividerImage = UIImage(named: "icn-results-mismatch")
+        XCTAssertEqual(dividerImage, dividerCell?.dividerImageView?.image, "With a target and a non-target match, the divider cell should display the unknown image")
+        
+        XCTAssertNil(viewController.imageCell(), "With a target and a non-target match, the image cell should not be displayed")
+        let imageTaxonCell = viewController.imageTaxonCell()
+        XCTAssertNotNil(imageTaxonCell, "With a target and a non-target match, the image taxon cell should be displayed")
+        // can't seem to test that the image equals the fixture image, perhaps due to resizing/compression?
+        XCTAssertNotNil(imageTaxonCell?.userImageView?.image, "With a target and a non-target match, image cell should contain an image from the user.")
+        
+        let actionCell = viewController.actionCell()
+        XCTAssertTrue((actionCell?.infoLabel?.text?.contains("You still need to collect"))!, "With a target and a non-target match, the info text should contain a notice that you still need to collect it. May fail when tested in a non-english locale.")
+        XCTAssertFalse((actionCell?.actionButton?.isHidden)!, "With a target and a previously unseen match, the action button should be visible")
+        XCTAssertTrue(actionCell!.actionButton!.currentTitle!.contains("Add to Collection"), "With a target and a non-target match, the action button should be a call to add to collection. May fail when tested in a non-english locale.")
+        let actionTarget = actionCell?.actionButton?.actions(forTarget: viewController, forControlEvent: .touchUpInside)?.first
+        XCTAssertEqual(actionTarget, "addToCollection", "With a target and a non-target match, the action button should add to collection")
     }
     
 }
