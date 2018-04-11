@@ -197,9 +197,14 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         XCTAssertEqual(actionTarget, "startOverPressed", "With a target but no match, the action button should start over.")
     }
     
-    func testTargetMatch() {
+    func testTargetMatchNotAlreadySeen() {
         
     }
+    
+    func testTargetMatchAlreadySeen() {
+        
+    }
+
     
     func testTargetMatchDifferentSpecies() {
         
