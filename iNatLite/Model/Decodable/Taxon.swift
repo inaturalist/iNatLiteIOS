@@ -22,14 +22,6 @@ struct Taxon: Decodable {
     
     let taxon_photos: [TaxonPhoto]?
     
-    var anyNameCapitalized: String {
-        if let name = preferred_common_name {
-            return name.localizedCapitalized
-        } else {
-            return self.name
-        }
-    }
-    
     var wikipediaText: String? {
         if let summary = self.wikipedia_summary {
             var str = summary.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
@@ -100,6 +92,12 @@ extension Taxon {
 extension Taxon: Equatable {
     static func == (lhs: Taxon, rhs: Taxon) -> Bool {
         return lhs.id == rhs.id
+    }
+}
+
+extension Taxon: TaxonNaming {
+    var preferredCommonName: String? {
+        return self.preferred_common_name
     }
 }
 

@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class TaxonRealm: Object {
+class TaxonRealm: Object, TaxonNaming {
     override static func primaryKey() -> String? {
         return "id"
     }
@@ -18,16 +18,5 @@ class TaxonRealm: Object {
     @objc dynamic var id: Int = 0
     @objc dynamic var preferredCommonName: String?
     @objc dynamic var defaultPhoto: PhotoRealm?
-    @objc dynamic var iconicTaxonId: Int = 0
-        
-    var anyNameCapitalized: String {
-        get {
-            if let name = preferredCommonName {
-                return name.localizedCapitalized
-            } else {
-                return self.name
-            }
-        }
-    }
-
+    @objc dynamic var iconicTaxonId: Int = 0    
 }
