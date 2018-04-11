@@ -14,35 +14,6 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     
     var viewController: ChallengeResultsViewController!
     
-    func imageFromFixture() -> UIImage? {
-        if let path = Bundle(for: ChallengeResultsViewControllerTests.self).path(forResource: "IMG_0766", ofType: "jpg") {
-            return UIImage(contentsOfFile: path)
-        } else {
-            return nil
-        }
-    }
-    
-    func soldierFlyTaxon() -> Taxon? {
-        return taxonFixtureWithId(357883)
-    }
-    
-    func silkMothTaxon() -> Taxon? {
-        return taxonFixtureWithId(50913)
-    }
-    
-    func taxonFixtureWithId(_ taxonId: Int) -> Taxon? {
-        if let path = Bundle(for: ChallengeResultsViewControllerTests.self).path(forResource: "\(taxonId)", ofType: "json") {
-            let url = URL(fileURLWithPath: path)
-            let data = try! Data(contentsOf: url)
-            let decoded = try! JSONDecoder().decode(TaxaResponse.self, from: data)
-            if let results = decoded.results, results.count == 1 {
-                return results.first
-            }
-        }
-        return nil
-
-    }
-    
     override func setUp() {
         super.setUp()
         
@@ -54,7 +25,7 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         viewController = storyboard.instantiateViewController(withIdentifier: "challengeResults") as! ChallengeResultsViewController
-        viewController.imageFromUser = self.imageFromFixture()
+        viewController.imageFromUser = FixtureHelper.imageFromFixture()
 
         let nav = UINavigationController(rootViewController: viewController)
         UIApplication.shared.keyWindow!.rootViewController = nav
@@ -68,11 +39,7 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
-    func testFixtureImageExists() {
-        XCTAssertNotNil(self.imageFromFixture(), "Image from fixture should not be nil.")
-    }
-    
+        
     func testNotLoaded() {
         viewController.resultsLoaded = false
         viewController.tableView!.reloadData()
@@ -175,7 +142,7 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     }
     
     func testTargetNoMatch() {
-        viewController.targetTaxon = self.soldierFlyTaxon()
+        viewController.targetTaxon = FixtureHelper.soldierFlyTaxon()
         viewController.resultScore = nil
         viewController.resultsLoaded = true
         viewController.tableView!.reloadData()
@@ -203,7 +170,7 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     }
     
     func testTargetMatchNotAlreadySeen() {
-        let soldierFly = self.soldierFlyTaxon()!
+        let soldierFly = FixtureHelper.soldierFlyTaxon()!
         viewController.targetTaxon = soldierFly
         viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: soldierFly)
         viewController.resultsLoaded = true
@@ -235,8 +202,8 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     // so no test for testTargetMatchAlreadySeen
     
     func testTargetDifferentMatchAlreadySeen() {
-        let soldierFly = self.soldierFlyTaxon()!
-        let silkMoth = self.silkMothTaxon()
+        let soldierFly = FixtureHelper.soldierFlyTaxon()!
+        let silkMoth = FixtureHelper.silkMothTaxon()
         
         let realm = try! Realm()
         try! realm.write {
@@ -278,8 +245,8 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     }
     
     func testTargetDifferentMatchNotAlreadySeen() {
-        let soldierFly = self.soldierFlyTaxon()!
-        let silkMoth = self.silkMothTaxon()
+        let soldierFly = FixtureHelper.soldierFlyTaxon()!
+        let silkMoth = FixtureHelper.silkMothTaxon()
         
         viewController.targetTaxon = soldierFly
         viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: silkMoth!)
