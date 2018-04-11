@@ -77,8 +77,8 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     }
     
     func testNoTargetMatchNotAlreadySeen() {
-        let emptyTaxon = Taxon(name: "", id: 0, iconic_taxon_id: 0, preferred_common_name: nil, default_photo: nil, wikipedia_summary: nil, observations_count: nil, rank: nil, rank_level: nil, taxon_photos: nil)
-        viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: emptyTaxon)
+        let silkMoth = FixtureHelper.silkMothTaxon()!
+        viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: silkMoth)
         viewController.targetTaxon = nil
         viewController.resultsLoaded = true
         viewController.tableView!.reloadData()
@@ -104,19 +104,19 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     }
     
     func testNoTargetMatchAlreadySeen() {
-        let emptyTaxon = Taxon(name: "", id: 0, iconic_taxon_id: 0, preferred_common_name: nil, default_photo: nil, wikipedia_summary: nil, observations_count: nil, rank: nil, rank_level: nil, taxon_photos: nil)
-        
+        let silkMoth = FixtureHelper.silkMothTaxon()!
+
         let realm = try! Realm()
         try! realm.write {
             let observation = ObservationRealm()
             observation.date = Date()
             let taxon = TaxonRealm()
-            taxon.id = 0
+            taxon.id = silkMoth.id
             observation.taxon = taxon
             realm.add(observation)
         }
         
-        viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: emptyTaxon)
+        viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: silkMoth)
         viewController.targetTaxon = nil
         viewController.resultsLoaded = true
         viewController.tableView!.reloadData()
