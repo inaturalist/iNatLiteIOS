@@ -93,7 +93,7 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         XCTAssertNil(viewController.imageCell(), "With no target but a previously unseen match, the image cell should not be displayed")
         let imageTaxonCell = viewController.imageTaxonCell()
         XCTAssertNotNil(imageTaxonCell, "With no target but a previously unseen match, the image taxon cell should be displayed")
-        XCTAssertNotNil(imageTaxonCell?.userImageView?.image, "With no target but a previously unseen match, image cell should contain an image from the user.")
+        XCTAssertNotNil(imageTaxonCell?.leadingImageView?.image, "With no target but a previously unseen match, image cell should contain an image from the user.")
         
         let actionCell = viewController.actionCell()
         XCTAssertNil(actionCell?.infoLabel?.text, "With no target but a previously unseen match, the info text should be nil.")
@@ -131,7 +131,7 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         XCTAssertNil(viewController.imageCell(), "With no target but a previously seen match, the image cell should not be displayed")
         let imageTaxonCell = viewController.imageTaxonCell()
         XCTAssertNotNil(imageTaxonCell, "With no target but a previously seen match, the image taxon cell should be displayed")
-        XCTAssertNotNil(imageTaxonCell?.userImageView?.image, "With no target but a previously seen match, image cell should contain an image from the user.")
+        XCTAssertNotNil(imageTaxonCell?.leadingImageView?.image, "With no target but a previously seen match, image cell should contain an image from the user.")
         
         let actionCell = viewController.actionCell()
         XCTAssertTrue((actionCell?.infoLabel?.text?.contains("You collected a photo"))!, "With no target but a previously seen match, the info text should contain a notice that you've already collected it. May fail when tested in a non-english locale.")
@@ -159,7 +159,7 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         let imageTaxonCell = viewController.imageTaxonCell()
         XCTAssertNotNil(imageTaxonCell, "With a target but no match, the image taxon cell should be displayed")
         // can't seem to test that the image equals the fixture image, perhaps due to resizing/compression?
-        XCTAssertNotNil(imageTaxonCell?.userImageView?.image, "With a target but no match, image cell should contain an image from the user.")
+        XCTAssertNotNil(imageTaxonCell?.leadingImageView?.image, "With a target but no match, image cell should contain an image from the user.")
         
         let actionCell = viewController.actionCell()
         XCTAssertTrue((actionCell?.infoLabel?.text?.contains("photo tips"))!, "With a target but no match, the info text should contain photo tips. May fail when tested in a non-english locale.")
@@ -187,7 +187,7 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         let imageTaxonCell = viewController.imageTaxonCell()
         XCTAssertNotNil(imageTaxonCell, "With a target and a previously unseen match, the image taxon cell should be displayed")
         // can't seem to test that the image equals the fixture image, perhaps due to resizing/compression?
-        XCTAssertNotNil(imageTaxonCell?.userImageView?.image, "With a target and a previously unseen match, image cell should contain an image from the user.")
+        XCTAssertNotNil(imageTaxonCell?.leadingImageView?.image, "With a target and a previously unseen match, image cell should contain an image from the user.")
         
         let actionCell = viewController.actionCell()
         XCTAssertNil(actionCell?.infoLabel?.text, "With a target and a previously unseen match, the info text should be nil.")
@@ -234,7 +234,7 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         let imageTaxonCell = viewController.imageTaxonCell()
         XCTAssertNotNil(imageTaxonCell, "With a target and a non-target match (previously seen), the image taxon cell should be displayed")
         // can't seem to test that the image equals the fixture image, perhaps due to resizing/compression?
-        XCTAssertNotNil(imageTaxonCell?.userImageView?.image, "With a target and a non-target match (previously seen), image cell should contain an image from the user.")
+        XCTAssertNotNil(imageTaxonCell?.leadingImageView?.image, "With a target and a non-target match (previously seen), image cell should contain an image from the user.")
 
         let actionCell = viewController.actionCell()
         XCTAssertTrue((actionCell?.infoLabel?.text?.contains("You collected a photo"))!, "With a target and a non-target match (previously seen), the info text should contain a notice that you've already collected it. May fail when tested in a non-english locale.")
@@ -265,7 +265,7 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         let imageTaxonCell = viewController.imageTaxonCell()
         XCTAssertNotNil(imageTaxonCell, "With a target and a non-target match, the image taxon cell should be displayed")
         // can't seem to test that the image equals the fixture image, perhaps due to resizing/compression?
-        XCTAssertNotNil(imageTaxonCell?.userImageView?.image, "With a target and a non-target match, image cell should contain an image from the user.")
+        XCTAssertNotNil(imageTaxonCell?.leadingImageView?.image, "With a target and a non-target match, image cell should contain an image from the user.")
         
         let actionCell = viewController.actionCell()
         XCTAssertTrue((actionCell?.infoLabel?.text?.contains("You still need to collect"))!, "With a target and a non-target match, the info text should contain a notice that you still need to collect it. May fail when tested in a non-english locale.")
@@ -286,12 +286,12 @@ extension ChallengeResultsViewController {
         return self.tableView!.cellForRow(at: IndexPath(item: 1, section: 0)) as? ResultsDividerCell
     }
     
-    func imageCell() -> ResultsImageCell? {
-        return self.tableView!.cellForRow(at: IndexPath(item: 2, section: 0)) as? ResultsImageCell
+    func imageCell() -> ResultsSingleImageCell? {
+        return self.tableView!.cellForRow(at: IndexPath(item: 2, section: 0)) as? ResultsSingleImageCell
     }
     
-    func imageTaxonCell() -> ResultsImageTaxonCell? {
-        return self.tableView!.cellForRow(at: IndexPath(item: 2, section: 0)) as? ResultsImageTaxonCell
+    func imageTaxonCell() -> ResultsDualImageCell? {
+        return self.tableView!.cellForRow(at: IndexPath(item: 2, section: 0)) as? ResultsDualImageCell
     }
     
     func actionCell() -> ResultsActionCell? {

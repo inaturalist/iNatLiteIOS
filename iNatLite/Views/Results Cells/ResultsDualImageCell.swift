@@ -8,17 +8,18 @@
 
 import UIKit
 
-class ResultsImageTaxonCell: UITableViewCell {
+class ResultsDualImageCell: UITableViewCell {
     
-    @IBOutlet var userImageView: UIImageView?
-    @IBOutlet var userLabel: UILabel?
-    @IBOutlet var taxonImageView: UIImageView?
-    @IBOutlet var taxonLabel: UILabel?
+    // left
+    @IBOutlet var leadingImageView: UIImageView?
+    @IBOutlet var leadingImageLabel: UILabel?
+    @IBOutlet var trailingImageView: UIImageView?
+    @IBOutlet var trailingImageLabel: UILabel?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        for iv in [userImageView, taxonImageView] {
+        for iv in [leadingImageView, trailingImageView] {
             iv?.layer.cornerRadius = 5.0
             iv?.layer.borderColor = UIColor.white.cgColor
             iv?.layer.borderWidth = 1.0

@@ -13,8 +13,8 @@ import CoreLocation
 
 private let titleCellId = "ResultsTitleCell"
 private let dividerCellId = "ResultsDividerCell"
-private let imageCellId = "ResultsImageCell"
-private let imageTaxonCellId = "ResultsImageTaxonCell"
+private let singleImageCellId = "ResultsSingleImageCell"
+private let dualImageCellId = "ResultsDualImageCell"
 private let actionCellId = "ResultsActionCell"
 
 
@@ -180,33 +180,33 @@ class ChallengeResultsViewController: UIViewController {
         }
     }
     
-    func configureImageCell(_ cell: ResultsImageCell) {
+    func configureImageCell(_ cell: ResultsSingleImageCell) {
         cell.backgroundColor = UIColor.white.withAlphaComponent(0.07)
         
         cell.userImageView?.image = self.imageFromUser
         cell.userLabel?.text = nil
     }
     
-    func configureImageTaxonCell(_ cell: ResultsImageTaxonCell) {
+    func configureImageTaxonCell(_ cell: ResultsDualImageCell) {
         cell.backgroundColor = UIColor.white.withAlphaComponent(0.07)
 
         // left label
         if let score = self.resultScore {
-            cell.userLabel?.text = String(format: NSLocalizedString("Your Photo:\n%@", comment: "Title of the user photo. The substition is the species name in their photo."), score.taxon.displayName)
+            cell.leadingImageLabel?.text = String(format: NSLocalizedString("Your Photo:\n%@", comment: "Title of the user photo. The substition is the species name in their photo."), score.taxon.displayName)
         } else {
-            cell.userLabel?.text = NSLocalizedString("Your Photo", comment: "Title of the user photo, when we don't have a species for it.")
+            cell.leadingImageLabel?.text = NSLocalizedString("Your Photo", comment: "Title of the user photo, when we don't have a species for it.")
         }
 
         // left photo is always user photo
-        cell.userImageView?.image = self.imageFromUser
+        cell.leadingImageView?.image = self.imageFromUser
         
         // right label
         if let target = self.targetTaxon {
-            cell.userLabel?.text = String(format: NSLocalizedString("Target Species:\n%@", comment: "Title of the target species photo. The substition is the target species name."), target.displayName)
+            cell.leadingImageLabel?.text = String(format: NSLocalizedString("Target Species:\n%@", comment: "Title of the target species photo. The substition is the target species name."), target.displayName)
 
-            cell.taxonLabel?.text = "Target Species:\n\(target.displayName)"
+            cell.trailingImageLabel?.text = "Target Species:\n\(target.displayName)"
         } else if let score = self.resultScore {
-            cell.userLabel?.text = String(format: NSLocalizedString("Identified Species:\n%@", comment: "Title of the identified species photo. The substition is the identified species name."), score.taxon.displayName)
+            cell.leadingImageLabel?.text = String(format: NSLocalizedString("Identified Species:\n%@", comment: "Title of the identified species photo. The substition is the identified species name."), score.taxon.displayName)
         }
         
         // right photo
@@ -216,7 +216,7 @@ class ChallengeResultsViewController: UIViewController {
                 let urlString = photo.medium_url,
                 let url = URL(string: urlString)
             {
-                cell.taxonImageView?.setImage(url: url)
+                cell.trailingImageView?.setImage(url: url)
             }
         } else if let score = self.resultScore {
             // show the identified taxon photo
@@ -224,7 +224,7 @@ class ChallengeResultsViewController: UIViewController {
                 let urlString = photo.medium_url,
                 let url = URL(string: urlString)
             {
-                cell.taxonImageView?.setImage(url: url)
+                cell.trailingImageView?.setImage(url: url)
             }
         }
     }
@@ -392,16 +392,16 @@ extension ChallengeResultsViewController: UITableViewDataSource {
         } else if indexPath.item == 2 {
             if self.resultScore != nil {
                 // if a match, always show two photos (your photo and match or score)
-                let cell = tableView.dequeueReusableCell(withIdentifier: imageTaxonCellId, for: indexPath) as! ResultsImageTaxonCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: dualImageCellId, for: indexPath) as! ResultsDualImageCell
                 self.configureImageTaxonCell(cell)
                 return cell
             } else if self.targetTaxon != nil {
                 // if a target, always show to photos (your photo and target)
-                let cell = tableView.dequeueReusableCell(withIdentifier: imageTaxonCellId, for: indexPath) as! ResultsImageTaxonCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: dualImageCellId, for: indexPath) as! ResultsDualImageCell
                 self.configureImageTaxonCell(cell)
                 return cell
             } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: imageCellId, for: indexPath) as! ResultsImageCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: singleImageCellId, for: indexPath) as! ResultsSingleImageCell
                 self.configureImageCell(cell)
                 return cell
             }

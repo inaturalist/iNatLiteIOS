@@ -42,8 +42,8 @@
 		FA1DE1AE2037761D00ACBD17 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1AD2037761D00ACBD17 /* Config.swift */; };
 		FA1DE1B120377A8800ACBD17 /* ResultsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1B020377A8800ACBD17 /* ResultsTitleCell.swift */; };
 		FA1DE1B3203780E000ACBD17 /* ResultsDividerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1B2203780E000ACBD17 /* ResultsDividerCell.swift */; };
-		FA1DE1B52037A06A00ACBD17 /* ResultsImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1B42037A06A00ACBD17 /* ResultsImageCell.swift */; };
-		FA1DE1B72037A07B00ACBD17 /* ResultsImageTaxonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1B62037A07B00ACBD17 /* ResultsImageTaxonCell.swift */; };
+		FA1DE1B52037A06A00ACBD17 /* ResultsSingleImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1B42037A06A00ACBD17 /* ResultsSingleImageCell.swift */; };
+		FA1DE1B72037A07B00ACBD17 /* ResultsDualImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1B62037A07B00ACBD17 /* ResultsDualImageCell.swift */; };
 		FA1DE1BB2038A25400ACBD17 /* ResultsActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1BA2038A25400ACBD17 /* ResultsActionCell.swift */; };
 		FA1DE1BD203A21FF00ACBD17 /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1BC203A21FF00ACBD17 /* LocationPickerViewController.swift */; };
 		FA1DE1BF203A3B8900ACBD17 /* LocationTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1BE203A3B8900ACBD17 /* LocationTagCell.swift */; };
@@ -164,8 +164,8 @@
 		FA1DE1AD2037761D00ACBD17 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		FA1DE1B020377A8800ACBD17 /* ResultsTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTitleCell.swift; sourceTree = "<group>"; };
 		FA1DE1B2203780E000ACBD17 /* ResultsDividerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsDividerCell.swift; sourceTree = "<group>"; };
-		FA1DE1B42037A06A00ACBD17 /* ResultsImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsImageCell.swift; sourceTree = "<group>"; };
-		FA1DE1B62037A07B00ACBD17 /* ResultsImageTaxonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsImageTaxonCell.swift; sourceTree = "<group>"; };
+		FA1DE1B42037A06A00ACBD17 /* ResultsSingleImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsSingleImageCell.swift; sourceTree = "<group>"; };
+		FA1DE1B62037A07B00ACBD17 /* ResultsDualImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsDualImageCell.swift; sourceTree = "<group>"; };
 		FA1DE1BA2038A25400ACBD17 /* ResultsActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsActionCell.swift; sourceTree = "<group>"; };
 		FA1DE1BC203A21FF00ACBD17 /* LocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerViewController.swift; sourceTree = "<group>"; };
 		FA1DE1BE203A3B8900ACBD17 /* LocationTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTagCell.swift; sourceTree = "<group>"; };
@@ -437,8 +437,8 @@
 			children = (
 				FA1DE1B020377A8800ACBD17 /* ResultsTitleCell.swift */,
 				FA1DE1B2203780E000ACBD17 /* ResultsDividerCell.swift */,
-				FA1DE1B42037A06A00ACBD17 /* ResultsImageCell.swift */,
-				FA1DE1B62037A07B00ACBD17 /* ResultsImageTaxonCell.swift */,
+				FA1DE1B42037A06A00ACBD17 /* ResultsSingleImageCell.swift */,
+				FA1DE1B62037A07B00ACBD17 /* ResultsDualImageCell.swift */,
 				FA1DE1BA2038A25400ACBD17 /* ResultsActionCell.swift */,
 			);
 			path = "Results Cells";
@@ -873,7 +873,7 @@
 				FA1DE1BD203A21FF00ACBD17 /* LocationPickerViewController.swift in Sources */,
 				FAA25380204D0F1C00D6EBAA /* NSAttributedString+INatLite.swift in Sources */,
 				FA0A0DBF20409A35005B19F9 /* SpeciesPhenologyCell.swift in Sources */,
-				FA1DE1B72037A07B00ACBD17 /* ResultsImageTaxonCell.swift in Sources */,
+				FA1DE1B72037A07B00ACBD17 /* ResultsDualImageCell.swift in Sources */,
 				FA1DE18F2034CF6300ACBD17 /* SpeciesDetailViewController.swift in Sources */,
 				FA9556792077388E0029C974 /* UIImage+INatLite.swift in Sources */,
 				FA9E5FB52043830C00CBC9DE /* TaxonRealm.swift in Sources */,
@@ -891,7 +891,7 @@
 				FAF849C520434AA4009F10E3 /* BadgeRealm.swift in Sources */,
 				FAF849C720434BFD009F10E3 /* BadgeCell.swift in Sources */,
 				FA0A0DCB2040BDF9005B19F9 /* HistogramResponse.swift in Sources */,
-				FA1DE1B52037A06A00ACBD17 /* ResultsImageCell.swift in Sources */,
+				FA1DE1B52037A06A00ACBD17 /* ResultsSingleImageCell.swift in Sources */,
 				FAA25382204DCC3E00D6EBAA /* Image+INatLite.swift in Sources */,
 				FA1DE1AA203765D800ACBD17 /* ChallengeResultsViewController.swift in Sources */,
 				FA0A0DB7204085FB005B19F9 /* TaxaResponse.swift in Sources */,

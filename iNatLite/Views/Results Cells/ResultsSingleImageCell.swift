@@ -1,5 +1,5 @@
 //
-//  ResultsImageCell.swift
+//  ResultsSingleImageCell.swift
 //  iNatLite
 //
 //  Created by Alex Shepard on 2/16/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ResultsImageCell: UITableViewCell {
+class ResultsSingleImageCell: UITableViewCell {
     
     @IBOutlet var userImageView: UIImageView?
     @IBOutlet var userLabel: UILabel?
