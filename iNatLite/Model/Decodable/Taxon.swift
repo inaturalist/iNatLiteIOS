@@ -31,18 +31,6 @@ struct Taxon: Decodable {
             return "No additional information."
         }
     }
-    
-    var wikipediaHtml: NSAttributedString? {
-        if let summary = self.wikipedia_summary, let data = summary.data(using: .utf8) {
-            let opts: [NSAttributedString.DocumentReadingOptionKey : Any] = [.documentType: NSAttributedString.DocumentType.html,
-                                                                             .characterEncoding: String.Encoding.utf8.rawValue]
-            let str = try! NSAttributedString(data: data, options: opts, documentAttributes: nil)
-            return str
-            //return NSAttributedString(data: data, options: nil, documentAttributes: nil)
-        } else {
-            return nil
-        }
-    }
 }
 
 extension Taxon {
