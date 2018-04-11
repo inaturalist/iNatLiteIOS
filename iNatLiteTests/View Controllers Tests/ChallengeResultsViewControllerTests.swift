@@ -22,6 +22,20 @@ class ChallengeResultsViewControllerTests: XCTestCase {
         }
     }
     
+    func soldierFlyTaxon() -> Taxon? {
+        if let path = Bundle(for: ChallengeResultsViewControllerTests.self).path(forResource: "357883", ofType: "json") {
+            let url = URL(fileURLWithPath: path)
+            let data = try! Data(contentsOf: url)
+            let decoded = try! JSONDecoder().decode(TaxaResponse.self, from: data)
+            if let response = decoded as? TaxaResponse,
+                let results = response.results, results.count == 1
+            {
+                return results.first
+            }
+        }
+        return nil
+    }
+    
     override func setUp() {
         super.setUp()
         
