@@ -239,7 +239,7 @@ class ChallengeResultsViewController: UIViewController {
                     for observation in observations {
                         if let obsTaxon = observation.taxon, let obsDate = observation.dateString {
                             if obsTaxon.id == result.taxon.id {
-                                cell.infoLabel?.text = String(format: NSLocalizedString("You collected a photo of a %@ on %@", comment: "Notice about when the user collected a species photo. First subtitution is the species name, second substitution is the locally formatted date."), obsTaxon.displayName)
+                                cell.infoLabel?.text = String(format: NSLocalizedString("You collected a photo of a %@ on %@", comment: "Notice about when the user collected a species photo. First subtitution is the species name, second substitution is the locally formatted date."), obsTaxon.displayName, obsDate)
                                 cell.infoLabel?.textColor = UIColor.INat.SpeciesAddButton
                                 
                                 cell.actionButton?.setTitle(NSLocalizedString("OK", comment: "OK button title"), for: .normal)
