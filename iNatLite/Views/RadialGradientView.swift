@@ -24,7 +24,14 @@ class RadialGradientView: UIView {
         if let context = UIGraphicsGetCurrentContext(), let gradient = gradient {
             let centerOfGradient: CGPoint = CGPoint(x: rect.width / 2, y: gradientCenterYOffset)
             
-            context.drawRadialGradient(gradient, startCenter: centerOfGradient, startRadius: 0, endCenter: centerOfGradient, endRadius: radiusOfGradient, options: CGGradientDrawingOptions.drawsAfterEndLocation)
+            context.drawRadialGradient(
+                gradient,
+                startCenter: centerOfGradient,
+                startRadius: 0,
+                endCenter: centerOfGradient,
+                endRadius: radiusOfGradient,
+                options: CGGradientDrawingOptions.drawsAfterEndLocation
+            )
         }
     }
 }
