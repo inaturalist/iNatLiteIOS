@@ -8,7 +8,25 @@
 
 import UIKit
 
+enum ResultsDividerStyle {
+    case match
+    case mismatch
+    case unknown
+}
+
+
 class ResultsDividerCell: UITableViewCell {
     @IBOutlet var scrim: UIView?
     @IBOutlet var dividerImageView: UIImageView?
+    
+    func setDividerStyle(_ style: ResultsDividerStyle) {
+        switch style {
+        case .match:
+            dividerImageView?.image = UIImage(named: "icn-results-match")
+        case .mismatch:
+            dividerImageView?.image = UIImage(named: "icn-results-mismatch")
+        case .unknown:
+            dividerImageView?.image = UIImage(named: "icn-results-unknown")
+        }
+    }
 }

@@ -93,6 +93,7 @@
 		FACB2D0620490EF50050053A /* MadeByCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB2D0520490EF50050053A /* MadeByCell.swift */; };
 		FACB2D0D20490F4B0050053A /* INatCreditsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB2D0C20490F4B0050053A /* INatCreditsCell.swift */; };
 		FACB2D0F204A29D90050053A /* riffic-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FACB2D0E204A29D60050053A /* riffic-bold.ttf */; };
+		FACCC70B20806BA500B06278 /* ChallengeResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCC70A20806BA500B06278 /* ChallengeResults.swift */; };
 		FAD48C462079FFC700FF3594 /* LocalizableBadges.strings in Resources */ = {isa = PBXBuildFile; fileRef = FAD48C482079FFC700FF3594 /* LocalizableBadges.strings */; };
 		FAEB5C0C20687D7500BA3132 /* INatApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB5C0B20687D7500BA3132 /* INatApi.swift */; };
 		FAEDCA442048BB560016CEA4 /* WarningsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEDCA432048BB560016CEA4 /* WarningsViewController.swift */; };
@@ -219,6 +220,7 @@
 		FACB2D0520490EF50050053A /* MadeByCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeByCell.swift; sourceTree = "<group>"; };
 		FACB2D0C20490F4B0050053A /* INatCreditsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INatCreditsCell.swift; sourceTree = "<group>"; };
 		FACB2D0E204A29D60050053A /* riffic-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "riffic-bold.ttf"; sourceTree = "<group>"; };
+		FACCC70A20806BA500B06278 /* ChallengeResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeResults.swift; sourceTree = "<group>"; };
 		FAD48C472079FFC700FF3594 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LocalizableBadges.strings; sourceTree = "<group>"; };
 		FAEB5C0B20687D7500BA3132 /* INatApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INatApi.swift; sourceTree = "<group>"; };
 		FAEDCA432048BB560016CEA4 /* WarningsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningsViewController.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 				FAA25381204DCC3E00D6EBAA /* Image+INatLite.swift */,
 				FAEB5C0B20687D7500BA3132 /* INatApi.swift */,
 				FA9556782077388E0029C974 /* UIImage+INatLite.swift */,
+				FACCC70A20806BA500B06278 /* ChallengeResults.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -886,6 +889,7 @@
 				FA9E5FB52043830C00CBC9DE /* TaxonRealm.swift in Sources */,
 				FA1DE1AE2037761D00ACBD17 /* Config.swift in Sources */,
 				FA1DE18B2034CF2E00ACBD17 /* YourCollectionViewController.swift in Sources */,
+				FACCC70B20806BA500B06278 /* ChallengeResults.swift in Sources */,
 				FA1DE1AC203775DD00ACBD17 /* ScoreResponse.swift in Sources */,
 				FA6D75AE203B6FA300C3535F /* IconicTaxonCell.swift in Sources */,
 				FA1DE1BF203A3B8900ACBD17 /* LocationTagCell.swift in Sources */,

@@ -6,6 +6,11 @@
 //  Copyright © 2018 iNaturalist. All rights reserved.
 //
 
+enum ResultsActionButtonStyle {
+    case standard
+    case strong
+}
+
 import UIKit
 
 class ResultsActionCell: UITableViewCell {
@@ -15,13 +20,31 @@ class ResultsActionCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
+        
+        if let actionButton = actionButton {
+            actionButton.layer.cornerRadius = actionButton.bounds.size.height / 2
+        }
+        actionButton?.clipsToBounds = true
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        self.setActionButtonStyle(.strong)
     }
+    
+    func setActionButtonStyle(_ style: ResultsActionButtonStyle) {
+        switch style {
+        case .standard:
+            actionButton?.backgroundColor = UIColor.clear
+            actionButton?.tintColor = UIColor.white
+            actionButton?.layer.borderColor = UIColor.INat.Green.cgColor
+            actionButton?.layer.borderWidth = 2.0
+            actionButton?.clipsToBounds = true
+        case .strong:
+            actionButton?.backgroundColor = UIColor.INat.Green
+            actionButton?.tintColor = UIColor.white
+            if let font = UIFont(name: "Riffic-Bold", size: 18) {
+                actionButton?.titleLabel?.font = font
+            }
+        }
+    }
+    
 
 }

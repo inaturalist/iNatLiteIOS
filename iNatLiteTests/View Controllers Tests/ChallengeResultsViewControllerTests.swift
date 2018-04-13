@@ -10,6 +10,8 @@ import XCTest
 @testable import iNatLite
 import RealmSwift
 
+// most of these tests should now be performed on the ChallengeResults class
+
 class ChallengeResultsViewControllerTests: XCTestCase {
     
     var viewController: ChallengeResultsViewController!
@@ -41,7 +43,7 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     }
         
     func testNotLoaded() {
-        viewController.resultsLoaded = false
+        viewController.challengeResults.resultsLoaded = false
         viewController.tableView!.reloadData()
         
         XCTAssertEqual(viewController.tableView?.numberOfSections, 1, "Even when not loaded, the challenge results should contain one section.")
@@ -49,9 +51,7 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     }
     
     func testNoTargetNoMatch() {
-        viewController.resultScore = nil
-        viewController.targetTaxon = nil
-        viewController.resultsLoaded = true
+        viewController.challengeResults.resultsLoaded = true
         viewController.tableView!.reloadData()
         
         let titleText = viewController.titleCell()!.title!.text!
@@ -78,9 +78,8 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     
     func testNoTargetMatchNotAlreadySeen() {
         let silkMoth = FixtureHelper.silkMothTaxon()!
-        viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: silkMoth)
-        viewController.targetTaxon = nil
-        viewController.resultsLoaded = true
+        viewController.challengeResults.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: silkMoth)
+        viewController.challengeResults.resultsLoaded = true
         viewController.tableView!.reloadData()
 
         let titleText = viewController.titleCell()!.title!.text!
@@ -105,20 +104,9 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     
     func testNoTargetMatchAlreadySeen() {
         let silkMoth = FixtureHelper.silkMothTaxon()!
-
-        let realm = try! Realm()
-        try! realm.write {
-            let observation = ObservationRealm()
-            observation.date = Date()
-            let taxon = TaxonRealm()
-            taxon.id = silkMoth.id
-            observation.taxon = taxon
-            realm.add(observation)
-        }
-        
-        viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: silkMoth)
-        viewController.targetTaxon = nil
-        viewController.resultsLoaded = true
+        FixtureHelper.addObservationToRealmWithTaxon(silkMoth)
+        viewController.challengeResults.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: silkMoth)
+        viewController.challengeResults.resultsLoaded = true
         viewController.tableView!.reloadData()
         
         let titleText = viewController.titleCell()!.title!.text!
@@ -142,9 +130,9 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     }
     
     func testTargetNoMatch() {
-        viewController.targetTaxon = FixtureHelper.soldierFlyTaxon()
-        viewController.resultScore = nil
-        viewController.resultsLoaded = true
+        let soliderFly = FixtureHelper.soldierFlyTaxon()
+        viewController.challengeResults.targetTaxon = soliderFly
+        viewController.challengeResults.resultsLoaded = true
         viewController.tableView!.reloadData()
         
         let titleText = viewController.titleCell()!.title!.text!
@@ -171,9 +159,9 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     
     func testTargetMatchNotAlreadySeen() {
         let soldierFly = FixtureHelper.soldierFlyTaxon()!
-        viewController.targetTaxon = soldierFly
-        viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: soldierFly)
-        viewController.resultsLoaded = true
+        viewController.challengeResults.targetTaxon = FixtureHelper.soldierFlyTaxon()
+        viewController.challengeResults.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: soldierFly)
+        viewController.challengeResults.resultsLoaded = true
         viewController.tableView!.reloadData()
         
         let titleText = viewController.titleCell()!.title!.text!
@@ -203,25 +191,12 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     
     func testTargetDifferentMatchAlreadySeen() {
         let soldierFly = FixtureHelper.soldierFlyTaxon()!
-        let silkMoth = FixtureHelper.silkMothTaxon()
-        
-        let realm = try! Realm()
-        try! realm.write {
-            let silkMothObservation = ObservationRealm()
-            silkMothObservation.date = Date()
-            let silkMothTaxonRealm = TaxonRealm()
-            silkMothTaxonRealm.id = silkMoth!.id
-            silkMothTaxonRealm.name = silkMoth!.name
-            silkMothTaxonRealm.preferredCommonName = silkMoth!.preferred_common_name
-            silkMothObservation.taxon = silkMothTaxonRealm
-            realm.add(silkMothObservation)
-        }
-
-        viewController.targetTaxon = soldierFly
-        viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: silkMoth!)
-        viewController.resultsLoaded = true
+        let silkMoth = FixtureHelper.silkMothTaxon()!
+        FixtureHelper.addObservationToRealmWithTaxon(silkMoth)
+        viewController.challengeResults.targetTaxon = soldierFly
+        viewController.challengeResults.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: silkMoth)
+        viewController.challengeResults.resultsLoaded = true
         viewController.tableView!.reloadData()
-        
         
         let titleText = viewController.titleCell()!.title!.text!
         XCTAssertTrue(titleText.contains("Good Try"), "With a target and a non-target match (previously seen), the title should contain Good Try. May fail when tested in a non-english locale")
@@ -246,11 +221,10 @@ class ChallengeResultsViewControllerTests: XCTestCase {
     
     func testTargetDifferentMatchNotAlreadySeen() {
         let soldierFly = FixtureHelper.soldierFlyTaxon()!
-        let silkMoth = FixtureHelper.silkMothTaxon()
-        
-        viewController.targetTaxon = soldierFly
-        viewController.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: silkMoth!)
-        viewController.resultsLoaded = true
+        let silkMoth = FixtureHelper.silkMothTaxon()!
+        viewController.challengeResults.targetTaxon = soldierFly
+        viewController.challengeResults.resultScore = TaxonScore(vision_score: 0.99, frequency_score: 0.99, combined_score: 0.99, taxon: silkMoth)
+        viewController.challengeResults.resultsLoaded = true
         viewController.tableView!.reloadData()
         
         
