@@ -64,7 +64,7 @@ class BadgesViewController: UICollectionViewController {
         if let badges = self.badges {
             let badge = badges[indexPath.item]
             cell.label?.text = badge.localizedName
-            cell.label?.textColor = UIColor.INat.BadgeNameText
+            cell.label?.textColor = UIColor(named: .BadgeNameText)
             if badge.earned {
                 if let badgeIconName = badge.earnedIconName {
                     cell.imageView?.image = UIImage(named: badgeIconName)

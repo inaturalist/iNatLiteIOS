@@ -15,7 +15,7 @@ class INatCreditsCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        versionLabel?.textColor = UIColor.INat.Green
+        versionLabel?.textColor = UIColor(named: .Green)
         
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             versionLabel?.text = String(format: NSLocalizedString("Version %@", comment: "Version number of the app"), version)

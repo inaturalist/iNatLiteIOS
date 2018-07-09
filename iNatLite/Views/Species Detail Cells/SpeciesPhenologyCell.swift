@@ -20,7 +20,7 @@ class SpeciesPhenologyCell: UITableViewCell {
         
         self.backgroundColor = UIColor.clear
         
-        chartBackground?.backgroundColor = UIColor.INat.SpeciesPhenlogyBackground
+        chartBackground?.backgroundColor = UIColor(named: .SpeciesPhenologyBackground)
         chartBackground?.layer.cornerRadius = 5.0
         chartBackground?.clipsToBounds = true
         

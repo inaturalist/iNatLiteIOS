@@ -31,7 +31,7 @@
 		FA1DE18F2034CF6300ACBD17 /* SpeciesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE18E2034CF6300ACBD17 /* SpeciesDetailViewController.swift */; };
 		FA1DE1932034D78200ACBD17 /* SpeciesCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1DE1922034D78200ACBD17 /* SpeciesCollectionView.xib */; };
 		FA1DE1952034DA5700ACBD17 /* SpeciesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1942034DA5700ACBD17 /* SpeciesCollectionViewCell.swift */; };
-		FA1DE1982034DE0A00ACBD17 /* UIColor+INatLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1972034DE0A00ACBD17 /* UIColor+INatLite.swift */; };
+		FA1DE1982034DE0A00ACBD17 /* UIString+INatLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE1972034DE0A00ACBD17 /* UIString+INatLite.swift */; };
 		FA1DE19B2034F53F00ACBD17 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE19A2034F53F00ACBD17 /* Place.swift */; };
 		FA1DE19E2034F5A400ACBD17 /* NearbyPlaceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE19D2034F5A400ACBD17 /* NearbyPlaceResponse.swift */; };
 		FA1DE1A02034F6CB00ACBD17 /* ChallengesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DE19F2034F6CB00ACBD17 /* ChallengesHeaderView.swift */; };
@@ -156,7 +156,7 @@
 		FA1DE18E2034CF6300ACBD17 /* SpeciesDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesDetailViewController.swift; sourceTree = "<group>"; };
 		FA1DE1922034D78200ACBD17 /* SpeciesCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpeciesCollectionView.xib; sourceTree = "<group>"; };
 		FA1DE1942034DA5700ACBD17 /* SpeciesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesCollectionViewCell.swift; sourceTree = "<group>"; };
-		FA1DE1972034DE0A00ACBD17 /* UIColor+INatLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+INatLite.swift"; sourceTree = "<group>"; };
+		FA1DE1972034DE0A00ACBD17 /* UIString+INatLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIString+INatLite.swift"; sourceTree = "<group>"; };
 		FA1DE19A2034F53F00ACBD17 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		FA1DE19D2034F5A400ACBD17 /* NearbyPlaceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPlaceResponse.swift; sourceTree = "<group>"; };
 		FA1DE19F2034F6CB00ACBD17 /* ChallengesHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesHeaderView.swift; sourceTree = "<group>"; };
@@ -418,7 +418,7 @@
 		FA1DE1962034DDE800ACBD17 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				FA1DE1972034DE0A00ACBD17 /* UIColor+INatLite.swift */,
+				FA1DE1972034DE0A00ACBD17 /* UIString+INatLite.swift */,
 				FAA2537D204C8FCE00D6EBAA /* CLLocationCoordinate2D+INatLite.swift */,
 				FAA2537F204D0F1C00D6EBAA /* NSAttributedString+INatLite.swift */,
 				FAA25381204DCC3E00D6EBAA /* Image+INatLite.swift */,
@@ -921,7 +921,7 @@
 				FA0A0DC52040A35B005B19F9 /* SpeciesCategoryCell.swift in Sources */,
 				FA7DF3B12045FB0700B73B02 /* ToastView.swift in Sources */,
 				FA323FDB20549F05006192C7 /* SplashViewController.swift in Sources */,
-				FA1DE1982034DE0A00ACBD17 /* UIColor+INatLite.swift in Sources */,
+				FA1DE1982034DE0A00ACBD17 /* UIString+INatLite.swift in Sources */,
 				FAA2537E204C8FCE00D6EBAA /* CLLocationCoordinate2D+INatLite.swift in Sources */,
 				FA1DE1A22034F95100ACBD17 /* Taxon.swift in Sources */,
 				FA9E5FB72043837000CBC9DE /* PhotoRealm.swift in Sources */,

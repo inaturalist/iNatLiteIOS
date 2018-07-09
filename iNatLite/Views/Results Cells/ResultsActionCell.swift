@@ -34,11 +34,11 @@ class ResultsActionCell: UITableViewCell {
         case .standard:
             actionButton?.backgroundColor = UIColor.clear
             actionButton?.tintColor = UIColor.white
-            actionButton?.layer.borderColor = UIColor.INat.Green.cgColor
+            actionButton?.layer.borderColor = UIColor(named: .Green)?.cgColor
             actionButton?.layer.borderWidth = 2.0
             actionButton?.clipsToBounds = true
         case .strong:
-            actionButton?.backgroundColor = UIColor.INat.Green
+            actionButton?.backgroundColor = UIColor(named: .Green)
             actionButton?.tintColor = UIColor.white
             if let font = UIFont(name: "Riffic-Bold", size: 18) {
                 actionButton?.titleLabel?.font = font

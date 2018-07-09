@@ -67,15 +67,18 @@ class LocationPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let gradient = self.gradient {
-            gradient.insideColor = UIColor.INat.LighterDarkBlue
-            gradient.outsideColor = UIColor.INat.DarkBlue
+        if let gradient = self.gradient,
+            let insideColor = UIColor(named: .LighterDarkBlue),
+            let outsideColor = UIColor(named: .DarkBlue)
+        {
+            gradient.insideColor = insideColor
+            gradient.outsideColor = outsideColor
         }
         
         locationLabel?.text = " "
         locationView?.backgroundColor = UIColor.clear
         doneView?.backgroundColor = UIColor.clear
-        doneButton?.backgroundColor = UIColor.INat.Green
+        doneButton?.backgroundColor = UIColor(named: .Green)
         doneButton?.layer.cornerRadius = 40 / 2
         doneButton?.clipsToBounds = true
         
@@ -101,7 +104,7 @@ class LocationPickerViewController: UIViewController {
         }
         
         if let pin = FAKIonIcons.iosLocationIcon(withSize: 64) {
-            pin.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.INat.Green)
+            pin.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor(named: .Green))
             centerPin?.attributedText = pin.attributedString()
         }
         

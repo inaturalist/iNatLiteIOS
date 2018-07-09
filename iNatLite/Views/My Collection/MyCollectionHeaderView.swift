@@ -15,6 +15,6 @@ class MyCollectionHeaderView: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        backgroundColor = UIColor.INat.MyCollectionBadgesHeaderBackground
+        backgroundColor = UIColor(named: .MyCollectionBadgesHeaderBackground)
     }
 }

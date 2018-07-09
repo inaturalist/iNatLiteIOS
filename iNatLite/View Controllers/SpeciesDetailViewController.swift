@@ -121,13 +121,13 @@ class SpeciesDetailViewController: UIViewController {
                 self.view.setNeedsLayout()
             }
         } else {
-            addView?.backgroundColor = UIColor.INat.SpeciesAddButtonBackground
-            addButton?.backgroundColor = UIColor.INat.CategoryForeground
-            addButton?.tintColor = UIColor.INat.SpeciesChicletLabelBackground
+            addView?.backgroundColor = UIColor(named: .SpeciesAddButtonBackground)
+            addButton?.backgroundColor = UIColor(named: .CategoryForeground)
+            addButton?.tintColor = UIColor(named: .SpeciesChicletLabelBackground)
             addButton?.layer.cornerRadius = 20
             addButton?.clipsToBounds = true
             if let plus = FAKIonIcons.androidAddCircleIcon(withSize: 20) {
-                plus.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.INat.SpeciesChicletLabelBackground)
+                plus.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor(named: .SpeciesChicletLabelBackground))
                 let attrStr = NSMutableAttributedString(attributedString: plus.attributedString())
                 attrStr.append(NSAttributedString(string: " Found It!"))
                 addButton?.setAttributedTitle(attrStr, for: .normal)
@@ -140,8 +140,8 @@ class SpeciesDetailViewController: UIViewController {
             self.title = NSLocalizedString("Collected", comment: "Title for species details screen if the user has collected this species")
         }
         
-        self.tableView?.backgroundColor = UIColor.INat.DarkBlue
-        self.view.backgroundColor = UIColor.INat.DarkBlue
+        self.tableView?.backgroundColor = UIColor(named: .DarkBlue)
+        self.view.backgroundColor = UIColor(named: .DarkBlue)
         
         // avoid extra lines below content
         self.tableView?.tableFooterView = UIView()

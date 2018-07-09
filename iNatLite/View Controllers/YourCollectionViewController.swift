@@ -57,7 +57,7 @@ class YourCollectionViewController: UIViewController {
         let aboutButton = UIBarButtonItem(title: aboutTitle, style: .plain, target: self, action: #selector(YourCollectionViewController.aboutTapped))
         self.navigationItem.rightBarButtonItem = aboutButton
 
-        badgesBackground?.backgroundColor = UIColor.INat.MyCollectionBadgesHeaderBackground
+        badgesBackground?.backgroundColor = UIColor(named: .MyCollectionBadgesHeaderBackground)
         view.backgroundColor = .white
         self.collectionView?.backgroundColor = .clear
         self.collectionView?.backgroundView = nil
@@ -124,7 +124,7 @@ extension YourCollectionViewController: UICollectionViewDataSource {
             // your recent badges
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: badgeCellId, for: indexPath) as! BadgeCell
             
-            cell.contentView.backgroundColor = UIColor.INat.MyCollectionBadgesHeaderBackground
+            cell.contentView.backgroundColor = UIColor(named: .MyCollectionBadgesHeaderBackground)
             
             if let badges = self.badges {
                 let badge = badges[indexPath.item]
@@ -146,7 +146,8 @@ extension YourCollectionViewController: UICollectionViewDataSource {
             // your collection
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: speciesCellId, for: indexPath) as! SpeciesCollectionViewCell
             
-            cell.nameScrim?.backgroundColor = UIColor.INat.MyCollectionChicletLabelBackground
+            cell.nameScrim?.backgroundColor =
+                UIColor(named: .MyCollectionChicletLabelBackground)
             cell.nameLabel?.textColor = UIColor.black
             
             if let observations = self.observations {
@@ -183,7 +184,7 @@ extension YourCollectionViewController: UICollectionViewDataSource {
             view.moreButton?.setTitle(NSLocalizedString("View All", comment: "Button to view all badges, seen next to the most recently earned badges"), for: .normal)
             view.moreButton?.addTarget(self, action: #selector(YourCollectionViewController.viewAllBadgesTapped), for: .touchUpInside)
             view.moreButton?.isHidden = false
-            view.backgroundColor = UIColor.INat.MyCollectionBadgesHeaderBackground
+            view.backgroundColor = UIColor(named: .MyCollectionBadgesHeaderBackground)
         } else {
             // my collection
             if let observations = self.observations {

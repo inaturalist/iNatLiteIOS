@@ -25,8 +25,12 @@ class TaxonPickerViewController: UICollectionViewController, UICollectionViewDel
         
         self.collectionView?.contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         let gradient = RadialGradientView()
-        gradient.insideColor = UIColor.INat.LighterDarkBlue
-        gradient.outsideColor = UIColor.INat.DarkBlue
+        if let insideColor = UIColor(named: .LighterDarkBlue),
+            let outsideColor = UIColor(named: .DarkBlue)
+        {
+            gradient.insideColor = insideColor
+            gradient.outsideColor = outsideColor
+        }
         self.collectionView?.backgroundView = gradient
     }
     
@@ -59,8 +63,8 @@ class TaxonPickerViewController: UICollectionViewController, UICollectionViewDel
             
             if self.selectedTaxon == nil {
                 cell.contentView.backgroundColor = UIColor.white
-                cell.imageView?.tintColor = UIColor.INat.DarkBlue
-                cell.label?.textColor = UIColor.INat.DarkBlue
+                cell.imageView?.tintColor = UIColor(named: .DarkBlue)
+                cell.label?.textColor = UIColor(named: .DarkBlue)
             } else {
                 cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.07)
                 cell.imageView?.tintColor = UIColor.white
@@ -76,8 +80,8 @@ class TaxonPickerViewController: UICollectionViewController, UICollectionViewDel
 
             if self.selectedTaxon == iconicTaxon {
                 cell.contentView.backgroundColor = UIColor.white
-                cell.imageView?.tintColor = UIColor.INat.DarkBlue
-                cell.label?.textColor = UIColor.INat.DarkBlue
+                cell.imageView?.tintColor = UIColor(named: .DarkBlue)
+                cell.label?.textColor = UIColor(named: .DarkBlue)
             } else {
                 cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.07)
                 cell.imageView?.tintColor = UIColor.white

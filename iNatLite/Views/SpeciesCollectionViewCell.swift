@@ -32,6 +32,6 @@ class SpeciesCollectionViewCell: UICollectionViewCell {
         layer.shadowOpacity = 1.0
         layer.masksToBounds = false
         
-        self.nameScrim?.backgroundColor = UIColor.INat.SpeciesChicletLabelBackground
+        self.nameScrim?.backgroundColor = UIColor(named: .SpeciesChicletLabelBackground)
     }
 }

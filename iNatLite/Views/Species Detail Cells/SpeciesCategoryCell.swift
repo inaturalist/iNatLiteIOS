@@ -20,11 +20,11 @@ class SpeciesCategoryCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        backgroundTop?.backgroundColor = UIColor.INat.SpeciesNameBackground
-        backgroundBottom?.backgroundColor = UIColor.INat.SpeciesDetailBackground
-
-        backgroundStripe?.backgroundColor = UIColor.INat.CategoryBackground
-        categoryLabel?.textColor = UIColor.INat.CategoryForeground
-        categoryImageView?.tintColor = UIColor.INat.CategoryForeground
+        backgroundTop?.backgroundColor = UIColor(named: .SpeciesNameBackground)
+        backgroundBottom?.backgroundColor = UIColor(named: .SpeciesDetailBackground)
+        
+        backgroundStripe?.backgroundColor = UIColor(named: .CategoryBackground)
+        categoryLabel?.textColor = UIColor(named: .CategoryForeground)
+        categoryImageView?.tintColor = UIColor(named: .CategoryForeground)
     }
 }

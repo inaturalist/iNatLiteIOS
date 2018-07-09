@@ -108,12 +108,16 @@ class ChallengeResultsViewController: UIViewController {
         // trick to hide extra lines after the tableview cells run out
         self.tableView?.tableFooterView = UIView()
         
-        if let gradient = self.gradientBackground {
-            gradient.insideColor = UIColor.INat.LighterDarkBlue
-            gradient.outsideColor = UIColor.INat.DarkBlue
+        if let gradient = self.gradientBackground,
+            let insideColor = UIColor(named: .LighterDarkBlue),
+            let outsideColor = UIColor(named: .DarkBlue)
+        {
+            
+            gradient.insideColor = insideColor
+            gradient.outsideColor = outsideColor
         }
 
-        view.backgroundColor = UIColor.INat.LighterDarkBlue
+        view.backgroundColor = UIColor(named: .LighterDarkBlue)
         
         
         self.loadResults()

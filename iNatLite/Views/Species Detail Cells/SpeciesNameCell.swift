@@ -16,6 +16,6 @@ class SpeciesNameCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = UIColor.INat.SpeciesNameBackground
+        self.backgroundColor = UIColor(named: .SpeciesNameBackground)
     }
 }

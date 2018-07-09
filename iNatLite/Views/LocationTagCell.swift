@@ -12,7 +12,7 @@ class LocationTagCell: UICollectionViewCell {
     @IBOutlet var label: UILabel?
     
     override func awakeFromNib() {
-        self.contentView.backgroundColor = UIColor.INat.Green
+        self.contentView.backgroundColor = UIColor(named: .Green)
         self.contentView.layer.cornerRadius = 30.5/2
         self.contentView.clipsToBounds = true
     }

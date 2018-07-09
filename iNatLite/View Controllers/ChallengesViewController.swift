@@ -203,13 +203,16 @@ class ChallengesViewController: UIViewController {
             spinner.transform = CGAffineTransform.init(scaleX: 3, y: 3)
         }
 
-        if let gradient = self.gradientBackground {
-            gradient.insideColor = UIColor.INat.LighterDarkBlue
-            gradient.outsideColor = UIColor.INat.DarkBlue
+        if let gradient = self.gradientBackground,
+            let insideColor = UIColor(named: .LighterDarkBlue),
+            let outsideColor = UIColor(named: .DarkBlue)
+        {
+            gradient.insideColor = insideColor
+            gradient.outsideColor = outsideColor
         }
         self.collectionView?.backgroundColor = UIColor.clear
         self.footer?.backgroundColor = UIColor.clear
-        self.footerScrim?.backgroundColor = UIColor.INat.ChallengesFooterBackground
+        self.footerScrim?.backgroundColor = UIColor(named: .ChallengesFooterBackground)
         
         let nib = UINib(nibName: "SpeciesCollectionView", bundle: Bundle.main)
         self.collectionView?.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
@@ -234,10 +237,10 @@ class ChallengesViewController: UIViewController {
             self.directionsView?.isHidden = true
         } else {
             self.directionsView?.isHidden = false
-            self.directionsView?.backgroundColor = UIColor.INat.DarkBlue.withAlphaComponent(0.9)
+            self.directionsView?.backgroundColor = UIColor(named: .DarkBlue)?.withAlphaComponent(0.9)
             for check in [directionsCheckOne, directionsCheckTwo, directionsCheckThree] {
                 if let check = check, let checkMark = FAKFontAwesome.checkIcon(withSize: 25) {
-                    checkMark.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.INat.CategoryForeground)
+                    checkMark.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.init(named: .CategoryForeground))
                     check.attributedText = checkMark.attributedString()
                 }
             }
@@ -255,7 +258,7 @@ class ChallengesViewController: UIViewController {
             
             self.directionsGoButton?.layer.cornerRadius = 20
             self.directionsGoButton?.clipsToBounds = true
-            self.directionsGoButton?.tintColor = UIColor.INat.DarkBlue
+            self.directionsGoButton?.tintColor = UIColor(named: .DarkBlue)
             self.directionsGoButton?.backgroundColor = .white
         }
     }
@@ -629,7 +632,7 @@ extension ChallengesViewController: ChallengeResultsDelegate {
                         toast.imageView?.image = image
                     }
                     toast.titleLabel?.text = String(format: NSLocalizedString("%@ collected!", comment: "toast when the user has collected a species, with the name of the species."), taxon.displayName)
-                    toast.imageView?.tintColor = UIColor.INat.SpeciesAddButton
+                    toast.imageView?.tintColor = UIColor(named: .SpeciesAddButton)
                 }
                 toast.messageLabel?.text = nil
                 toast.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 70)
