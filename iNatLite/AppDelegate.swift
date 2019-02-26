@@ -29,14 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         }
                 
-        let fontFamilyNames = UIFont.familyNames
-        for familyName in fontFamilyNames {
-            print("Font Family Name = [\(familyName)]")
-            let names = UIFont.fontNames(forFamilyName: familyName as String)
-            print("Font Names = [\(names)]")
-        }
-
-        
         // put the realm database in a shared container so it can eventually be read by other iNaturalist apps
         if let directory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppDelegate.appGroupId) {
             
