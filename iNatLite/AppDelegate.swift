@@ -18,15 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         if let font = UIFont(name: "Whitney-Medium", size: 20) {
             UINavigationBar.appearance().titleTextAttributes = [
-                NSAttributedStringKey.font: font
+                NSAttributedString.Key.font: font
             ]
         }
         if let font = UIFont(name: "Whitney-Medium", size: 18) {
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         }
                 
         let fontFamilyNames = UIFont.familyNames

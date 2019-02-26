@@ -56,7 +56,7 @@ class ChallengeResultsViewController: UIViewController {
             image.draw(in: rect)
             let newImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
-            let data = UIImageJPEGRepresentation(newImage!, 1)
+            let data = newImage!.jpegData(compressionQuality: (1))
             
             var params = [String: String]()
             
@@ -396,7 +396,8 @@ class ChallengeResultsViewController: UIViewController {
             }
  
             // save photo to documents directory
-            if let image = self.image, let data = UIImageJPEGRepresentation(image, 0.9)  {
+            
+            if let image = self.image, let data = image.jpegData(compressionQuality: (0.9))  {
                 if let photoPath = obs.pathForImage() {
                     try? data.write(to: photoPath)
                 }

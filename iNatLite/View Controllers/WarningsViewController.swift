@@ -58,7 +58,7 @@ class WarningsViewController: UIViewController {
         
         for check in [checkOne, checkTwo, checkThree, checkFour] {
             if let check = check, let checkMark = FAKFontAwesome.checkIcon(withSize: 25) {
-                checkMark.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.INat.CategoryForeground)
+                checkMark.addAttribute(NSAttributedString.Key.foregroundColor.rawValue, value: UIColor.INat.CategoryForeground)
                 check.attributedText = checkMark.attributedString()
             }
         }

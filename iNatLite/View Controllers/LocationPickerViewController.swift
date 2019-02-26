@@ -99,15 +99,15 @@ class LocationPickerViewController: UIViewController {
         }
         
         if let pin = FAKIonIcons.iosLocationIcon(withSize: 64) {
-            pin.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.INat.Green)
+            pin.addAttribute(NSAttributedString.Key.foregroundColor.rawValue, value: UIColor.INat.Green)
             centerPin?.attributedText = pin.attributedString()
         }
         
         if let navigate = FAKIonIcons.iosNavigateIcon(withSize: 64),
             let navigateOutline = FAKIonIcons.iosNavigateOutlineIcon(withSize: 64)
         {
-            navigate.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.gray)
-            navigateOutline.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.white)
+            navigate.addAttribute(NSAttributedString.Key.foregroundColor.rawValue, value: UIColor.gray)
+            navigateOutline.addAttribute(NSAttributedString.Key.foregroundColor.rawValue, value: UIColor.white)
             let nav = UIImage(stackedIcons: [navigate, navigateOutline], imageSize: CGSize(width: 64, height: 64)).withRenderingMode(.alwaysOriginal)
             gotoCurrentLocationButton?.setImage(nav, for: .normal)
         }

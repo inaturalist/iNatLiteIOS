@@ -266,7 +266,7 @@ class ChallengesViewController: UIViewController {
         
         let nib = UINib(nibName: "SpeciesCollectionView", bundle: Bundle.main)
         self.collectionView?.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
-        self.collectionView?.contentInset = UIEdgeInsetsMake(0, 16, 0, 16)
+        self.collectionView?.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         self.collectionView?.delegate = self
         self.collectionView?.dataSource = self
         
@@ -290,7 +290,7 @@ class ChallengesViewController: UIViewController {
             self.directionsView?.backgroundColor = UIColor.INat.DarkBlue.withAlphaComponent(0.9)
             for check in [directionsCheckOne, directionsCheckTwo, directionsCheckThree] {
                 if let check = check, let checkMark = FAKFontAwesome.checkIcon(withSize: 25) {
-                    checkMark.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.INat.CategoryForeground)
+                    checkMark.addAttribute(NSAttributedString.Key.foregroundColor.rawValue, value: UIColor.INat.CategoryForeground)
                     check.attributedText = checkMark.attributedString()
                 }
             }
@@ -423,7 +423,7 @@ extension ChallengesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        if kind == UICollectionElementKindSectionHeader {
+        if kind == UICollectionView.elementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! ChallengesHeaderView
             
             if let downArrow = FAKIonIcons.arrowDownBIcon(withSize: 20) {

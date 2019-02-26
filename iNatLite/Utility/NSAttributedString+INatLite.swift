@@ -11,12 +11,12 @@ import UIKit
 
 struct INatTextAttrs {
     
-    static func attrsForFont(_ font: UIFont, lineSpacing: CGFloat, alignment: NSTextAlignment) -> [NSAttributedStringKey: Any] {
+    static func attrsForFont(_ font: UIFont, lineSpacing: CGFloat, alignment: NSTextAlignment) -> [NSAttributedString.Key: Any] {
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = lineSpacing
         paragraphStyle.alignment = alignment
-        let attrs: [NSAttributedStringKey: Any] = [.font: font,
+        let attrs: [NSAttributedString.Key: Any] = [.font: font,
                                                    .paragraphStyle: paragraphStyle]
         return attrs
     }

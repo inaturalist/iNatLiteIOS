@@ -254,7 +254,7 @@ extension YourCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsetsMake(0, 16, 16, 16)
+        return UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16)
     }
 }
 

@@ -121,7 +121,7 @@ class SpeciesDetailViewController: UIViewController {
             addButton?.layer.cornerRadius = 20
             addButton?.clipsToBounds = true
             if let plus = FAKIonIcons.androidAddCircleIcon(withSize: 20) {
-                plus.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: UIColor.INat.SpeciesChicletLabelBackground)
+                plus.addAttribute(NSAttributedString.Key.foregroundColor.rawValue, value: UIColor.INat.SpeciesChicletLabelBackground)
                 let attrStr = NSMutableAttributedString(attributedString: plus.attributedString())
                 attrStr.append(NSAttributedString(string: " Found It!"))
                 addButton?.setAttributedTitle(attrStr, for: .normal)
@@ -391,11 +391,11 @@ extension SpeciesDetailViewController: UITableViewDataSource {
                     let sw = CLLocationCoordinate2D(latitude: boundingBox.swlat, longitude: boundingBox.swlng)
                     let ne = CLLocationCoordinate2D(latitude: boundingBox.nelat, longitude: boundingBox.nelng)
                     
-                    let p1 = MKMapPointForCoordinate(sw)
-                    let p2 = MKMapPointForCoordinate(ne)
-                    let zoomRect = MKMapRectMake(fmin(p1.x,p2.x), fmin(p1.y,p2.y), fabs(p1.x-p2.x), fabs(p1.y-p2.y))
+                    let p1 = MKMapPoint(sw)
+                    let p2 = MKMapPoint(ne)
+                    let zoomRect = MKMapRect(x: fmin(p1.x,p2.x), y: fmin(p1.y,p2.y), width: fabs(p1.x-p2.x), height: fabs(p1.y-p2.y))
                     let inset = -zoomRect.size.width * 0.10;
-                    cell.mapView?.setVisibleMapRect(MKMapRectInset(zoomRect, inset, inset), animated: false)
+                    cell.mapView?.setVisibleMapRect(zoomRect.insetBy(dx: inset, dy: inset), animated: false)
                 }
                 
                 if let observation = self.observation {

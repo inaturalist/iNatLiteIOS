@@ -1,13 +1,12 @@
 PODS:
-  - Alamofire (4.6.0)
-  - Auk (8.0.2):
+  - Alamofire (4.8.1)
+  - Auk (9.0.0):
     - moa
-  - Cache (4.1.2)
-  - Charts (3.0.4):
-    - Charts/Core (= 3.0.4)
-  - Charts/Core (3.0.4)
-  - CropViewController (2.3.5):
-    - TOCropViewController
+  - Cache (5.2.0)
+  - Charts (3.2.2):
+    - Charts/Core (= 3.2.2)
+  - Charts/Core (3.2.2)
+  - CropViewController (2.4.0)
   - CRToast (0.0.9)
   - FontAwesomeKit (2.2.1):
     - FontAwesomeKit/Core (= 2.2.1)
@@ -30,35 +29,35 @@ PODS:
     - FontAwesomeKit/Core
   - FontAwesomeKit/Zocial (2.2.1):
     - FontAwesomeKit/Core
-  - Gallery (2.0.5)
-  - Imaginary (3.0.2):
-    - Cache (~> 4.0)
+  - Gallery (2.2.0)
+  - Imaginary (4.2.0):
+    - Cache (~> 5.0)
   - JSONWebToken (2.2.0)
-  - moa (9.0.2)
-  - PKHUD (5.0.0)
-  - Realm (3.0.2):
-    - Realm/Headers (= 3.0.2)
-  - Realm/Headers (3.0.2)
-  - RealmSwift (3.0.2):
-    - Realm (= 3.0.2)
-  - Toast-Swift (3.0.1)
-  - TOCropViewController (2.3.5)
+  - moa (10.0.0)
+  - PKHUD (5.2.1)
+  - Realm (3.13.1):
+    - Realm/Headers (= 3.13.1)
+  - Realm/Headers (3.13.1)
+  - RealmSwift (3.13.1):
+    - Realm (= 3.13.1)
+  - Toast-Swift (4.0.1)
   - UIImageViewAlignedSwift (0.5.0)
 
 DEPENDENCIES:
-  - Alamofire (= 4.6.0)
-  - Auk (= 8.0.2)
-  - Charts (= 3.0.4)
-  - CropViewController (= 2.3.5)
+  - Alamofire (= 4.8.1)
+  - Auk (= 9.0.0)
+  - Cache (= 5.2.0)
+  - Charts (= 3.2.2)
+  - CropViewController (= 2.4.0)
   - CRToast (= 0.0.9)
   - FontAwesomeKit (= 2.2.1)
-  - Gallery (= 2.0.5)
-  - Imaginary (= 3.0.2)
+  - Gallery (= 2.2.0)
+  - Imaginary (= 4.2.0)
   - JSONWebToken (= 2.2.0)
-  - moa (= 9.0.2)
+  - moa (= 10.0.0)
   - PKHUD (~> 5.0)
-  - RealmSwift (= 3.0.2)
-  - Toast-Swift (= 3.0.1)
+  - RealmSwift (= 3.13.1)
+  - Toast-Swift (= 4.0.1)
   - UIImageViewAlignedSwift (= 0.5.0)
 
 SPEC REPOS:
@@ -78,28 +77,26 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - Toast-Swift
-    - TOCropViewController
     - UIImageViewAlignedSwift
 
 SPEC CHECKSUMS:
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
-  Auk: 82be62a2cf650437fe745c81b12ac2440a0f682c
-  Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
-  Charts: 0705898046257443f0afbbc3179f4b67507b6e48
-  CropViewController: 73a095de5605b017afdf34c6f2604569e147bcbd
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  Auk: 13f9bbb5a2f554b4e5b2502982188a4982bc9398
+  Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
+  Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
+  CropViewController: a090820b15fc3da68e694d7c192a4708c576828b
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   FontAwesomeKit: 3614979b3dbb0ec3f7fac1bd760b91f66c31db67
-  Gallery: cff13f3b14b8923b02d7105e0f9ec26f15eebd0e
-  Imaginary: d675200546110e305d6a26db6267c0622ffe5e6b
+  Gallery: 3f4c780c4b22906d6b0a5e55d12167cdc4b4fc5b
+  Imaginary: dae33d06dbc2ada22f98afef5eb45cc061311a2c
   JSONWebToken: 6fae32489632658d563dd6952a5c34020ea813e4
-  moa: b73dc5e0efa1fad00711c4608e41b197f4d15b12
-  PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
-  Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
-  RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
-  Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
-  TOCropViewController: a21b39c910d161600a26b6e3f89a58707afaa4f8
+  moa: 95c863fd1059e6b5c7f6be30627823bb07ebca25
+  PKHUD: 4e6162c4c39ac367c6934e9855c6b4762ee16256
+  Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
+  RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
+  Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   UIImageViewAlignedSwift: 2e09096e6081ad26b848e19b4bc35a7d69165740
 
-PODFILE CHECKSUM: 0f1abe9507ff1626fac110f7ed8108efb1f0a1cc
+PODFILE CHECKSUM: 0628c8081255ee865c5acb9b838018e9d555cabc
 
 COCOAPODS: 1.5.3
