@@ -61,6 +61,26 @@ DEPENDENCIES:
   - Toast-Swift (= 3.0.1)
   - UIImageViewAlignedSwift (= 0.5.0)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Auk
+    - Cache
+    - Charts
+    - CropViewController
+    - CRToast
+    - FontAwesomeKit
+    - Gallery
+    - Imaginary
+    - JSONWebToken
+    - moa
+    - PKHUD
+    - Realm
+    - RealmSwift
+    - Toast-Swift
+    - TOCropViewController
+    - UIImageViewAlignedSwift
+
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   Auk: 82be62a2cf650437fe745c81b12ac2440a0f682c
@@ -82,4 +102,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 0f1abe9507ff1626fac110f7ed8108efb1f0a1cc
 
-COCOAPODS: 1.4.0.rc.1
+COCOAPODS: 1.5.3

@@ -479,7 +479,6 @@
 				FA1DE1512034C77A00ACBD17 /* Frameworks */,
 				FA1DE1522034C77A00ACBD17 /* Resources */,
 				A84E9BE90D6F68829AF4A3FF /* [CP] Embed Pods Frameworks */,
-				67CE0A8092F41DD1534F55A8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -622,21 +621,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		67CE0A8092F41DD1534F55A8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iNatLite/Pods-iNatLite-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8D65B1170A7720B6D1007865 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
