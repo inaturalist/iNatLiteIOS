@@ -28,33 +28,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let font = UIFont(name: "Whitney-Medium", size: 18) {
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         }
+        
+        let migrationKey = "HasMigratedDatabaseSeek1"
+        if (!UserDefaults.standard.bool(forKey: migrationKey)) {
+            // copy the realm database from this shared container
+            // back out to the default location
+            if let directory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppDelegate.appGroupId) {
                 
-        // put the realm database in a shared container so it can eventually be read by other iNaturalist apps
-        if let directory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppDelegate.appGroupId) {
-            
-            
-            let migrationConfig = Realm.Configuration(
-                // Set the new schema version. This must be greater than the previously used
-                // version (if you've never set a schema version before, the version is 0).
-                schemaVersion: 4,
-                
-                // Set the block which will be called automatically when opening a Realm with
-                // a schema version lower than the one set above
-                migrationBlock: { migration, oldSchemaVersion in
-                    // We haven’t migrated anything yet, so oldSchemaVersion == 0
-                    if (oldSchemaVersion < 4) {
-                        // Nothing to do!
-                        // Realm will automatically detect new properties and removed properties
-                        // And will update the schema on disk automatically
+                let containerFileUrl = directory.appendingPathComponent("db.realm")
+                let fm = FileManager.default
+                if fm.fileExists(atPath: containerFileUrl.path) {
+                    let realmConfig = RLMRealmConfiguration.default()
+                    if let defaultFileUrl = realmConfig.fileURL {
+                        do {
+                            try fm.moveItem(at: containerFileUrl, to: defaultFileUrl)
+                            defer {
+                                UserDefaults.standard.set(true, forKey: migrationKey)
+                                UserDefaults.standard.synchronize()
+                            }
+                        } catch { }
                     }
-            })
-            // Tell Realm to use this new configuration object for the default Realm
-            Realm.Configuration.defaultConfiguration = migrationConfig
-
-            let config = RLMRealmConfiguration.default()
-            config.fileURL = directory.appendingPathComponent("db.realm")
-            RLMRealmConfiguration.setDefault(config)
+                }
+            }
         }
+        
+        let migrationConfig = Realm.Configuration(
+            schemaVersion: 4,
+            migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < 4) {
+                    // Nothing to do!
+                }
+        })
+        // Tell Realm to use this new configuration object for the default Realm
+        Realm.Configuration.defaultConfiguration = migrationConfig
         
         setupBadges()
         
