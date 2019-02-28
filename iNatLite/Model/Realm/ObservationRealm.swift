@@ -48,17 +48,62 @@ class ObservationRealm: Object {
         }
     }
     
-    func pathForImage() -> URL? {
+    func appPathForImage() -> URL? {
+        return ObservationRealm.self.appPathForUUID(uuidString)
+    }
+    
+    class func allContainerImageUUIDs() -> [String] {
+        var uuids = [String]()
+        
         if let directory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppDelegate.appGroupId) {
+            let largeDirectory = directory.appendingPathComponent("large")
             
-            let largePath = directory.appendingPathComponent("large")
-            if !FileManager.default.fileExists(atPath: largePath.path) {
-                try! FileManager.default.createDirectory(at: largePath, withIntermediateDirectories: false, attributes: nil)
+            do {
+                let contents = try FileManager.default.contentsOfDirectory(atPath: largeDirectory.path)
+                uuids.append(contentsOf: contents)
+            } catch { }
+        }
+        
+        return uuids
+    }
+    
+    class func containerPathForUUID(_ uuidString: String) -> URL? {
+        if let containerDir = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppDelegate.appGroupId) {
+            let largeDirUrl = containerDir.appendingPathComponent("large")
+            do {
+                if !FileManager.default.fileExists(atPath: largeDirUrl.path) {
+                    try FileManager.default.createDirectory(at: largeDirUrl, withIntermediateDirectories: true, attributes: nil)
+                }
+                return largeDirUrl.appendingPathComponent(uuidString)
+            } catch {
+                return nil
             }
-            return largePath.appendingPathComponent(uuidString)
+            
         } else {
             return nil
         }
+    }
+    
+    class func appPathForUUID(_ uuidString: String) -> URL? {
+        if let documentDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
+            do {
+                let directoryUrl = URL(fileURLWithPath: documentDir)
+                let largeDirUrl = directoryUrl.appendingPathComponent("large")
+                if !FileManager.default.fileExists(atPath: largeDirUrl.path) {
+                    try FileManager.default.createDirectory(at: largeDirUrl, withIntermediateDirectories: false, attributes: nil)
+                }
+                return largeDirUrl.appendingPathComponent(uuidString)
+            } catch {
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+    
+    
+    func pathForImage() -> URL? {
+        return appPathForImage()
     }
     
     var dateString: String? {

@@ -29,8 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         }
         
-        let migrationKey = "HasMigratedDatabaseSeek1"
-        if (!UserDefaults.standard.bool(forKey: migrationKey)) {
+        let dbMigrationKey = "HasMigratedDatabaseSeek1"
+        if (!UserDefaults.standard.bool(forKey: dbMigrationKey)) {
             // copy the realm database from this shared container
             // back out to the default location
             if let directory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppDelegate.appGroupId) {
@@ -43,13 +43,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         do {
                             try fm.moveItem(at: containerFileUrl, to: defaultFileUrl)
                             defer {
-                                UserDefaults.standard.set(true, forKey: migrationKey)
+                                UserDefaults.standard.set(true, forKey: dbMigrationKey)
                                 UserDefaults.standard.synchronize()
                             }
                         } catch { }
                     }
                 }
             }
+        }
+        
+        let photoMigrationKey = "HasMigratedPhotosSeek1"
+        if (!UserDefaults.standard.bool(forKey: photoMigrationKey)) {
+            // copy the users photos from this shared container
+            // back out to the app documents directory
+            let photoUuidStrings = ObservationRealm.allContainerImageUUIDs()
+            let fm = FileManager.default
+            for photoUuidString in photoUuidStrings {
+                if let containerUrl = ObservationRealm.containerPathForUUID(photoUuidString),
+                    let appUrl = ObservationRealm.appPathForUUID(photoUuidString)
+                {
+                    do {
+                        try fm.moveItem(at: containerUrl, to: appUrl)
+                    } catch { }
+                }
+            }
+            
+            UserDefaults.standard.set(true, forKey: photoMigrationKey)
+            UserDefaults.standard.synchronize()
         }
         
         let migrationConfig = Realm.Configuration(
